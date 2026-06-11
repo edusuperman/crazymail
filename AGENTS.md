@@ -1,79 +1,72 @@
 # CrazyMail（疯邮）— OpenCode 项目指令文件
-# 版本：v1.0 | 2026-06-11
+# 版本：v2.0 | 2026-06-11
 
 ## ════════════════════════════════════════════
-## 项目核心定义（必读，优先级最高）
+## ⚠️ 最高优先级：先读 STRATEGY.md
 ## ════════════════════════════════════════════
 
-你正在参与开发 CrazyMail（疯邮）——一套以北宋朝廷为视觉隐喻的 AI 驱动
-SEO 内容矩阵自动化系统。
+**在开始任何编码任务前，必须先读 `STRATEGY.md`！**
 
-**项目本质**：
-- 20 个独立 Niche 站点的内容生产 + 联盟变现平台
-- 7 阶段 AI Agent 内容流水线（关键词→SERP→大纲→写作→质检→SEO优化→链接）
-- 108 位真实人员授权的社媒自动化推广矩阵
-- 北宋国风动态卡通 Dashboard（清明上河图风格）
+该文件定义了：
+- 终极目标（靠临时邮箱赚钱）
+- 三阶段开发路线
+- 当前阶段和优先级
+- 原方案模块的重新归属
 
-**项目代号与术语表**（开发中必须使用这套命名，不得随意更改）：
-- 驿站 = 单个 Niche 网站
-- 编制内 / 朝廷官员 = 内容生产 AI Agents（宋徽宗/李纲/张择端/周邦彦/李清照/岳飞/韩世忠/种师道）
-- 108好汉 = 社媒推广 Persona 矩阵
-- 皇城司 = 安全隔离引擎（Security Isolation Engine）
-- 十二道金牌 = 分级紧急熔断 + 人工接管协议
-- 汴京总督府 = 宋徽宗主控 Dashboard
-- 飞鸽传书 = 任务/内容在 Agent 间流转的可视化
+所有代码实现必须与 STRATEGY.md 对齐。
 
 ## ════════════════════════════════════════════
-## 技术架构决策（不得推翻，除非获得明确授权）
+## 项目核心定义
+## ════════════════════════════════════════════
+
+你正在参与开发 CrazyMail（疯邮）——一套临时邮箱网站矩阵系统。
+
+**当前重点（阶段一）**：
+- 核心功能：临时邮箱的生成、接收、查看、过期
+- 技术栈：Next.js 15 + FastAPI + 邮件 API（Mail.tm 等）
+- 目标：上线一个能用的产品
+
+**暂缓的功能**（阶段二/三才做）：
+- 内容工厂（7阶段流水线）
+- 108好汉系统
+- 皇城司隔离
+- 国风 Dashboard
+
+## ════════════════════════════════════════════
+## 技术架构决策
 ## ════════════════════════════════════════════
 
 **已确认的架构决策**：
-1. 前端：Next.js 15 (App Router) + TypeScript + PixiJS 8 + React Flow 12
-2. Agent 角色层：CrewAI 0.80+（定义谁做什么）
-3. Agent 状态层：LangGraph 0.2+（控制流转、断点续跑、人工节点）
-4. API 网关：FastAPI 0.115+（模块化 Router，插座架构）
-5. 数据库：PostgreSQL 16（Supabase）+ Redis 7.4（队列/缓存）
-6. 主力 LLM：MiMo v2.5 Pro（质检/创意写作）+ Agnes AI（批量低成本）
-7. 开发模型：OpenCode 使用 MiMo v2.5 Pro
+1. 前端：Next.js 15 (App Router) + TypeScript + Tailwind CSS
+2. 后端：FastAPI（Python 3.12）或 Next.js API Routes
+3. 数据库：Supabase（PostgreSQL）
+4. 邮件 API：Mail.tm / TemporaryMail / Temp-Mail.io（多接口轮换）
+5. 部署：Vercel 或 Cloudflare Pages
+6. LLM：MiMo v2.5 Pro（主力）+ Agnes AI（免费批量）
 
-**插座原则**（核心设计约束）：
-- 每个业务模块通过 FastAPI Router 注册，新功能 = 新 Router，不改主逻辑
-- Agent 定义用 CrewAI YAML 配置文件，新增角色不改代码
-- 108好汉 Persona 存为独立 JSON，随时扩充
-- 每个自动化模块必须有对应人工替代方案（底座原则）
-
-**绝对禁止推翻的决策**：
-- 不得将 20 站点共享服务器/IP/CDN（皇城司物理隔离要求）
-- 不得在站点间添加任何内链或共享 Analytics ID
-- 不得将 SQLite 用于生产环境的任务队列
+**插座原则**：
+- 每个业务模块独立，可插拔
+- 新功能 = 新模块，不改主逻辑
+- 每个自动化模块必须有人工替代方案
 
 ## ════════════════════════════════════════════
 ## 代码规范
 ## ════════════════════════════════════════════
 
 **通用规范**：
-- Python：3.12+，使用 uv 管理依赖（不用 pip），类型注解必须完整
+- Python：3.12+，uv 管理依赖，类型注解完整
 - TypeScript：严格模式，禁止 any
-- 所有配置项通过环境变量注入，不得硬编码任何密钥/URL/账号信息
-- 文件命名：Python 用 snake_case，TypeScript 用 kebab-case（组件用 PascalCase）
-- 注释：核心逻辑必须有中文注释（面向项目负责人可读）
-
-**Agent 开发规范**：
-- CrewAI Agent 定义放在 `backend/agents/crews/` 目录
-- LangGraph Workflow 定义放在 `backend/agents/workflows/` 目录
-- 每个 Workflow 节点必须有 `interrupt_before` 支持（人工审核节点要求）
-- Agent 的 Persona Profile 通过 `backend/personas/` 目录加载，不得内联
+- 所有配置通过环境变量注入，不得硬编码密钥
+- 文件命名：Python snake_case，TypeScript kebab-case
 
 **前端规范**：
-- PixiJS 场景代码放在 `frontend/src/pixi/` 目录
-- React Flow 图表放在 `frontend/src/flows/` 目录
-- Dashboard 组件用 Shadcn/ui，不得引入其他 UI 库（保持一致性）
-- WebSocket 连接统一通过 `frontend/src/lib/ws-client.ts` 管理
+- 组件用 Shadcn/ui（如需要）
+- 响应式设计（移动端优先）
+- SSR 优先（SEO 友好）
 
-**安全规范（皇城司要求）**：
-- 每个 Persona 操作必须通过代理（不得用本机 IP）
-- 指纹浏览器配置文件路径不得出现在代码中（通过环境变量或加密配置）
-- 日志中禁止记录任何 Persona 的真实身份信息
+**安全规范**：
+- API Key 不得出现在代码中
+- 日志中禁止记录敏感信息
 
 ## ════════════════════════════════════════════
 ## Agent 行为边界
@@ -81,44 +74,24 @@ SEO 内容矩阵自动化系统。
 
 **允许自主执行**：
 - 单个模块内的代码生成和重构
-- 添加新的 API 路由（遵循现有 Router 结构）
+- 添加新的 API 路由
 - 编写测试用例
-- 更新 Persona 配置文件（JSON 格式）
 - 前端组件开发
 
 **需要用户确认后执行**：
 - 修改数据库 Schema
-- 修改 LangGraph Workflow 的节点结构
 - 添加新的外部 API 集成
-- 修改任何涉及安全隔离的配置
+- 修改部署配置
 
 **绝对禁止**：
 - 删除或修改 `.env` 文件
-- 修改皇城司隔离规则配置
-- 跨模块修改（不得在一次任务中同时修改超过 3 个核心模块）
 - 提交包含硬编码密钥的代码
-
-## ════════════════════════════════════════════
-## 当前开发阶段
-## ════════════════════════════════════════════
-
-**Phase 0（当前）**：环境准备
-- 优先完成：项目骨架搭建、依赖安装、数据库连接验证
-- 暂缓：业务代码编写
-
-**下一阶段触发条件**：Phase 0 所有任务完成，环境验证通过
+- 修改 STRATEGY.md（需用户授权）
 
 ## ════════════════════════════════════════════
 ## 参考文档
 ## ════════════════════════════════════════════
 
-详细文档见 `doc/01-整体方案初稿_claude编写/` 目录：
-- ARCHITECTURE.md — 完整系统架构图
-- modules/CONTENT_FACTORY.md — 内容工厂7阶段流水线设计
-- modules/SECURITY_ISOLATION.md — 皇城司设计规格
-- modules/PERSONA_SYSTEM.md — 108好汉人格成长系统
-- modules/VISUALIZATION.md — 动态可视化设计
-- modules/GOLD_MEDAL.md — 十二道金牌系统
-- DATABASE_SCHEMA.md — 数据库完整 Schema
-- API_DESIGN.md — FastAPI 接口设计
-- TECH_STACK.md — 技术栈版本清单
+- STRATEGY.md — 项目战略和方向（最高优先级）
+- doc/01-整体方案初稿_claude编写/ — 原方案详细设计
+- .hermes/plans/ — 实施计划
