@@ -1,0 +1,59 @@
+# CrazyMail 站点配置
+# 站点ID: site-01
+
+site:
+  id: "site-01"
+  name: "TempMail Pro"
+  domain: "tempmailpro.com"
+  description: "Professional temporary email service - protect your privacy with disposable email addresses"
+  language: "en"
+  timezone: "UTC"
+
+api:
+  provider: "mailtm"
+  base_url: "${NEXT_PUBLIC_API_URL}"
+  timeout: 30
+  retry_attempts: 3
+
+theme:
+  primary_color: "#3B82F6"
+  secondary_color: "#1E40AF"
+  accent_color: "#F59E0B"
+  background_color: "#F8FAFC"
+  text_color: "#1E293B"
+  font_family: "Inter, sans-serif"
+  logo_url: "/images/logo.svg"
+  favicon_url: "/favicon.ico"
+
+seo:
+  title: "TempMail Pro - Free Temporary Email Service"
+  description: "Get instant disposable email addresses. Protect your privacy and avoid spam with TempMail Pro's free temporary email service."
+  keywords:
+    - "temporary email"
+    - "disposable email"
+    - "temp mail"
+    - "fake email"
+    - "email generator"
+    - "privacy protection"
+  og_image: "/images/og-image.png"
+  twitter_card: "summary_large_image"
+  canonical_url: "https://tempmailpro.com"
+  robots: "index, follow"
+
+features:
+  email_expiry_minutes: 10
+  max_emails_per_session: 5
+  auto_refresh_interval: 30
+  show_ads: true
+  analytics_enabled: true
+
+localization:
+  default_locale: "en-US"
+  supported_locales:
+    - "en-US"
+    - "zh-CN"
+    - "ja-JP"
+    - "ko-KR"
+    - "es-ES"
+    - "fr-FR"
+    - "de-DE"
