@@ -14,6 +14,7 @@ import {
 import { useToast, ToastContainer } from "@/components/Toast";
 import EmailGenerator from "@/components/EmailGenerator";
 import InboxList from "@/components/InboxList";
+import FAQ from "@/components/FAQ";
 
 export default function TempMailClient() {
   const [email, setEmail] = useState<EmailResponse | null>(null);
@@ -175,6 +176,8 @@ export default function TempMailClient() {
           onExpand={handleExpand}
         />
       )}
+
+      <FAQ />
 
       {/* Footer */}
       <footer className="text-center text-xs text-slate-600 py-6 px-4">
