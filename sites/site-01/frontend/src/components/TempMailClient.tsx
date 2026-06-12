@@ -9,6 +9,7 @@ import {
   type MessageSummary,
   type MessageDetail,
 } from "@/lib/api-client";
+import { useToast, ToastContainer } from "@/components/Toast";
 
 export default function TempMailClient() {
   const [email, setEmail] = useState<EmailResponse | null>(null);
@@ -18,21 +19,33 @@ export default function TempMailClient() {
   const [loading, setLoading] = useState(false);
   const [copyOk, setCopyOk] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [emailHighlight, setEmailHighlight] = useState(false);
+  const [messagesLoading, setMessagesLoading] = useState(false);
+  const prevCountRef = useRef(0);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const toast = useToast();
 
   useEffect(() => {
     if (!email) return;
     const addr = email.address;
     const poll = () => {
       getMessages(addr)
-        .then((list) => setMessages(list))
+        .then((list) => {
+          setMessages((prev) => {
+            if (prevCountRef.current > 0 && list.length > prevCountRef.current) {
+              toast.success("New email received!");
+            }
+            prevCountRef.current = list.length;
+            return list;
+          });
+        })
         .catch(() => {});
     };
     timerRef.current = setInterval(poll, 5000);
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [email]);
+  }, [email, toast]);
 
   async function handleGenerate() {
     setLoading(true);
@@ -43,10 +56,19 @@ export default function TempMailClient() {
       const res = await createEmail();
       setEmail(res);
       setMessages([]);
+      prevCountRef.current = 0;
+      setMessagesLoading(true);
+      setEmailHighlight(true);
+      setTimeout(() => setEmailHighlight(false), 1500);
+      toast.success("Email created!");
       // 立即拉取第一批邮件
       getMessages(res.address)
-        .then((list) => setMessages(list))
-        .catch(() => {});
+        .then((list) => {
+          setMessages(list);
+          prevCountRef.current = list.length;
+        })
+        .catch(() => {})
+        .finally(() => setMessagesLoading(false));
     } catch (e: unknown) {
       setError(e instanceof Error ? e.message : "Failed to generate email");
     } finally {
@@ -59,6 +81,7 @@ export default function TempMailClient() {
     try {
       await navigator.clipboard.writeText(email.address);
       setCopyOk(true);
+      toast.success("Copied to clipboard!");
       setTimeout(() => setCopyOk(false), 2000);
     } catch {
       /* fallback: 静默 */
@@ -92,6 +115,7 @@ export default function TempMailClient() {
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-white">
+      <ToastContainer toasts={toast.toasts} />
       {/* Hero */}
       <header className="flex flex-col items-center pt-16 pb-10 px-4 text-center">
         <h1 className="text-5xl sm:text-6xl font-extrabold bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
@@ -141,7 +165,13 @@ export default function TempMailClient() {
       {/* 邮箱地址展示 */}
       {email && (
         <section className="flex flex-col items-center px-4 pb-6">
-          <div className="flex items-center gap-3 rounded-xl bg-slate-800/60 border border-slate-700 px-6 py-4 max-w-full">
+          <div
+            className={`flex items-center gap-3 rounded-xl border px-6 py-4 max-w-full transition-all duration-500 ${
+              emailHighlight
+                ? "bg-cyan-500/20 border-cyan-400/60 shadow-lg shadow-cyan-500/20 scale-[1.02]"
+                : "bg-slate-800/60 border-slate-700"
+            }`}
+          >
             <span className="text-xl sm:text-2xl font-mono text-cyan-300 truncate">
               {email.address}
             </span>
@@ -170,7 +200,22 @@ export default function TempMailClient() {
             )}
           </h2>
 
-          {messages.length === 0 ? (
+          {messagesLoading ? (
+            <div className="space-y-3">
+              {[1, 2, 3].map((i) => (
+                <div
+                  key={i}
+                  className="bg-slate-800/50 rounded-xl px-5 py-4 animate-pulse"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="w-32 h-4 bg-slate-700 rounded" />
+                    <div className="flex-1 h-4 bg-slate-700 rounded" />
+                    <div className="w-20 h-3 bg-slate-700 rounded" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : messages.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-20 text-slate-500">
               <svg
                 className="w-16 h-16 mb-4 opacity-40"
