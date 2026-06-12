@@ -52,13 +52,13 @@ export default function TempMailClient() {
     };
   }, [email, toast]);
 
-  async function handleGenerate(username?: string) {
+  async function handleGenerate(username?: string, domain?: string) {
     setLoading(true);
     setError(null);
     setExpandedId(null);
     setDetail(null);
     try {
-      const res = await createEmail(username);
+      const res = await createEmail(username, domain);
       setEmail(res);
       setMessages([]);
       prevCountRef.current = 0;

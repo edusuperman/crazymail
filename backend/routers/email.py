@@ -18,27 +18,28 @@ _SHARED = str(Path(__file__).resolve().parents[2] / "sites" / "shared")
 if _SHARED not in sys.path:
     sys.path.insert(0, _SHARED)
 
-from api_adapters.mailtm_adapter import MailTmAdapter  # noqa: E402
 from api_adapters.base import (  # noqa: E402
     AuthenticationError,
     EmailAdapterError,
     NetworkError,
     RateLimitError,
 )
+from api_adapters.mailtm_adapter import MailTmAdapter  # noqa: E402
+from api_adapters.tempmailio_adapter import TempMailIOAdapter  # noqa: E402
 
 router = APIRouter()
 
-# 全局适配器实例（单个用户场景，后续可替换为会话管理）
-_adapter: MailTmAdapter | None = None
+# 使用 Temp-Mail.io 作为主适配器（保留 MailTmAdapter 作为备用）
+_adapter: TempMailIOAdapter | None = None
 # 当前邮箱地址（用于获取邮件）
 _current_email: str | None = None
 
 
-def _get_adapter() -> MailTmAdapter:
+def _get_adapter() -> TempMailIOAdapter:
     """获取或创建适配器实例"""
     global _adapter
     if _adapter is None:
-        _adapter = MailTmAdapter()
+        _adapter = TempMailIOAdapter()
     return _adapter
 
 
@@ -125,6 +126,17 @@ async def create_email(body: CreateEmailRequest | None = None) -> CreateEmailRes
             domain=email_addr.domain,
             provider=email_addr.provider,
         )
+    except EmailAdapterError as err:
+        raise _handle_adapter_error(err)
+
+
+@router.get("/domains")
+async def get_domains() -> dict[str, list[str]]:
+    """获取可用域名列表"""
+    adapter = _get_adapter()
+    try:
+        domains = await adapter.get_domains()
+        return {"domains": domains}
     except EmailAdapterError as err:
         raise _handle_adapter_error(err)
 
@@ -218,4 +230,4 @@ async def email_health() -> dict[str, Any]:
         }
     except Exception as err:
         logger.warning("邮件健康检查失败: {}", err)
-        return {"status": "error", "provider": "mail.tm", "detail": str(err)}
+        return {"status": "error", "provider": "tempmailio", "detail": str(err)}

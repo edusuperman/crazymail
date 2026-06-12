@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import type { EmailResponse } from "@/lib/api-client";
+import { useState, useEffect } from "react";
+import { getDomains, type EmailResponse } from "@/lib/api-client";
 
 interface EmailGeneratorProps {
   email: EmailResponse | null;
@@ -9,7 +9,7 @@ interface EmailGeneratorProps {
   copyOk: boolean;
   emailHighlight: boolean;
   error: string | null;
-  onGenerate: (username?: string) => void;
+  onGenerate: (username?: string, domain?: string) => void;
   onCopy: () => void;
 }
 
@@ -24,10 +24,24 @@ export default function EmailGenerator({
 }: EmailGeneratorProps) {
   const [showCustom, setShowCustom] = useState(false);
   const [customPrefix, setCustomPrefix] = useState("");
+  const [domains, setDomains] = useState<string[]>([]);
+  const [selectedDomain, setSelectedDomain] = useState<string>("");
+
+  useEffect(() => {
+    getDomains()
+      .then((list) => {
+        setDomains(list);
+        if (list.length > 0 && !selectedDomain) {
+          setSelectedDomain(list[0]);
+        }
+      })
+      .catch(() => {});
+  }, [selectedDomain]);
 
   function handleGenerate() {
     const username = showCustom && customPrefix.trim() ? customPrefix.trim() : undefined;
-    onGenerate(username);
+    const domain = selectedDomain || undefined;
+    onGenerate(username, domain);
   }
 
   return (
@@ -48,17 +62,34 @@ export default function EmailGenerator({
             onClick={() => setShowCustom(!showCustom)}
             className="text-sm text-slate-500 hover:text-slate-300 transition mb-2"
           >
-            {showCustom ? "Hide custom prefix" : "Custom prefix"}
+            {showCustom ? "Hide custom options" : "Custom prefix & domain"}
           </button>
           {showCustom && (
-            <input
-              type="text"
-              value={customPrefix}
-              onChange={(e) => setCustomPrefix(e.target.value)}
-              placeholder="e.g. myname"
-              maxLength={30}
-              className="w-full px-4 py-2 rounded-lg glass-light text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500/50 transition mb-3"
-            />
+            <div className="flex flex-col gap-2">
+              {/* Domain selector */}
+              {domains.length > 0 && (
+                <select
+                  value={selectedDomain}
+                  onChange={(e) => setSelectedDomain(e.target.value)}
+                  className="w-full px-4 py-2 rounded-lg glass-light text-white text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500/50 transition appearance-none bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%2394a3b8%22%20stroke-width%3D%222%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%2F%3E%3C%2Fsvg%3E')] bg-no-repeat bg-[right_0.75rem_center] bg-[length:1rem]"
+                >
+                  {domains.map((d) => (
+                    <option key={d} value={d} className="bg-slate-800 text-white">
+                      @{d}
+                    </option>
+                  ))}
+                </select>
+              )}
+              {/* Custom prefix input */}
+              <input
+                type="text"
+                value={customPrefix}
+                onChange={(e) => setCustomPrefix(e.target.value)}
+                placeholder="e.g. myname"
+                maxLength={30}
+                className="w-full px-4 py-2 rounded-lg glass-light text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500/50 transition"
+              />
+            </div>
           )}
         </div>
 
