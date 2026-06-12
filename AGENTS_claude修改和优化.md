@@ -82,14 +82,15 @@
 - **开发LLM：** MiMo v2.5 Pro（主力）+ Agnes AI（免费批量）
 
 ### 核心技术栈（精确版本，不得随意升级）
-- **前端：** Next.js 16.2.x (App Router) + TypeScript 5.x + Tailwind CSS 4.x
-- **后端：** Python 3.12.8 + FastAPI 0.136.x + uv 0.11.x（禁止用pip）
-- **数据库：** Supabase（PostgreSQL）+ Redis（按需）
-- **部署：** Vercel 或 Cloudflare Pages（前端）
+- **前端：** Next.js 15.1.x (App Router) + TypeScript 5.7.x + Tailwind CSS 3.4.x
+- **后端：** Python 3.12.4 + FastAPI 0.115.x + uv 0.4.x（禁止用pip）
+- **数据库：** Supabase（PostgreSQL 16）+ Redis 7.4.x
+- **部署：** Vercel（前端）+ Hetzner Cloud（后端）
 
 ### 阶段二额外
 - **Agent框架：** CrewAI 0.80.x（角色定义）+ LangGraph 0.2.x（状态编排）
-- **内容生产LLM：** MiMo v2.5 Pro（质检/写作）+ Agnes AI（批量研究）
+- **内容生产LLM：** Claude API（质检/写作主力）+ DeepSeek API（批量研究）
+- **本地LLM：** Ollama 0.5.x + qwen2.5:7b
 
 ### 阶段三额外
 - **指纹浏览器：** Dolphin Anty（108好汉专用）
@@ -139,13 +140,13 @@ CrazyMail/
 ## 架构红线（违反即停止，上报Hermes）
 ## ════════════════════════════════════════════
 
-1. **后端唯一入口**：`backend/main.py` 是唯一 FastAPI app，禁止在其他目录创建独立服务
-2. **Agent用YAML**：`backend/agents/crews/` 下只放 `.yaml` 文件，禁止用 `.py`
-3. **站点零交叉**：20个 sites 之间禁止相互内链、禁止共享 Analytics ID
-4. **环境变量只读**：`.env` 禁止修改
-5. **策略文件只读**：STRATEGY.md、AGENTS.md、DOD.md、TECH_GUIDE.md 禁止修改
-6. **API客户端唯一位置**：只放 `sites/shared/api-adapters/`
-7. **禁止跨阶段开发**：阶段一未完成前，禁止动阶段二代码
+1. **后端唯一入口**：`backend/main.py` 是唯一 FastAPI app，禁止在其他目录创建独立服务或第二个 app 实例
+2. **Agent用YAML**：`backend/agents/crews/` 下只放 `.yaml` 文件，Agent定义禁止硬编码在 `.py` 文件中
+3. **站点零交叉**：20个 sites 之间禁止相互内链、禁止共享 Analytics ID、禁止共享CDN路径
+4. **环境变量只读**：`.env` 禁止修改，配置项只能读取
+5. **策略文件只读**：`STRATEGY.md`、`AGENTS.md`、`DOD.md`、`TECH_GUIDE.md` 禁止修改，只能读取
+6. **API客户端唯一位置**：邮件API客户端只放 `sites/shared/api-adapters/`，禁止在其他地方重复定义
+7. **禁止跨阶段开发**：阶段一未完成前，禁止动 `backend/agents/`、`backend/heroes/` 等阶段二代码
 
 ## ════════════════════════════════════════════
 ## 代码规范（全阶段通用）
@@ -175,9 +176,9 @@ CrazyMail/
 每个面向用户的页面必须包含：
 - SSR（服务端渲染，禁止纯CSR）
 - Meta tags + OG tags
-- JSON-LD 结构化数据
+- JSON-LD 结构化数据（Article/Person/WebSite）
 - 语义化 HTML（h1唯一、img必须有alt）
-- 干净的 URL
+- 干净的 URL（无参数后缀）
 - E-E-A-T 信号（作者署名、发布日期、数据来源）
 
 **详见 `TECH_GUIDE.md` 的 SEO/GEO 章节**
@@ -194,17 +195,17 @@ CrazyMail/
 - 更新 `backend/agents/crews/*.yaml` 配置
 
 **需要Hermes确认后执行：**
-- 修改数据库 Schema
+- 修改数据库 Schema（Supabase表结构）
 - 添加新的外部 API 集成
 - 修改 LangGraph Workflow 的节点结构
 - 任何涉及 `backend/huangchengsi/` 的改动
 
 **绝对禁止：**
 - 修改 `.env` 文件
-- 修改 STRATEGY.md、AGENTS.md、DOD.md、TECH_GUIDE.md
-- 修改 ADR/ 下任何文件
+- 修改 `STRATEGY.md`、`AGENTS.md`、`DOD.md`、`TECH_GUIDE.md`
+- 修改 `ADR/` 下任何文件
 - 硬编码密钥、账号信息
-- 跨阶段开发
+- 跨阶段开发（阶段一未完成禁止动阶段二代码）
 - 在 `backend/agents/crews/` 下创建 `.py` 文件
 
 ## ════════════════════════════════════════════
@@ -226,7 +227,7 @@ CrazyMail/
 ## 常见陷阱（避免重复犯错）
 ## ════════════════════════════════════════════
 
-1. **不要过度设计** — MVP阶段简单能用
+1. **不要过度设计** — MVP阶段简单能用，参考DOD.md的阶段一标准
 2. **不要引入不必要依赖** — 新增依赖前问Hermes
 3. **不要忘记SEO/GEO** — 每个页面必须符合规范
 4. **不要硬编码** — 包括URL、API Key、账号信息
