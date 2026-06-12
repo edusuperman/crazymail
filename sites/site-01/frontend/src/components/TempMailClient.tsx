@@ -191,26 +191,42 @@ export default function TempMailClient() {
               </p>
             </div>
           ) : (
-            <ul className="space-y-3">
+            <ul className="divide-y divide-slate-700/50">
               {messages.map((msg) => (
                 <li
                   key={msg.id}
-                  className="rounded-xl bg-slate-800/50 border border-slate-700 overflow-hidden transition hover:border-slate-500"
+                  className="bg-slate-800/50 first:rounded-t-xl last:rounded-b-xl overflow-hidden transition hover:bg-slate-800/70"
                 >
                   <button
                     onClick={() => handleExpand(msg.id)}
                     className="w-full text-left px-5 py-4 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4"
                   >
-                    <span
-                      className={`font-medium truncate max-w-[180px] ${
-                        msg.is_read ? "text-slate-400" : "text-white"
-                      }`}
-                    >
-                      {msg.from_name || msg.from_address}
-                    </span>
+                    <div className="flex items-center gap-2 min-w-0 sm:w-48 shrink-0">
+                      {!msg.is_read && (
+                        <span className="inline-block w-2 h-2 rounded-full bg-cyan-400 shrink-0" />
+                      )}
+                      <div className="min-w-0">
+                        <span
+                          className={`block truncate ${
+                            msg.is_read
+                              ? "text-slate-400 font-normal"
+                              : "text-white font-semibold"
+                          }`}
+                        >
+                          {msg.from_name || msg.from_address}
+                        </span>
+                        {msg.from_name && msg.from_address && (
+                          <span className="block truncate text-xs text-slate-500">
+                            {msg.from_address}
+                          </span>
+                        )}
+                      </div>
+                    </div>
                     <span
                       className={`flex-1 truncate ${
-                        msg.is_read ? "text-slate-500" : "text-slate-300"
+                        msg.is_read
+                          ? "text-slate-500"
+                          : "text-slate-200 font-medium"
                       }`}
                     >
                       {msg.subject || "(no subject)"}
@@ -221,22 +237,22 @@ export default function TempMailClient() {
                   </button>
 
                   {expandedId === msg.id && (
-                    <div className="border-t border-slate-700 px-5 py-4 text-sm text-slate-300 bg-slate-900/40">
+                    <div className="border-t-2 border-cyan-500/30 px-5 py-5 text-sm text-slate-200 bg-slate-800/80">
                       {detail ? (
                         detail.body_html ? (
                           <div
-                            className="max-w-none [&_a]:text-cyan-400 [&_a]:underline [&_img]:max-w-full [&_img]:h-auto"
+                            className="max-w-none p-4 rounded-lg bg-slate-900/60 [&_a]:text-cyan-400 [&_a]:underline [&_a:hover]:text-cyan-300 [&_img]:max-w-full [&_img]:h-auto"
                             dangerouslySetInnerHTML={{
                               __html: detail.body_html,
                             }}
                           />
                         ) : (
-                          <pre className="whitespace-pre-wrap break-words">
+                          <pre className="whitespace-pre-wrap break-words p-4 rounded-lg bg-slate-900/60">
                             {detail.body_text}
                           </pre>
                         )
                       ) : (
-                        <p className="text-slate-500 animate-pulse">
+                        <p className="text-slate-400 animate-pulse">
                           Loading…
                         </p>
                       )}
