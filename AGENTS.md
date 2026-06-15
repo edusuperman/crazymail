@@ -1,7 +1,7 @@
 # CrazyMail（疯邮）— OpenCode 开发指令
-# 版本：v4.0 | 2026-06-12
+# 版本：v5.0 | 2026-06-14
 # 此文件是 OpenCode 的行为准则，所有任务必须遵循
-# 基于 Hermes + OpenCode 协同开发方法论 v1.5
+# 基于 Hermes + OpenCode 协同开发方法论 v2.0
 
 ## ════════════════════════════════════════════
 ## 你是谁？
@@ -49,138 +49,26 @@
 - 目标：单站日均自然流量 > 100 UV
 - 完成标准：能对任意关键词自动产出通过质检的文章（AI检测分<30，SEO分>75）
 
-### 阶段三：变现闭环 + 规模化
-- 核心：联盟营销 + 多站矩阵 + 皇城司隔离
-- 技术：backend/huangchengsi/ + backend/gold_medal/ + dashboard/
-- 目标：月收入 > $3000
-- 完成标准：20站同时运转，皇城司隔离扫描0异常
+### 阶段三：矩阵扩张
+- 核心：多站点模板化复制 + 收益系统
+- 技术：sites/site-XX/ 模板 + backend/huangchengsi/
+- 目标：10+ 站点，月收益 > $500
+- 完成标准：新站 < 1天上线，有自动化质检
 
 ## ════════════════════════════════════════════
-## 术语表（必须理解，编码前必读）
+## 架构红线（绝不能违反）
 ## ════════════════════════════════════════════
 
-| 术语 | 真实含义 | 对应代码路径 |
-|------|---------|------------|
-| 驿站 | 单个 Niche 网站 | sites/site-XX/ |
-| 汴京总督府 | 主控 Dashboard | dashboard/frontend/ |
-| 飞鸽传书 | 任务在Agent间流转的事件 | 触发 WebSocket 推送 |
-| 飞鸽中箭 | 质检失败，任务打回重写 | QA节点 → write节点 |
-| 编制内/朝廷官员 | 内容生产 AI Agents | backend/agents/crews/ |
-| 宋徽宗节点 | LangGraph 人工审核节点 | interrupt_before 节点 |
-| 皇城司 | 安全隔离引擎 | backend/huangchengsi/ |
-| 十二道金牌 | 分级熔断+人工接管系统 | backend/gold_medal/ |
-| 108好汉 | 社媒推广人格系统 | backend/heroes/ |
-| 好汉升级 | Persona XP成长等级晋升 | backend/heroes/growth/ |
-| 底座 | 任意模块的人工替代方案 | docs/manual/ |
-
-## ════════════════════════════════════════════
-## 技术栈（全阶段通用）
-## ════════════════════════════════════════════
-
-### 开发工具
-- **AI IDE：** OpenCode
-- **开发LLM：** MiMo v2.5 Pro（主力）+ Agnes AI（免费批量）
-
-### 核心技术栈（精确版本，不得随意升级）
-- **前端：** Next.js 16.2.x (App Router) + TypeScript 5.x + Tailwind CSS 4.x
-- **后端：** Python 3.12.8 + FastAPI 0.136.x + uv 0.11.x（禁止用pip）
-- **数据库：** Supabase（PostgreSQL）+ Redis（按需）
-- **部署：** Vercel 或 Cloudflare Pages（前端）
-
-### 阶段二额外
-- **Agent框架：** CrewAI 0.80.x（角色定义）+ LangGraph 0.2.x（状态编排）
-- **内容生产LLM：** MiMo v2.5 Pro（质检/写作）+ Agnes AI（批量研究）
-
-### 阶段三额外
-- **指纹浏览器：** Dolphin Anty（108好汉专用）
-- **代理：** Bright Data 住宅代理池
-
-**详细版本号见 `TECH_GUIDE.md`**
-
-## ════════════════════════════════════════════
-## 项目结构（必须遵守，禁止自行创建目录）
-## ════════════════════════════════════════════
-
-```
-CrazyMail/
-├── STRATEGY.md              ← 战略（必读）
-├── AGENTS.md                ← 本文件（必读）
-├── DOD.md                   ← 完成标准（必读）
-├── TECH_GUIDE.md            ← 技术规范（必读）
-├── ADR/                     ← 架构决策记录（只读参考）
-├── .hermes/                 ← Hermes内部状态（禁止修改）
-├── crazymail_docs/          ← 模块详细设计（按需查阅）
-│
-├── sites/                   ← 阶段一：临时邮箱站点
-│   ├── shared/api-adapters/ ← 10个邮件API客户端（唯一位置）
-│   └── site-XX/
-│
-├── backend/                 ← 唯一的FastAPI后端（插座主板）
-│   ├── main.py              ← 唯一入口，禁止在其他地方创建app
-│   ├── routers/             ← 所有模块的Router（插座接口）
-│   ├── agents/
-│   │   ├── crews/           ← Agent定义（YAML格式，禁止用.py）
-│   │   └── workflows/       ← LangGraph流水线
-│   ├── heroes/              ← 108好汉系统
-│   ├── huangchengsi/        ← 皇城司
-│   ├── gold_medal/          ← 金牌系统
-│   ├── models/
-│   ├── services/
-│   └── core/
-│
-├── dashboard/frontend/      ← 国风Dashboard（独立Next.js应用）
-│
-├── infra/
-├── scripts/                 ← 运维脚本（init_db/seed_personas等）
-└── docs/manual/             ← 底座：人工替代方案文档
-```
-
-## ════════════════════════════════════════════
-## 架构红线（违反即停止，上报Hermes）
-## ════════════════════════════════════════════
-
-1. **后端唯一入口**：`backend/main.py` 是唯一 FastAPI app，禁止在其他目录创建独立服务
-2. **Agent用YAML**：`backend/agents/crews/` 下只放 `.yaml` 文件，禁止用 `.py`
-3. **站点零交叉**：20个 sites 之间禁止相互内链、禁止共享 Analytics ID
-4. **环境变量只读**：`.env` 禁止修改
-5. **策略文件只读**：STRATEGY.md、AGENTS.md、DOD.md、TECH_GUIDE.md 禁止修改
-6. **API客户端唯一位置**：只放 `sites/shared/api-adapters/`
-7. **禁止跨阶段开发**：阶段一未完成前，禁止动阶段二代码
-
-## ════════════════════════════════════════════
-## 代码规范（全阶段通用）
-## ════════════════════════════════════════════
-
-**Python：**
-- Python 3.12+，类型注解必须完整
-- 包管理用 uv，禁止用 pip
-- 命名：snake_case，核心逻辑必须有中文注释
-- 异步优先：数据库/HTTP操作全部用 async/await
-
-**TypeScript：**
-- 严格模式，禁止 any
-- 文件名：kebab-case，组件名：PascalCase
-- API调用统一通过 `src/lib/api-client.ts`
-- WebSocket统一通过 `src/lib/ws-client.ts`
-
-**通用：**
-- 配置项走环境变量，禁止硬编码任何密钥/URL/账号
-- 新Router必须在 `backend/main.py` 中注册
-- 新增外部依赖前，询问Hermes确认
-
-## ════════════════════════════════════════════
-## SEO/GEO 规范（全阶段通用）
-## ════════════════════════════════════════════
-
-每个面向用户的页面必须包含：
-- SSR（服务端渲染，禁止纯CSR）
-- Meta tags + OG tags
-- JSON-LD 结构化数据
-- 语义化 HTML（h1唯一、img必须有alt）
-- 干净的 URL
-- E-E-A-T 信号（作者署名、发布日期、数据来源）
-
-**详见 `TECH_GUIDE.md` 的 SEO/GEO 章节**
+1. **backend/main.py** 是唯一的 FastAPI 入口
+2. **sites/shared/api-adapters/** 是邮件 API 适配器的唯一位置
+3. **sites/site-XX/** 每个站点独立前端
+4. **backend/heroes/** 放 108 好汉人格
+5. **backend/huangchengsi/** 放皇城司
+6. **backend/gold_medal/** 放金牌系统
+7. **backend/personas/** 放人格配置（官方 + 好汉）
+8. 任何人格配置用 YAML，不用 Python
+9. .env 存密钥，代码中不硬编码
+10. 所有 API 走 /api/v1/ 前缀
 
 ## ════════════════════════════════════════════
 ## 行为边界
@@ -208,6 +96,55 @@ CrazyMail/
 - 在 `backend/agents/crews/` 下创建 `.py` 文件
 
 ## ════════════════════════════════════════════
+## 邮箱网站验收标准（铁律）
+## ════════════════════════════════════════════
+
+**每个邮箱网站交付用户前，必须通过以下全部测试：**
+
+### 第1关：Mailfence真实邮件发送
+- 使用Mailfence自动化（Playwright）发送真实邮件
+- 邮件必须成功发送（SENT_OK）
+
+### 第2关：后端API接收验证
+- 后端API正确返回邮件数据
+- 格式：{ email, messages, total }
+- 邮件主题、发件人、时间正确
+
+### 第3关：前端UI显示验证
+- 前端页面正确显示邮件列表
+- 点击邮件能打开详情
+- 邮件内容完整显示
+
+### 第4关：链接有效性测试
+- 测试所有内部链接（锚点、路由）
+- 测试所有外部链接（HTTP状态码）
+- 无效链接必须修复
+
+### 第5关：文档内容验证
+- 测试所有帮助文档、FAQ、教学内容
+- 验证内容与实际功能相符
+- 误导性内容必须修正
+- **默认假定不相符，找到证据才能证明相符**
+
+### 第6关：删除功能验证
+- 删除API返回正确响应
+- 前端正确处理删除结果
+- 删除后邮件不恢复
+
+### 第7关：自定义邮箱验证
+- 指定域名创建邮箱
+- 指定用户名创建邮箱
+- 用自定义邮箱接收邮件
+
+**验收流程：**
+1. Mailfence发送 → 后端接收 → 前端显示 → 打开详情 → 删除验证
+2. 链接测试 → 文档验证 → 问题记录
+3. 全部通过才能交付用户手动测试
+
+**测试报告位置：** `docs/E2E_TEST_REPORT.md`
+**操作手册位置：** `docs/OPERATION_MANUAL.md`
+
+## ════════════════════════════════════════════
 ## 参考文档（按需查阅，开发前必读对应模块）
 ## ════════════════════════════════════════════
 
@@ -221,6 +158,9 @@ CrazyMail/
 | 数据库设计 | `crazymail_docs/DATABASE_SCHEMA.md` |
 | API接口设计 | `crazymail_docs/API_DESIGN.md` |
 | 架构决策原因 | `ADR/` 目录 |
+| 文档清单 | `docs/DOCUMENT_INDEX.md` |
+| 测试报告 | `docs/E2E_TEST_REPORT.md` |
+| 操作手册 | `docs/OPERATION_MANUAL.md` |
 
 ## ════════════════════════════════════════════
 ## 常见陷阱（避免重复犯错）
@@ -232,5 +172,6 @@ CrazyMail/
 4. **不要硬编码** — 包括URL、API Key、账号信息
 5. **不要跨阶段** — 严格读STRATEGY.md确认当前阶段
 6. **不要创建第二个后端入口** — backend/main.py是唯一的
-7. **不要用.py定义Agent** — crews/下只放YAML
-8. **不要在站点间建立任何关联** — 零交叉原则
+7. **不要忽略验收标准** — 必须通过全部7关测试才能交付
+8. **不要跳过链接测试** — 所有链接必须验证有效
+9. **不要跳过文档验证** — FAQ和帮助内容必须与实际功能相符

@@ -238,28 +238,39 @@ class TempMailIOAdapter(EmailAdapter):
     ) -> EmailAddress:
         """创建临时邮箱地址
 
-        Temp-Mail.io API 创建端点使用 min/max_name_length 参数。
-        当指定 username 时，使用其长度范围；否则默认 10 位随机用户名。
+        Temp-Mail.io API 支持两种创建模式：
+        - 自定义创建：{"name": "username", "domain": "domain.com"}
+        - 随机创建：{"min_name_length": 10, "max_name_length": 10}
+
+        当指定 username 或 domain 时，使用自定义模式；否则使用随机模式。
 
         Args:
-            username: 自定义用户名（API 会根据长度范围生成）
-            domain:   自定义域名（当前 API 版本不支持指定，使用可用域名）
+            username: 自定义用户名
+            domain:   自定义域名
 
         Returns:
             EmailAddress: 创建成功的邮箱信息
         """
-        min_len = max(len(username), 5) if username else 10
-        max_len = max(min_len, 15) if username else 10
-
-        logger.info("创建邮箱 (min_len=%d, max_len=%d)", min_len, max_len)
+        if username or domain:
+            # 自定义模式：使用 name 和 domain 参数
+            payload: dict[str, Any] = {}
+            if username:
+                payload["name"] = username
+            if domain:
+                payload["domain"] = domain
+            logger.info("创建邮箱 (自定义): name=%s, domain=%s", username, domain)
+        else:
+            # 随机模式：使用长度范围参数
+            payload = {
+                "min_name_length": 10,
+                "max_name_length": 10,
+            }
+            logger.info("创建邮箱 (随机): min_name_length=10, max_name_length=10")
 
         response = await self._request(
             "POST",
             "/v3/email/new",
-            json={
-                "min_name_length": min_len,
-                "max_name_length": max_len,
-            },
+            json=payload,
         )
         data = response.json()
 
@@ -316,6 +327,28 @@ class TempMailIOAdapter(EmailAdapter):
         domains = [d["name"] for d in raw_domains if d.get("name")]
         logger.info("找到 %d 个可用域名", len(domains))
         return domains
+
+    async def delete_message(self, message_id: str) -> bool:
+        """删除邮件
+
+        Temp-Mail.io API 不支持删除单封邮件。
+        返回友好的错误信息，而不是抛出 500 错误。
+
+        Args:
+            message_id: 邮件 ID
+
+        Returns:
+            bool: 始终返回 False
+
+        Raises:
+            EmailAdapterError: 带友好错误信息的异常
+        """
+        logger.warning("Temp-Mail.io 不支持删除邮件: %s", message_id)
+        raise EmailAdapterError(
+            "Temp-Mail.io 不支持删除邮件功能，请等待邮件自动过期",
+            provider="tempmailio",
+            details={"message_id": message_id, "reason": "api_not_supported"},
+        )
 
     async def check_health(self) -> bool:
         try:
