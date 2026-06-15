@@ -1,8 +1,8 @@
 """邮件路由
 
 提供临时邮箱的创建、收件箱查看、邮件详情、删除、标记已读等接口。
+仅使用 temp-mail.io API（8个域名可选）。
 """
-
 from __future__ import annotations
 
 import sys
@@ -24,15 +24,38 @@ from api_adapters.base import (  # noqa: E402
     NetworkError,
     RateLimitError,
 )
-from api_adapters.mailtm_adapter import MailTmAdapter  # noqa: E402
 from api_adapters.tempmailio_adapter import TempMailIOAdapter  # noqa: E402
 
 router = APIRouter()
 
-# 使用 Temp-Mail.io 作为主适配器（保留 MailTmAdapter 作为备用）
+# 使用 Temp-Mail.io 作为主适配器
 _adapter: TempMailIOAdapter | None = None
 # 当前邮箱地址（用于获取邮件）
 _current_email: str | None = None
+# 邮箱地址持久化文件
+_EMAIL_FILE = Path(__file__).parent.parent.parent / ".current_email"
+
+
+def _load_saved_email() -> str | None:
+    """从文件加载保存的邮箱地址"""
+    try:
+        if _EMAIL_FILE.exists():
+            email = _EMAIL_FILE.read_text().strip()
+            if email:
+                logger.info("从文件加载邮箱地址: {}", email)
+                return email
+    except Exception as e:
+        logger.warning("加载邮箱地址失败: {}", e)
+    return None
+
+
+def _save_email(email: str) -> None:
+    """保存邮箱地址到文件"""
+    try:
+        _EMAIL_FILE.write_text(email)
+        logger.info("邮箱地址已保存到文件: {}", email)
+    except Exception as e:
+        logger.warning("保存邮箱地址失败: {}", e)
 
 
 def _get_adapter() -> TempMailIOAdapter:
@@ -83,6 +106,12 @@ class MessageDetail(BaseModel):
     attachments: list[dict[str, Any]]
 
 
+class MessagesResponse(BaseModel):
+    email: str
+    messages: list[MessageSummary]
+    total: int
+
+
 class ActionResponse(BaseModel):
     success: bool
     message: str
@@ -111,14 +140,19 @@ def _handle_adapter_error(err: EmailAdapterError) -> HTTPException:
 
 @router.post("/create", response_model=CreateEmailResponse)
 async def create_email(body: CreateEmailRequest | None = None) -> CreateEmailResponse:
-    """创建临时邮箱地址"""
+    """创建临时邮箱地址
+    
+    支持自定义用户名和域名选择
+    """
     global _current_email
     adapter = _get_adapter()
     try:
         username = body.username if body else None
         domain = body.domain if body else None
+        
         email_addr = await adapter.create_email(username=username, domain=domain)
         _current_email = email_addr.address
+        _save_email(email_addr.address)  # 保存到文件
         logger.info("创建邮箱成功: {}", email_addr.address)
         return CreateEmailResponse(
             address=email_addr.address,
@@ -128,6 +162,26 @@ async def create_email(body: CreateEmailRequest | None = None) -> CreateEmailRes
         )
     except EmailAdapterError as err:
         raise _handle_adapter_error(err)
+
+
+@router.get("/current", response_model=CreateEmailResponse)
+async def get_current_email() -> CreateEmailResponse:
+    """获取后端当前保存的邮箱地址"""
+    global _current_email
+    # 优先从内存获取，其次从文件加载
+    email = _current_email or _load_saved_email()
+    if not email:
+        raise HTTPException(status_code=404, detail="当前没有保存的邮箱地址")
+    # 解析邮箱地址
+    parts = email.split("@")
+    if len(parts) != 2:
+        raise HTTPException(status_code=500, detail="邮箱地址格式异常")
+    return CreateEmailResponse(
+        address=email,
+        username=parts[0],
+        domain=parts[1],
+        provider="tempmailio",
+    )
 
 
 @router.get("/domains")
@@ -141,16 +195,17 @@ async def get_domains() -> dict[str, list[str]]:
         raise _handle_adapter_error(err)
 
 
-@router.get("/messages", response_model=list[MessageSummary])
-async def get_messages(email: str | None = None) -> list[MessageSummary]:
+@router.get("/messages", response_model=MessagesResponse)
+async def get_messages(email: str | None = None) -> MessagesResponse:
     """获取收件箱邮件列表"""
+    global _current_email
     adapter = _get_adapter()
-    target = email or _current_email
+    target = email or _current_email or _load_saved_email()
     if not target:
         raise HTTPException(status_code=400, detail="请先创建邮箱或提供 email 参数")
     try:
         messages = await adapter.get_messages(target)
-        return [
+        summaries = [
             MessageSummary(
                 id=m.id,
                 from_address=m.from_address,
@@ -162,6 +217,7 @@ async def get_messages(email: str | None = None) -> list[MessageSummary]:
             )
             for m in messages
         ]
+        return MessagesResponse(email=target, messages=summaries, total=len(summaries))
     except EmailAdapterError as err:
         raise _handle_adapter_error(err)
 
@@ -226,7 +282,7 @@ async def email_health() -> dict[str, Any]:
         healthy = await adapter.check_health()
         return {
             "status": "ok" if healthy else "degraded",
-            "provider": adapter.provider_name,
+            "provider": "tempmailio",
         }
     except Exception as err:
         logger.warning("邮件健康检查失败: {}", err)
