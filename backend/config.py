@@ -28,7 +28,7 @@ class Settings(BaseSettings):
     PORT: int = 8000
 
     # CORS
-    CORS_ORIGINS: list[str] = ["http://localhost:3000"]
+    CORS_ORIGINS: list[str] = ["http://localhost:3000", "https://tempmails.top"]
 
     # 邮件 API
     EMAIL_API_PROVIDER: str = "mail.tm"
