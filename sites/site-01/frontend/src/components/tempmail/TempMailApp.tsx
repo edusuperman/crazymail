@@ -48,6 +48,9 @@ function AppInner() {
     initRef.current = true;
     (async () => {
       const d = await getDomains();
+      if (!d || d.length === 0) {
+        toast.error("Failed to load domains. Please check your connection.");
+      }
       setDomains(d);
       
       // 优先从 localStorage 加载保存的邮箱
@@ -58,6 +61,9 @@ function AppInner() {
       } else {
         // 没有保存的邮箱，创建新的
         const m = await createMailbox();
+        if (!m) {
+          toast.error("Failed to create mailbox. Please refresh the page.");
+        }
         setMailbox(m);
       }
     })();
@@ -65,18 +71,25 @@ function AppInner() {
 
   const refresh = useCallback(async (silent = false) => {
     if (!silent) setRefreshing(true);
-    const { messages: msgs } = await getMessages();
-    const known = lastIdsRef.current;
-    const fresh = msgs.filter((m) => !known.has(m.id));
-    if (known.size > 0 && fresh.length > 0) {
-      fresh.forEach((m) =>
-        toast.success(t.inbox.newMail, {
-          description: `${m.from_name ?? m.from_address} · ${m.subject}`,
-        }),
-      );
+    try {
+      const { messages: msgs } = await getMessages();
+      const known = lastIdsRef.current;
+      const fresh = msgs.filter((m) => !known.has(m.id));
+      if (known.size > 0 && fresh.length > 0) {
+        fresh.forEach((m) =>
+          toast.success(t.inbox.newMail, {
+            description: `${m.from_name ?? m.from_address} · ${m.subject}`,
+          }),
+        );
+      }
+      lastIdsRef.current = new Set(msgs.map((m) => m.id));
+      setMessages(msgs);
+    } catch (err) {
+      console.error("Failed to refresh messages:", err);
+      if (!silent) {
+        toast.error("Failed to load messages. Please try again.");
+      }
     }
-    lastIdsRef.current = new Set(msgs.map((m) => m.id));
-    setMessages(msgs);
     if (!silent) setTimeout(() => setRefreshing(false), 400);
   }, [t.inbox.newMail]);
 
@@ -138,6 +151,18 @@ function AppInner() {
   };
 
   const unread = messages.filter((m) => !m.is_read).length;
+
+  // Loading state
+  if (!mailbox) {
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="text-center">
+          <div className="mx-auto h-12 w-12 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+          <p className="mt-4 text-sm text-muted-foreground">Loading...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen">

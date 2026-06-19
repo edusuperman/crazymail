@@ -19,7 +19,7 @@ export type Mailbox = {
   provider?: string;
 };
 
-const BASE = (typeof window !== "undefined" && (window as any).__TEMPMAIL_API__) || "";
+const BASE = (typeof window !== "undefined" && (window as any).__TEMPMAIL_API__) || import.meta.env.VITE_API_BASE || "";
 
 const DEFAULT_DOMAINS = [
   "bltiwd.com",
