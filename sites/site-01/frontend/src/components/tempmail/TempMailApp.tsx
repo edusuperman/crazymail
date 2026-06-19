@@ -86,12 +86,23 @@ function AppInner() {
       setMessages(msgs);
     } catch (err) {
       console.error("Failed to refresh messages:", err);
-      if (!silent) {
-        toast.error("Failed to load messages. Please try again.");
+      // If API fails, the saved mailbox might be expired - create a new one
+      if (mailbox) {
+        try {
+          const m = await createMailbox();
+          if (m) {
+            setMailbox(m);
+            toast.info("Previous mailbox expired. Created new mailbox.");
+          }
+        } catch {
+          if (!silent) {
+            toast.error("Failed to load messages. Please try again.");
+          }
+        }
       }
     }
     if (!silent) setTimeout(() => setRefreshing(false), 400);
-  }, [t.inbox.newMail]);
+  }, [t.inbox.newMail, mailbox]);
 
   useEffect(() => {
     if (!mailbox) return;
