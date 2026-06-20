@@ -13,7 +13,6 @@ import { Route as TermsRouteImport } from './routes/terms'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as BlogBestTemporaryEmailServices2026RouteImport } from './routes/blog.best-temporary-email-services-2026'
 
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
@@ -35,62 +34,37 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BlogBestTemporaryEmailServices2026Route =
-  BlogBestTemporaryEmailServices2026RouteImport.update({
-    id: '/best-temporary-email-services-2026',
-    path: '/best-temporary-email-services-2026',
-    getParentRoute: () => BlogRoute,
-  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/blog': typeof BlogRouteWithChildren
+  '/blog': typeof BlogRoute
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
-  '/blog/best-temporary-email-services-2026': typeof BlogBestTemporaryEmailServices2026Route
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/blog': typeof BlogRouteWithChildren
+  '/blog': typeof BlogRoute
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
-  '/blog/best-temporary-email-services-2026': typeof BlogBestTemporaryEmailServices2026Route
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/blog': typeof BlogRouteWithChildren
+  '/blog': typeof BlogRoute
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
-  '/blog/best-temporary-email-services-2026': typeof BlogBestTemporaryEmailServices2026Route
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/blog'
-    | '/privacy'
-    | '/terms'
-    | '/blog/best-temporary-email-services-2026'
+  fullPaths: '/' | '/blog' | '/privacy' | '/terms'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/blog'
-    | '/privacy'
-    | '/terms'
-    | '/blog/best-temporary-email-services-2026'
-  id:
-    | '__root__'
-    | '/'
-    | '/blog'
-    | '/privacy'
-    | '/terms'
-    | '/blog/best-temporary-email-services-2026'
+  to: '/' | '/blog' | '/privacy' | '/terms'
+  id: '__root__' | '/' | '/blog' | '/privacy' | '/terms'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  BlogRoute: typeof BlogRouteWithChildren
+  BlogRoute: typeof BlogRoute
   PrivacyRoute: typeof PrivacyRoute
   TermsRoute: typeof TermsRoute
 }
@@ -125,30 +99,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/blog/best-temporary-email-services-2026': {
-      id: '/blog/best-temporary-email-services-2026'
-      path: '/best-temporary-email-services-2026'
-      fullPath: '/blog/best-temporary-email-services-2026'
-      preLoaderRoute: typeof BlogBestTemporaryEmailServices2026RouteImport
-      parentRoute: typeof BlogRoute
-    }
   }
 }
 
-interface BlogRouteChildren {
-  BlogBestTemporaryEmailServices2026Route: typeof BlogBestTemporaryEmailServices2026Route
-}
-
-const BlogRouteChildren: BlogRouteChildren = {
-  BlogBestTemporaryEmailServices2026Route:
-    BlogBestTemporaryEmailServices2026Route,
-}
-
-const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  BlogRoute: BlogRouteWithChildren,
+  BlogRoute: BlogRoute,
   PrivacyRoute: PrivacyRoute,
   TermsRoute: TermsRoute,
 }
