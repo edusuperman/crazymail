@@ -1,0 +1,10 @@
+# robots.txt for tempmails.top
+# Allow all search engines to crawl the site
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+# Sitemap location
+Sitemap: https://tempmails.top/sitemap.xml
