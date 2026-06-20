@@ -3,7 +3,7 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://tempmails.top/</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://tempmails.top/" />
@@ -17,14 +17,26 @@
   </url>
   <url>
     <loc>https://tempmails.top/privacy</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://tempmails.top/terms</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://tempmails.top/blog</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tempmails.top/blog/best-temporary-email-services-2026</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>
