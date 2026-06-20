@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/blog")({
   head: () => ({
@@ -98,6 +98,7 @@ function BlogPage() {
           </article>
         ))}
       </div>
+      <Outlet />
     </div>
   );
 }
