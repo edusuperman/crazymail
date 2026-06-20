@@ -79,6 +79,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:description", content: "Get instant disposable email addresses. Protect your privacy and avoid spam." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "google-site-verification", content: "vpnKeMfxamTQZtK6ksS1wzABFDBVwp8YsGqJu_ul6tk" },
     ],
     links: [
       {
