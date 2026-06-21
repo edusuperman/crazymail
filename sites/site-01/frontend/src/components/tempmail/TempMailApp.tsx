@@ -525,6 +525,7 @@ function SiteHeader() {
           <a href="#what" className="hover:text-foreground">{t.nav.about}</a>
           <a href="#apps" className="hover:text-foreground">{t.nav.apps}</a>
           <a href="#faq" className="hover:text-foreground">{t.nav.faq}</a>
+          <a href="/blog" className="hover:text-foreground">Blog</a>
           <a href="#premium" className="hover:text-foreground">{t.nav.premium}</a>
         </nav>
         <div className="flex items-center gap-2">
@@ -695,7 +696,9 @@ function SiteFooter() {
             <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
               {c.l.map((it) => {
                 const isExtension = /extension|erweiterung|拡張|扩展|확장/i.test(it);
-                return <li key={it}><a href={isExtension ? "/coming-soon" : "#"} className="hover:text-foreground">{it}</a></li>;
+                const isBlog = /blog|博客/i.test(it);
+                const href = isBlog ? "/blog" : isExtension ? "/coming-soon" : "#";
+                return <li key={it}><a href={href} className="hover:text-foreground">{it}</a></li>;
               })}
             </ul>
           </div>
