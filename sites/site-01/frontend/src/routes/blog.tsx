@@ -58,6 +58,46 @@ const blogPosts = [
     readTime: "6 min read",
     category: "Security",
   },
+  {
+    slug: "6-billion-emails-leaked-2026",
+    title: "6.8 Billion Emails Leaked: Why Your Real Inbox Is Now a Liability",
+    excerpt: "A massive data leak exposed 6.8 billion email records in February 2026.",
+    date: "2026-06-21",
+    readTime: "6 min read",
+    category: "Data Breach",
+  },
+  {
+    slug: "12-percent-signups-use-temp-email",
+    title: "12% of All Signups Use Temp Email",
+    excerpt: "Verified.email 2026 report reveals 12% of all online signups use disposable email.",
+    date: "2026-06-21",
+    readTime: "5 min read",
+    category: "Data",
+  },
+  {
+    slug: "platforms-blocking-temp-email-2026",
+    title: "Platforms Fighting Back: Blocking Temp Emails in 2026",
+    excerpt: "Major platforms are cracking down on disposable email addresses.",
+    date: "2026-06-21",
+    readTime: "7 min read",
+    category: "Industry",
+  },
+  {
+    slug: "temp-email-chatgpt-claude-codex",
+    title: "Temp Email for ChatGPT, Claude & Codex",
+    excerpt: "I tested temporary email on ChatGPT, Claude, and Codex.",
+    date: "2026-06-21",
+    readTime: "6 min read",
+    category: "AI Tools",
+  },
+  {
+    slug: "temp-email-tiktok-instagram-reddit",
+    title: "Temp Email for TikTok, Instagram & Reddit",
+    excerpt: "I tested temporary email on TikTok, Instagram, and Reddit.",
+    date: "2026-06-21",
+    readTime: "7 min read",
+    category: "Social Media",
+  },
 ];
 
 function BlogPage() {
