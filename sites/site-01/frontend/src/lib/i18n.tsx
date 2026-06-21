@@ -128,7 +128,7 @@ const translations: Translations = {
     "footer.tagline2": "Built with ♥ for privacy",
     "footer.copyright": "© 2026 TempMails.top. All rights reserved.",
     "footer.cols": [
-      { t: "Product", l: ["Features", "How it Works", "Pricing", "Browser Extensions"] },
+      { t: "Product", l: ["Features", "How it Works", "Pricing", "Browser Extensions", "Blog"] },
       { t: "Legal", l: ["Privacy Policy", "Terms of Service", "Cookie Policy"] },
       { t: "Support", l: ["FAQ", "Contact Us", "Status Page"] },
     ],
@@ -239,7 +239,7 @@ const translations: Translations = {
     "footer.tagline2": "用 ♥ 为隐私而建",
     "footer.copyright": "© 2026 TempMails.top. 保留所有权利。",
     "footer.cols": [
-      { t: "产品", l: ["功能", "工作原理", "定价", "浏览器扩展"] },
+      { t: "产品", l: ["功能", "工作原理", "定价", "浏览器扩展", "博客"] },
       { t: "法律", l: ["隐私政策", "服务条款", "Cookie 政策"] },
       { t: "支持", l: ["常见问题", "联系我们", "状态页面"] },
     ],
