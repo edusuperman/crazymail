@@ -70,7 +70,7 @@ function BlogPostPage() {
       </header>
 
       {/* Introduction */}
-      <div className="prose prose-gray max-w-none">
+      <div className="prose prose-gray prose-lg max-w-none">
         <p className="text-lg leading-relaxed">
           Look, I get it. You're tired of giving away your real email address every time you want to
           download something, sign up for a free trial, or just browse a forum without getting spammed
