@@ -13,7 +13,12 @@ import { Route as TermsRouteImport } from './routes/terms'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BlogTempEmailTiktokInstagramRedditRouteImport } from './routes/blog.temp-email-tiktok-instagram-reddit'
+import { Route as BlogTempEmailChatgptClaudeCodexRouteImport } from './routes/blog.temp-email-chatgpt-claude-codex'
+import { Route as BlogPlatformsBlockingTempEmail2026RouteImport } from './routes/blog.platforms-blocking-temp-email-2026'
 import { Route as BlogBestTemporaryEmailServices2026RouteImport } from './routes/blog.best-temporary-email-services-2026'
+import { Route as Blog6BillionEmailsLeaked2026RouteImport } from './routes/blog.6-billion-emails-leaked-2026'
+import { Route as Blog12PercentSignupsUseTempEmailRouteImport } from './routes/blog.12-percent-signups-use-temp-email'
 
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
@@ -35,10 +40,40 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogTempEmailTiktokInstagramRedditRoute =
+  BlogTempEmailTiktokInstagramRedditRouteImport.update({
+    id: '/temp-email-tiktok-instagram-reddit',
+    path: '/temp-email-tiktok-instagram-reddit',
+    getParentRoute: () => BlogRoute,
+  } as any)
+const BlogTempEmailChatgptClaudeCodexRoute =
+  BlogTempEmailChatgptClaudeCodexRouteImport.update({
+    id: '/temp-email-chatgpt-claude-codex',
+    path: '/temp-email-chatgpt-claude-codex',
+    getParentRoute: () => BlogRoute,
+  } as any)
+const BlogPlatformsBlockingTempEmail2026Route =
+  BlogPlatformsBlockingTempEmail2026RouteImport.update({
+    id: '/platforms-blocking-temp-email-2026',
+    path: '/platforms-blocking-temp-email-2026',
+    getParentRoute: () => BlogRoute,
+  } as any)
 const BlogBestTemporaryEmailServices2026Route =
   BlogBestTemporaryEmailServices2026RouteImport.update({
     id: '/best-temporary-email-services-2026',
     path: '/best-temporary-email-services-2026',
+    getParentRoute: () => BlogRoute,
+  } as any)
+const Blog6BillionEmailsLeaked2026Route =
+  Blog6BillionEmailsLeaked2026RouteImport.update({
+    id: '/6-billion-emails-leaked-2026',
+    path: '/6-billion-emails-leaked-2026',
+    getParentRoute: () => BlogRoute,
+  } as any)
+const Blog12PercentSignupsUseTempEmailRoute =
+  Blog12PercentSignupsUseTempEmailRouteImport.update({
+    id: '/12-percent-signups-use-temp-email',
+    path: '/12-percent-signups-use-temp-email',
     getParentRoute: () => BlogRoute,
   } as any)
 
@@ -47,14 +82,24 @@ export interface FileRoutesByFullPath {
   '/blog': typeof BlogRouteWithChildren
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
+  '/blog/12-percent-signups-use-temp-email': typeof Blog12PercentSignupsUseTempEmailRoute
+  '/blog/6-billion-emails-leaked-2026': typeof Blog6BillionEmailsLeaked2026Route
   '/blog/best-temporary-email-services-2026': typeof BlogBestTemporaryEmailServices2026Route
+  '/blog/platforms-blocking-temp-email-2026': typeof BlogPlatformsBlockingTempEmail2026Route
+  '/blog/temp-email-chatgpt-claude-codex': typeof BlogTempEmailChatgptClaudeCodexRoute
+  '/blog/temp-email-tiktok-instagram-reddit': typeof BlogTempEmailTiktokInstagramRedditRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/blog': typeof BlogRouteWithChildren
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
+  '/blog/12-percent-signups-use-temp-email': typeof Blog12PercentSignupsUseTempEmailRoute
+  '/blog/6-billion-emails-leaked-2026': typeof Blog6BillionEmailsLeaked2026Route
   '/blog/best-temporary-email-services-2026': typeof BlogBestTemporaryEmailServices2026Route
+  '/blog/platforms-blocking-temp-email-2026': typeof BlogPlatformsBlockingTempEmail2026Route
+  '/blog/temp-email-chatgpt-claude-codex': typeof BlogTempEmailChatgptClaudeCodexRoute
+  '/blog/temp-email-tiktok-instagram-reddit': typeof BlogTempEmailTiktokInstagramRedditRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,7 +107,12 @@ export interface FileRoutesById {
   '/blog': typeof BlogRouteWithChildren
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
+  '/blog/12-percent-signups-use-temp-email': typeof Blog12PercentSignupsUseTempEmailRoute
+  '/blog/6-billion-emails-leaked-2026': typeof Blog6BillionEmailsLeaked2026Route
   '/blog/best-temporary-email-services-2026': typeof BlogBestTemporaryEmailServices2026Route
+  '/blog/platforms-blocking-temp-email-2026': typeof BlogPlatformsBlockingTempEmail2026Route
+  '/blog/temp-email-chatgpt-claude-codex': typeof BlogTempEmailChatgptClaudeCodexRoute
+  '/blog/temp-email-tiktok-instagram-reddit': typeof BlogTempEmailTiktokInstagramRedditRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -71,21 +121,36 @@ export interface FileRouteTypes {
     | '/blog'
     | '/privacy'
     | '/terms'
+    | '/blog/12-percent-signups-use-temp-email'
+    | '/blog/6-billion-emails-leaked-2026'
     | '/blog/best-temporary-email-services-2026'
+    | '/blog/platforms-blocking-temp-email-2026'
+    | '/blog/temp-email-chatgpt-claude-codex'
+    | '/blog/temp-email-tiktok-instagram-reddit'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/blog'
     | '/privacy'
     | '/terms'
+    | '/blog/12-percent-signups-use-temp-email'
+    | '/blog/6-billion-emails-leaked-2026'
     | '/blog/best-temporary-email-services-2026'
+    | '/blog/platforms-blocking-temp-email-2026'
+    | '/blog/temp-email-chatgpt-claude-codex'
+    | '/blog/temp-email-tiktok-instagram-reddit'
   id:
     | '__root__'
     | '/'
     | '/blog'
     | '/privacy'
     | '/terms'
+    | '/blog/12-percent-signups-use-temp-email'
+    | '/blog/6-billion-emails-leaked-2026'
     | '/blog/best-temporary-email-services-2026'
+    | '/blog/platforms-blocking-temp-email-2026'
+    | '/blog/temp-email-chatgpt-claude-codex'
+    | '/blog/temp-email-tiktok-instagram-reddit'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -125,6 +190,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/temp-email-tiktok-instagram-reddit': {
+      id: '/blog/temp-email-tiktok-instagram-reddit'
+      path: '/temp-email-tiktok-instagram-reddit'
+      fullPath: '/blog/temp-email-tiktok-instagram-reddit'
+      preLoaderRoute: typeof BlogTempEmailTiktokInstagramRedditRouteImport
+      parentRoute: typeof BlogRoute
+    }
+    '/blog/temp-email-chatgpt-claude-codex': {
+      id: '/blog/temp-email-chatgpt-claude-codex'
+      path: '/temp-email-chatgpt-claude-codex'
+      fullPath: '/blog/temp-email-chatgpt-claude-codex'
+      preLoaderRoute: typeof BlogTempEmailChatgptClaudeCodexRouteImport
+      parentRoute: typeof BlogRoute
+    }
+    '/blog/platforms-blocking-temp-email-2026': {
+      id: '/blog/platforms-blocking-temp-email-2026'
+      path: '/platforms-blocking-temp-email-2026'
+      fullPath: '/blog/platforms-blocking-temp-email-2026'
+      preLoaderRoute: typeof BlogPlatformsBlockingTempEmail2026RouteImport
+      parentRoute: typeof BlogRoute
+    }
     '/blog/best-temporary-email-services-2026': {
       id: '/blog/best-temporary-email-services-2026'
       path: '/best-temporary-email-services-2026'
@@ -132,16 +218,42 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogBestTemporaryEmailServices2026RouteImport
       parentRoute: typeof BlogRoute
     }
+    '/blog/6-billion-emails-leaked-2026': {
+      id: '/blog/6-billion-emails-leaked-2026'
+      path: '/6-billion-emails-leaked-2026'
+      fullPath: '/blog/6-billion-emails-leaked-2026'
+      preLoaderRoute: typeof Blog6BillionEmailsLeaked2026RouteImport
+      parentRoute: typeof BlogRoute
+    }
+    '/blog/12-percent-signups-use-temp-email': {
+      id: '/blog/12-percent-signups-use-temp-email'
+      path: '/12-percent-signups-use-temp-email'
+      fullPath: '/blog/12-percent-signups-use-temp-email'
+      preLoaderRoute: typeof Blog12PercentSignupsUseTempEmailRouteImport
+      parentRoute: typeof BlogRoute
+    }
   }
 }
 
 interface BlogRouteChildren {
+  Blog12PercentSignupsUseTempEmailRoute: typeof Blog12PercentSignupsUseTempEmailRoute
+  Blog6BillionEmailsLeaked2026Route: typeof Blog6BillionEmailsLeaked2026Route
   BlogBestTemporaryEmailServices2026Route: typeof BlogBestTemporaryEmailServices2026Route
+  BlogPlatformsBlockingTempEmail2026Route: typeof BlogPlatformsBlockingTempEmail2026Route
+  BlogTempEmailChatgptClaudeCodexRoute: typeof BlogTempEmailChatgptClaudeCodexRoute
+  BlogTempEmailTiktokInstagramRedditRoute: typeof BlogTempEmailTiktokInstagramRedditRoute
 }
 
 const BlogRouteChildren: BlogRouteChildren = {
+  Blog12PercentSignupsUseTempEmailRoute: Blog12PercentSignupsUseTempEmailRoute,
+  Blog6BillionEmailsLeaked2026Route: Blog6BillionEmailsLeaked2026Route,
   BlogBestTemporaryEmailServices2026Route:
     BlogBestTemporaryEmailServices2026Route,
+  BlogPlatformsBlockingTempEmail2026Route:
+    BlogPlatformsBlockingTempEmail2026Route,
+  BlogTempEmailChatgptClaudeCodexRoute: BlogTempEmailChatgptClaudeCodexRoute,
+  BlogTempEmailTiktokInstagramRedditRoute:
+    BlogTempEmailTiktokInstagramRedditRoute,
 }
 
 const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
