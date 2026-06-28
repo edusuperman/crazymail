@@ -1,0 +1,18 @@
+[
+  {
+    "test_id": "TEST-20260624151354-6088",
+    "service": "Ozsaip",
+    "recipient": "ya08skcwwv@ozsaip.com",
+    "subject": "Ozsaip Email Reception Test - 2026-06-24",
+    "timestamp": "2026-06-24T15:14:28.428631",
+    "status": "sent"
+  },
+  {
+    "test_id": "TEST-20260624152351-2707",
+    "service": "Yzcalo",
+    "recipient": "zc5qekdkyu@yzcalo.com",
+    "subject": "Email Test for Yzcalo - 2026-06-24",
+    "timestamp": "2026-06-24T15:24:26.744086",
+    "status": "sent"
+  }
+]

@@ -1,0 +1,8 @@
+# ads.txt for TempMails.top
+# This file is required for Google AdSense and other ad networks
+# Format: <domain>, <publisher ID>, <relationship>, <certification authority ID>
+# 
+# Google AdSense will be added once approved:
+# google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+#
+# Placeholder - no ad networks configured yet

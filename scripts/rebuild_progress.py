@@ -1,0 +1,325 @@
+#!/usr/bin/env python3
+"""重建 progress.html"""
+from pathlib import Path
+import re
+from datetime import datetime
+
+PROJECT_ROOT = Path(__file__).parent.parent
+blog_dir = PROJECT_ROOT / "sites" / "site-01" / "frontend" / "src" / "routes"
+
+# 读取真实文章
+articles = []
+for f in sorted(blog_dir.glob("blog.*.tsx")):
+    content = f.read_text(encoding="utf-8", errors="ignore")
+    title_match = re.search(r'title:\s*["\']([^"\']+)["\']', content)
+    title = title_match.group(1) if title_match else f.stem.replace("blog.", "").replace("-", " ").title()
+    title = re.sub(r'\s*[-–|]\s*TempMails?\.top\s*$', '', title)
+    if len(title) > 55:
+        title = title[:52] + "..."
+    date = datetime.fromtimestamp(f.stat().st_mtime).strftime("%m-%d")
+    articles.append({"title": title, "date": date})
+
+# 生成 JS 文章数组
+js_articles = ",\n".join([
+    f'                {{ num: {i}, title: "{a["title"]}", date: "{a["date"]}" }}'
+    for i, a in enumerate(articles, 1)
+])
+
+html_content = f'''<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrazyMail 项目进度看板</title>
+    <style>
+        * {{ margin: 0; padding: 0; box-sizing: border-box; }}
+        body {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f0f2f5; color: #1a1a2e; min-height: 100vh; }}
+        .header {{ background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }}
+        .header h1 {{ font-size: 20px; font-weight: 600; }}
+        .header .meta {{ text-align: right; font-size: 12px; opacity: 0.9; }}
+        .header .meta .time {{ color: #4ade80; font-weight: 600; }}
+        .container {{ display: grid; grid-template-columns: 320px 1fr 360px; gap: 16px; padding: 16px; max-width: 1600px; margin: 0 auto; min-height: calc(100vh - 60px); }}
+        .card {{ background: white; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); overflow: hidden; }}
+        .card-header {{ background: #f8f9fa; padding: 10px 14px; border-bottom: 1px solid #e9ecef; font-size: 13px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }}
+        .card-header .badge {{ background: #e0e7ff; color: #4f46e5; padding: 2px 8px; border-radius: 10px; font-size: 11px; }}
+        .card-body {{ padding: 12px; }}
+        .progress-list {{ list-style: none; }}
+        .progress-item {{ display: flex; align-items: center; padding: 8px 0; border-bottom: 1px solid #f3f4f6; font-size: 13px; }}
+        .progress-item:last-child {{ border-bottom: none; }}
+        .progress-item .phase {{ width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; margin-right: 10px; flex-shrink: 0; }}
+        .phase-done {{ background: #d1fae5; color: #059669; }}
+        .phase-ing {{ background: #fef3c7; color: #d97706; }}
+        .phase-todo {{ background: #e5e7eb; color: #6b7280; }}
+        .progress-item .name {{ flex: 1; }}
+        .progress-item .status {{ font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 500; }}
+        .status-done {{ background: #d1fae5; color: #059669; }}
+        .status-ing {{ background: #fef3c7; color: #d97706; }}
+        .status-todo {{ background: #f3f4f6; color: #6b7280; }}
+        .data-table {{ width: 100%; border-collapse: collapse; font-size: 12px; }}
+        .data-table th {{ background: #f8f9fa; padding: 8px 10px; text-align: left; font-weight: 600; border-bottom: 2px solid #e5e7eb; white-space: nowrap; }}
+        .data-table td {{ padding: 8px 10px; border-bottom: 1px solid #f3f4f6; vertical-align: top; }}
+        .data-table tr {{ cursor: pointer; transition: background 0.2s; }}
+        .data-table tr:hover {{ background: #f0f7ff; }}
+        .data-table tr.selected {{ background: #eff6ff; border-left: 3px solid #2563eb; }}
+        .data-table .site-name {{ font-weight: 600; color: #2563eb; }}
+        .data-table .domain {{ color: #7c3aed; font-size: 11px; }}
+        .data-table .cost {{ color: #059669; font-size: 11px; }}
+        .tech-tag {{ display: inline-block; padding: 1px 6px; border-radius: 3px; font-size: 10px; font-weight: 500; }}
+        .tag-green {{ background: #d1fae5; color: #059669; }}
+        .tag-blue {{ background: #dbeafe; color: #2563eb; }}
+        .tag-purple {{ background: #e0e7ff; color: #4f46e5; }}
+        .tag-orange {{ background: #fed7aa; color: #c2410c; }}
+        .tag-gray {{ background: #f3f4f6; color: #6b7280; }}
+        .article-item {{ display: flex; align-items: center; padding: 6px 0; border-bottom: 1px solid #f3f4f6; font-size: 12px; }}
+        .article-item:last-child {{ border-bottom: none; }}
+        .article-item .num {{ width: 24px; color: #9ca3af; font-size: 11px; }}
+        .article-item .title {{ flex: 1; color: #374151; }}
+        .article-item .date {{ color: #9ca3af; font-size: 11px; }}
+        .plan-item {{ display: flex; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid #f3f4f6; font-size: 12px; }}
+        .plan-item:last-child {{ border-bottom: none; }}
+        .plan-item .type-tag {{ padding: 1px 6px; border-radius: 3px; font-size: 10px; font-weight: 500; margin-right: 8px; flex-shrink: 0; }}
+        .type-daily {{ background: #dbeafe; color: #2563eb; }}
+        .type-weekly {{ background: #e0e7ff; color: #4f46e5; }}
+        .type-yearly {{ background: #fee2e2; color: #dc2626; }}
+        .type-once {{ background: #f3f4f6; color: #6b7280; }}
+        .plan-item .content {{ flex: 1; }}
+        .plan-item .status {{ margin-left: 8px; }}
+        .metrics-grid {{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }}
+        .metric-card {{ text-align: center; padding: 10px 8px; background: #f8f9fa; border-radius: 6px; }}
+        .metric-card .value {{ font-size: 20px; font-weight: 700; color: #1a1a2e; }}
+        .metric-card .label {{ font-size: 11px; color: #6b7280; margin-top: 2px; }}
+        .metric-card.highlight {{ background: #eff6ff; }}
+        .metric-card.highlight .value {{ color: #2563eb; }}
+        .reminder {{ background: #fef3c7; border-left: 3px solid #f59e0b; padding: 8px 12px; margin: 8px 0; font-size: 12px; border-radius: 0 4px 4px 0; }}
+        .risk-item {{ display: flex; align-items: center; padding: 6px 0; font-size: 12px; }}
+        .risk-dot {{ width: 8px; height: 8px; border-radius: 50%; margin-right: 8px; flex-shrink: 0; }}
+        .risk-low {{ background: #4ade80; }}
+        .risk-medium {{ background: #fbbf24; }}
+        .auto-update {{ background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 10px; margin-top: 12px; font-size: 11px; color: #1e40af; }}
+        .auto-update strong {{ display: block; margin-bottom: 4px; }}
+        .center-panel {{ display: flex; flex-direction: column; gap: 16px; }}
+        .preview-grid {{ display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }}
+        .preview-box {{ height: 200px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 14px; color: white; }}
+        .preview-dashboard {{ background: linear-gradient(135deg, #1a1a2e, #16213e); }}
+        .preview-site {{ background: linear-gradient(135deg, #f0fdf4, #dcfce7); color: #166534; }}
+        .selected-site-hint {{ background: #eff6ff; border: 1px solid #93c5fd; border-radius: 6px; padding: 8px 12px; margin-bottom: 12px; font-size: 12px; color: #1e40af; display: flex; align-items: center; gap: 8px; }}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>
+            <h1>📋 CrazyMail 项目进度看板</h1>
+            <div style="font-size: 12px; opacity: 0.8; margin-top: 2px;">临时邮箱网站矩阵 · 开发进度追踪</div>
+        </div>
+        <div class="meta">
+            <div>上次更新：<span class="time" id="lastUpdate">--</span></div>
+            <div>下次更新：<span id="nextUpdate">--</span></div>
+            <div style="margin-top: 4px;">自动更新：每小时 + 关键节点触发</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div class="card">
+                <div class="card-header"><span>📊 项目进度</span><span class="badge" id="progressBadge">--</span></div>
+                <div class="card-body" style="padding: 8px 12px;"><ul class="progress-list" id="progressList"></ul></div>
+            </div>
+            <div class="card">
+                <div class="card-header">📈 关键指标</div>
+                <div class="card-body"><div class="metrics-grid" id="metricsGrid"></div></div>
+            </div>
+            <div class="card">
+                <div class="card-header">⚠️ 待办提醒</div>
+                <div class="card-body" id="reminders"></div>
+            </div>
+        </div>
+
+        <div class="center-panel">
+            <div class="card">
+                <div class="card-header"><span>🚀 同步运行中项目</span><span class="badge" id="siteCount">--</span></div>
+                <div class="card-body" style="padding: 0;">
+                    <table class="data-table">
+                        <thead><tr><th>网站</th><th>前端</th><th>后端</th><th>部署</th><th>域名</th><th>文章</th><th>状态</th></tr></thead>
+                        <tbody id="siteTable"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="preview-grid">
+                <div class="card">
+                    <div class="card-header">🖥️ Dashboard 预览</div>
+                    <div class="card-body" style="padding: 0;">
+                        <div class="preview-box preview-dashboard"><div style="text-align: center;"><div style="font-size: 32px; margin-bottom: 8px;">🏛️</div><div>大宋宣和驿站</div><div style="font-size: 11px; opacity: 0.7; margin-top: 4px;">开发中...</div></div></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">🌐 tempmails.top 预览</div>
+                    <div class="card-body" style="padding: 0;">
+                        <div class="preview-box preview-site"><div style="text-align: center;"><div style="font-size: 32px; margin-bottom: 8px;">📧</div><div style="font-weight: 600;">Disposable inbox, zero trace.</div><div style="font-size: 11px; margin-top: 4px;">已上线 ✅</div></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div class="selected-site-hint" id="selectedSiteHint"><span>📌</span><span>点击左侧站点行，查看该站点的文章和工作计划</span></div>
+            <div class="card">
+                <div class="card-header"><span>📝 已发布文章</span><span class="badge" id="articleBadge">--</span></div>
+                <div class="card-body" style="padding: 8px 12px; max-height: 250px; overflow-y: auto;"><div id="articleList"></div></div>
+            </div>
+            <div class="card">
+                <div class="card-header">📅 工作计划</div>
+                <div class="card-body" style="padding: 8px 12px;"><div id="planList"></div></div>
+            </div>
+            <div class="card">
+                <div class="card-header">🛡️ 风险监控</div>
+                <div class="card-body" id="riskList"></div>
+            </div>
+            <div class="auto-update"><strong>⏰ 自动更新机制</strong>• 每小时整点自动刷新<br>• 关键节点完成后触发更新<br>• 数据源：项目文档 + Git 状态 + API 监控</div>
+        </div>
+    </div>
+
+    <script>
+    const PROGRESS = [
+        {{ phase: 1, name: "项目立项", status: "done" }}, {{ phase: 2, name: "项目头脑风暴", status: "done" }},
+        {{ phase: 3, name: "项目规划设计", status: "done" }}, {{ phase: 4, name: "项目开工", status: "done" }},
+        {{ phase: 5, name: "制作具体项目 plan", status: "done" }}, {{ phase: 6, name: "后端文章编写系统", status: "done" }},
+        {{ phase: 7, name: "后端文章查验系统", status: "done" }}, {{ phase: 8, name: "阶段一：产品 MVP", status: "done" }},
+        {{ phase: 9, name: "邮件 API 对接", status: "done" }}, {{ phase: 10, name: "临时邮箱前端 UI", status: "done" }},
+        {{ phase: 11, name: "部署上线 (tempmails.top)", status: "done" }}, {{ phase: 12, name: "基础 SEO 优化", status: "done" }},
+        {{ phase: 13, name: "7 关验收测试", status: "done" }}, {{ phase: 14, name: "Google Search Console", status: "done" }},
+        {{ phase: 15, name: "博客文章批量生成", status: "done" }}, {{ phase: 16, name: "108 好汉角色素材生成", status: "done" }},
+        {{ phase: 17, name: "阶段二：流量引擎", status: "ing" }}, {{ phase: 18, name: "Dashboard 开发", status: "ing" }},
+        {{ phase: 19, name: "内容工厂 7 阶段流水线", status: "todo" }}, {{ phase: 20, name: "关键词自动发现", status: "todo" }},
+        {{ phase: 21, name: "增长黑客（社媒推广）", status: "todo" }}, {{ phase: 22, name: "流量监控（GSC）", status: "todo" }},
+        {{ phase: 23, name: "阶段三：变现闭环", status: "todo" }}, {{ phase: 24, name: "AdSense 集成", status: "todo" }},
+        {{ phase: 25, name: "Premium 功能", status: "todo" }}, {{ phase: 26, name: "多站点矩阵扩张", status: "todo" }},
+    ];
+
+    const SITES = [
+        {{
+            id: "tempmails", name: "tempmails.top",
+            frontend: "TanStack Start", backend: "Python FastAPI", deploy: "Vercel",
+            domain: "tempmails.top", domainNote: "NameSilo · $2/年 · 已购买",
+            status: "运行中", statusColor: "green",
+            articles: [
+{js_articles}
+            ],
+            plans: [
+                {{ type: "daily", content: "发布 4 篇博客文章", status: "今日完成", statusColor: "green" }},
+                {{ type: "daily", content: "查询 Google 收录情况", status: "进行中", statusColor: "orange" }},
+                {{ type: "daily", content: "监控网站运行状态", status: "正常", statusColor: "green" }},
+                {{ type: "daily", content: "检查邮件 API 可用性", status: "正常", statusColor: "green" }},
+                {{ type: "weekly", content: "关键词发现 + 内容规划", status: "本周待做", statusColor: "gray" }},
+                {{ type: "yearly", content: "域名续费：tempmails.top (2027-06-15)", status: "待完成", statusColor: "gray" }},
+            ],
+        }},
+        {{
+            id: "dashboard", name: "Dashboard",
+            frontend: "Next.js 15", backend: "Python FastAPI", deploy: "Vercel (待部署)",
+            domain: "app.crazymail.io", domainNote: "待购买",
+            status: "开发中", statusColor: "orange",
+            articles: [],
+            plans: [
+                {{ type: "once", content: "三栏布局开发", status: "已完成", statusColor: "green" }},
+                {{ type: "once", content: "写作工厂场景（7位历史名人）", status: "已完成", statusColor: "green" }},
+                {{ type: "once", content: "108好汉分发大厅（圆形布局）", status: "已完成", statusColor: "green" }},
+                {{ type: "once", content: "PixiJS 动画集成", status: "待开始", statusColor: "gray" }},
+                {{ type: "once", content: "接入后端 API 真实数据", status: "待开始", statusColor: "gray" }},
+                {{ type: "once", content: "购买域名 app.crazymail.io", status: "待开始", statusColor: "gray" }},
+                {{ type: "once", content: "部署到 Vercel", status: "待开始", statusColor: "gray" }},
+            ],
+        }},
+        {{
+            id: "site2", name: "站点 2",
+            frontend: "待定", backend: "共用后端", deploy: "待定",
+            domain: "待定", domainNote: "待购买",
+            status: "规划中", statusColor: "gray",
+            articles: [],
+            plans: [
+                {{ type: "once", content: "确定域名", status: "待开始", statusColor: "gray" }},
+                {{ type: "once", content: "购买域名", status: "待开始", statusColor: "gray" }},
+                {{ type: "once", content: "前端开发", status: "待开始", statusColor: "gray" }},
+                {{ type: "once", content: "部署上线", status: "待开始", statusColor: "gray" }},
+            ],
+        }},
+    ];
+
+    const METRICS = [
+        {{ label: "已上线站点", value: "1", highlight: true }},
+        {{ label: "已发布文章", value: "{len(articles)}", highlight: false }},
+        {{ label: "角色素材", value: "110", highlight: false }},
+        {{ label: "项目完成率", value: "61%", highlight: true }},
+    ];
+
+    const REMINDERS = [
+        {{ text: "Dashboard 开发进行中，需完成 PixiJS 动画 + 接入 API" }},
+        {{ text: "域名 app.crazymail.io 待购买" }},
+        {{ text: "内容工厂 7 阶段流水线待开发" }},
+        {{ text: "AdSense 账户待申请（需先有足够内容）" }},
+    ];
+
+    const RISKS = [
+        {{ level: "low", text: "Agnes API 偶尔超时（已加重试机制）" }},
+        {{ level: "low", text: "tempmails.top 运行正常" }},
+        {{ level: "medium", text: "Google 收录速度较慢" }},
+    ];
+
+    let selectedSiteId = "tempmails";
+
+    function renderProgress() {{
+        const list = document.getElementById('progressList');
+        const done = PROGRESS.filter(p => p.status === 'done').length;
+        document.getElementById('progressBadge').textContent = done + '/' + PROGRESS.length;
+        list.innerHTML = PROGRESS.map(p => {{
+            const cls = p.status === 'done' ? 'phase-done' : p.status === 'ing' ? 'phase-ing' : 'phase-todo';
+            const sText = p.status === 'done' ? '✓' : p.status === 'ing' ? '进行中' : '待开始';
+            return '<li class="progress-item"><div class="phase ' + cls + '">' + p.phase + '</div><span class="name">' + p.name + '</span><span class="status status-' + p.status + '">' + sText + '</span></li>';
+        }}).join('');
+    }}
+
+    function renderSites() {{
+        document.getElementById('siteCount').textContent = SITES.length + ' 个';
+        document.getElementById('siteTable').innerHTML = SITES.map(s => {{
+            const sel = s.id === selectedSiteId ? ' selected' : '';
+            return '<tr class="' + sel + '" onclick="selectSite(\\'' + s.id + '\\')">' +
+                '<td class="site-name">' + s.name + '</td>' +
+                '<td><span class="tech-tag tag-blue">' + s.frontend + '</span></td>' +
+                '<td><span class="tech-tag tag-purple">' + s.backend + '</span></td>' +
+                '<td><span class="tech-tag tag-green">' + s.deploy + '</span></td>' +
+                '<td><div class="domain">' + s.domain + '</div><div class="cost">' + s.domainNote + '</div></td>' +
+                '<td>' + s.articles.length + ' 篇</td>' +
+                '<td><span class="tech-tag tag-' + s.statusColor + '">' + s.status + '</span></td></tr>';
+        }}).join('');
+    }}
+
+    function renderArticles() {{
+        const site = SITES.find(s => s.id === selectedSiteId);
+        document.getElementById('articleBadge').textContent = (site ? site.articles.length : 0) + ' 篇';
+        const list = document.getElementById('articleList');
+        if (!site || site.articles.length === 0) {{ list.innerHTML = '<div style="color:#9ca3af;text-align:center;padding:20px;">暂无文章</div>'; return; }}
+        list.innerHTML = site.articles.map(a => '<div class="article-item"><span class="num">' + String(a.num).padStart(2, '0') + '</span><span class="title">' + a.title + '</span><span class="date">' + a.date + '</span></div>').join('');
+    }}
+
+    function renderPlans() {{
+        const site = SITES.find(s => s.id === selectedSiteId);
+        const tm = {{ daily: '日常', weekly: '每周', yearly: '每年', once: '单次' }};
+        const list = document.getElementById('planList');
+        if (!site || site.plans.length === 0) {{ list.innerHTML = '<div style="color:#9ca3af;text-align:center;padding:20px;">暂无工作计划</div>'; return; }}
+        list.innerHTML = site.plans.map(p => '<div class="plan-item"><span class="type-tag type-' + p.type + '">' + tm[p.type] + '</span><span class="content">' + p.content + '</span><span class="status"><span class="tech-tag tag-' + p.statusColor + '">' + p.status + '</span></span></div>').join('');
+    }}
+
+    function renderMetrics() {{ document.getElementById('metricsGrid').innerHTML = METRICS.map(m => '<div class="metric-card' + (m.highlight ? ' highlight' : '') + '"><div class="value">' + m.value + '</div><div class="label">' + m.label + '</div></div>').join(''); }}
+    function renderReminders() {{ document.getElementById('reminders').innerHTML = REMINDERS.map(r => '<div class="reminder">🟡 ' + r.text + '</div>').join(''); }}
+    function renderRisks() {{ document.getElementById('riskList').innerHTML = RISKS.map(r => '<div class="risk-item"><div class="risk-dot risk-' + r.level + '"></div><span>' + r.text + '</span></div>').join(''); }}
+    function renderSelectedSiteHint() {{ const s = SITES.find(x => x.id === selectedSiteId); if (s) document.getElementById('selectedSiteHint').innerHTML = '<span>📌</span><span>当前查看：<strong>' + s.name + '</strong>（' + s.articles.length + ' 篇文章，' + s.plans.length + ' 项计划）</span>'; }}
+    function selectSite(id) {{ selectedSiteId = id; renderSites(); renderArticles(); renderPlans(); renderSelectedSiteHint(); }}
+    function updateTime() {{ const now = new Date(); document.getElementById('lastUpdate').textContent = now.toLocaleString('zh-CN'); const next = new Date(now); next.setHours(next.getHours() + 1, 0, 0); document.getElementById('nextUpdate').textContent = next.toLocaleString('zh-CN'); }}
+
+    renderProgress(); renderSites(); renderArticles(); renderPlans(); renderMetrics(); renderReminders(); renderRisks(); renderSelectedSiteHint(); updateTime(); setInterval(updateTime, 1000);
+    </script>
+</body>
+</html>'''
+
+output = PROJECT_ROOT / "dashboard-v2" / "public" / "progress.html"
+output.write_text(html_content, encoding="utf-8")
+print(f"✅ 已重建 progress.html（{len(articles)} 篇文章）")

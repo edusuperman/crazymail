@@ -1,0 +1,26 @@
+[
+  {
+    "name": "宋江",
+    "name_en": "songjiang",
+    "prompt": "cute Chinese Song Dynasty cartoon style, 108 Heroes series, chibi big-head doll proportions, ink wash with light color, low saturation vintage tones, high definition 8k, clean white background, character design sheet style, a cute chibi male character wearing a gray-brown long robe, scholar square hat, thin mustache, holding a white feather fan, melancholic worried expression, kind eyes, Chinese ink painting style, detailed clothing patterns",
+    "negative_prompt": "ugly, blurry, low quality, deformed, realistic photo"
+  },
+  {
+    "name": "吴用",
+    "name_en": "wuyong",
+    "prompt": "cute Chinese Song Dynasty cartoon style, 108 Heroes series, chibi big-head doll proportions, ink wash with light color, low saturation vintage tones, high definition 8k, clean white background, character design sheet style, a cute chibi male strategist character wearing a gray-green long robe, round glasses, holding a feather fan, thinking pose with hand on chin, clever wise expression, Chinese ink painting style, detailed clothing",
+    "negative_prompt": "ugly, blurry, low quality, deformed, realistic photo"
+  },
+  {
+    "name": "林冲",
+    "name_en": "linchong",
+    "prompt": "cute Chinese Song Dynasty cartoon style, 108 Heroes series, chibi big-head doll proportions, ink wash with light color, low saturation vintage tones, high definition 8k, clean white background, character design sheet style, a cute chibi male warrior character wearing black-gold armor, dark red cape flowing in wind, holding a long spear, majestic dignified expression, strong build, Chinese ink painting style, detailed armor patterns",
+    "negative_prompt": "ugly, blurry, low quality, deformed, realistic photo"
+  },
+  {
+    "name": "武松",
+    "name_en": "wusong",
+    "prompt": "cute Chinese Song Dynasty cartoon style, 108 Heroes series, chibi big-head doll proportions, ink wash with light color, low saturation vintage tones, high definition 8k, clean white background, character design sheet style, a cute chibi male warrior character wearing gray-blue short martial arts outfit, leopard print vest, holding two curved blades, cold stern expression, muscular build, Chinese ink painting style, detailed clothing",
+    "negative_prompt": "ugly, blurry, low quality, deformed, realistic photo"
+  }
+]
