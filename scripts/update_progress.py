@@ -117,10 +117,10 @@ def update_progress_html():
     pattern = r'(id: "tempmails".*?articles: \[).*?(\],\s*plans:)'
     replacement = f'\\1\n{articles_html}\n            \\2'
     # 由于 JS 数组格式不同，直接更新 HTML 中的文章列表
-    # 找到 articleList div 并更新
+    # 找到 articleList div 并更新（使用贪婪匹配到最后一个 </div>）
     content = re.sub(
-        r'(<div id="articleList">).*?(</div>)',
-        f'\\1\n{articles_html}\n        \\2',
+        r'(<div id="articleList">)(.*?)(</div>\s*</div>\s*</div>)',
+        f'\\1\n{articles_html}\n        \\3',
         content,
         flags=re.DOTALL
     )
