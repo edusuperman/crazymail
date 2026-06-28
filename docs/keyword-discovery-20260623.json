@@ -1,0 +1,212 @@
+{
+  "generated_at": "2026-06-23T23:27:40.542770",
+  "seed_keywords": [
+    "email privacy",
+    "online anonymity"
+  ],
+  "total_discovered": 20,
+  "already_covered_count": 8,
+  "new_keywords_count": 12,
+  "keywords": [
+    {
+      "keyword": "TempMail vs ProtonMail for anonymous email",
+      "type": "comparison",
+      "intent": "informational",
+      "competition": "low",
+      "relevance": 8,
+      "content_type": "blog",
+      "suggested_title": "TempMail vs ProtonMail for anonymous email - What You Need t",
+      "already_covered": false
+    },
+    {
+      "keyword": "Comparing free vs paid email privacy tools",
+      "type": "comparison",
+      "intent": "transactional",
+      "competition": "low",
+      "relevance": 6,
+      "content_type": "landing page",
+      "suggested_title": "Comparing free vs paid email privacy tools - What You Need t",
+      "already_covered": false
+    },
+    {
+      "keyword": "How to improve email privacy with temporary accounts?",
+      "type": "question",
+      "intent": "informational",
+      "competition": "low",
+      "relevance": 6,
+      "content_type": "blog",
+      "suggested_title": "How to improve email privacy with temporary accounts",
+      "already_covered": false
+    },
+    {
+      "keyword": "What is the link between online anonymity and email security?",
+      "type": "question",
+      "intent": "informational",
+      "competition": "low",
+      "relevance": 6,
+      "content_type": "blog",
+      "suggested_title": "What is the link between online anonymity and email security",
+      "already_covered": false
+    },
+    {
+      "keyword": "Can using a VPN enhance email privacy?",
+      "type": "question",
+      "intent": "informational",
+      "competition": "low",
+      "relevance": 6,
+      "content_type": "blog",
+      "suggested_title": "Can using a VPN enhance email privacy - What You Need to Kno",
+      "already_covered": false
+    },
+    {
+      "keyword": "How to check if an email service is privacy-focused?",
+      "type": "question",
+      "intent": "informational",
+      "competition": "low",
+      "relevance": 6,
+      "content_type": "blog",
+      "suggested_title": "How to check if an email service is privacy-focused",
+      "already_covered": false
+    },
+    {
+      "keyword": "Email privacy extensions for Chrome browsers",
+      "type": "long-tail",
+      "intent": "informational",
+      "competition": "low",
+      "relevance": 6,
+      "content_type": "blog",
+      "suggested_title": "Email privacy extensions for Chrome browsers - What You Need",
+      "already_covered": false
+    },
+    {
+      "keyword": "Protecting email privacy from data brokers",
+      "type": "long-tail",
+      "intent": "informational",
+      "competition": "low",
+      "relevance": 6,
+      "content_type": "blog",
+      "suggested_title": "Protecting email privacy from data brokers - What You Need t",
+      "already_covered": false
+    },
+    {
+      "keyword": "Email privacy best practices for remote employees",
+      "type": "scenario",
+      "intent": "informational",
+      "competition": "low",
+      "relevance": 6,
+      "content_type": "blog",
+      "suggested_title": "Email privacy best practices for remote employees - What You",
+      "already_covered": false
+    },
+    {
+      "keyword": "Privacy-focused email solutions for healthcare professionals",
+      "type": "scenario",
+      "intent": "informational",
+      "competition": "low",
+      "relevance": 6,
+      "content_type": "blog",
+      "suggested_title": "Privacy-focused email solutions for healthcare professionals",
+      "already_covered": false
+    },
+    {
+      "keyword": "Are disposable emails legal for protecting privacy?",
+      "type": "question",
+      "intent": "informational",
+      "competition": "low",
+      "relevance": 8,
+      "content_type": "blog",
+      "suggested_title": "Are disposable emails legal for protecting privacy",
+      "already_covered": true
+    },
+    {
+      "keyword": "Best disposable email services for privacy in 2024",
+      "type": "comparison",
+      "intent": "informational",
+      "competition": "low",
+      "relevance": 8,
+      "content_type": "blog",
+      "suggested_title": "Best disposable email services for privacy in 2024",
+      "already_covered": true
+    },
+    {
+      "keyword": "Temporary email vs encrypted email for security",
+      "type": "comparison",
+      "intent": "informational",
+      "competition": "low",
+      "relevance": 8,
+      "content_type": "blog",
+      "suggested_title": "Temporary email vs encrypted email for security - What You N",
+      "already_covered": true
+    },
+    {
+      "keyword": "Alternatives to Guerrilla Mail for online anonymity",
+      "type": "comparison",
+      "intent": "informational",
+      "competition": "low",
+      "relevance": 4,
+      "content_type": "blog",
+      "suggested_title": "Alternatives to Guerrilla Mail for online anonymity",
+      "already_covered": false
+    },
+    {
+      "keyword": "Temporary email for privacy without any personal details",
+      "type": "long-tail",
+      "intent": "informational",
+      "competition": "low",
+      "relevance": 8,
+      "content_type": "blog",
+      "suggested_title": "Temporary email for privacy without any personal details",
+      "already_covered": true
+    },
+    {
+      "keyword": "Online anonymity using disposable emails for forum sign-ups",
+      "type": "long-tail",
+      "intent": "informational",
+      "competition": "low",
+      "relevance": 8,
+      "content_type": "blog",
+      "suggested_title": "Online anonymity using disposable emails for forum sign-ups",
+      "already_covered": true
+    },
+    {
+      "keyword": "Using temporary emails to prevent spam in business",
+      "type": "long-tail",
+      "intent": "informational",
+      "competition": "low",
+      "relevance": 8,
+      "content_type": "blog",
+      "suggested_title": "Using temporary emails to prevent spam in business",
+      "already_covered": true
+    },
+    {
+      "keyword": "Online anonymity strategies for whistleblowers in 2024",
+      "type": "scenario",
+      "intent": "informational",
+      "competition": "low",
+      "relevance": 4,
+      "content_type": "blog",
+      "suggested_title": "Online anonymity strategies for whistleblowers in 2024",
+      "already_covered": false
+    },
+    {
+      "keyword": "Disposable email for app developers during testing",
+      "type": "scenario",
+      "intent": "informational",
+      "competition": "low",
+      "relevance": 8,
+      "content_type": "blog",
+      "suggested_title": "Disposable email for app developers during testing",
+      "already_covered": true
+    },
+    {
+      "keyword": "Temporary email for online dating to maintain anonymity",
+      "type": "scenario",
+      "intent": "informational",
+      "competition": "low",
+      "relevance": 8,
+      "content_type": "blog",
+      "suggested_title": "Temporary email for online dating to maintain anonymity",
+      "already_covered": true
+    }
+  ]
+}

@@ -1,0 +1,213 @@
+{
+  "generated_at": "2026-06-24T11:12:30.882795",
+  "seed_keywords": [
+    "temporary email",
+    "disposable email",
+    "email privacy"
+  ],
+  "total_discovered": 20,
+  "already_covered_count": 18,
+  "new_keywords_count": 2,
+  "keywords": [
+    {
+      "keyword": "email privacy for activists without surveillance",
+      "type": "long-tail",
+      "intent": "informational",
+      "competition": "low",
+      "relevance": 6,
+      "content_type": "blog",
+      "suggested_title": "Email Privacy for Activists: Avoiding Surveillance",
+      "already_covered": false
+    },
+    {
+      "keyword": "disposable email for spam protection",
+      "type": "long-tail",
+      "intent": "transactional",
+      "competition": "low",
+      "relevance": 9,
+      "content_type": "landing page",
+      "suggested_title": "Disposable Email for Spam Protection: Get Secure Now",
+      "already_covered": true
+    },
+    {
+      "keyword": "temporary email for Facebook sign-up",
+      "type": "scenario",
+      "intent": "transactional",
+      "competition": "low",
+      "relevance": 9,
+      "content_type": "landing page",
+      "suggested_title": "Temporary Email for Facebook Sign-Up: Quick & Easy",
+      "already_covered": true
+    },
+    {
+      "keyword": "temporary email without phone verification",
+      "type": "long-tail",
+      "intent": "transactional",
+      "competition": "low",
+      "relevance": 9,
+      "content_type": "landing page",
+      "suggested_title": "Get Temporary Email Without Phone Verification",
+      "already_covered": true
+    },
+    {
+      "keyword": "disposable email for Twitter accounts",
+      "type": "scenario",
+      "intent": "transactional",
+      "competition": "low",
+      "relevance": 9,
+      "content_type": "landing page",
+      "suggested_title": "Disposable Email for Twitter Accounts: Sign Up Now",
+      "already_covered": true
+    },
+    {
+      "keyword": "disposable email for freelance designers",
+      "type": "scenario",
+      "intent": "transactional",
+      "competition": "low",
+      "relevance": 9,
+      "content_type": "landing page",
+      "suggested_title": "Disposable Email for Freelance Designers: Get Started",
+      "already_covered": true
+    },
+    {
+      "keyword": "temporary email for testing mobile apps",
+      "type": "long-tail",
+      "intent": "transactional",
+      "competition": "low",
+      "relevance": 9,
+      "content_type": "landing page",
+      "suggested_title": "Temporary Email for Testing Mobile Apps: Free & Easy",
+      "already_covered": true
+    },
+    {
+      "keyword": "disposable email for college students in 2024",
+      "type": "scenario",
+      "intent": "transactional",
+      "competition": "low",
+      "relevance": 9,
+      "content_type": "landing page",
+      "suggested_title": "Disposable Email for College Students in 2024",
+      "already_covered": true
+    },
+    {
+      "keyword": "temporary email for developers in 2023",
+      "type": "scenario",
+      "intent": "transactional",
+      "competition": "low",
+      "relevance": 9,
+      "content_type": "landing page",
+      "suggested_title": "Temporary Email for Developers in 2023: Best Practices",
+      "already_covered": true
+    },
+    {
+      "keyword": "email privacy for small businesses without encryption",
+      "type": "long-tail",
+      "intent": "informational",
+      "competition": "medium",
+      "relevance": 6,
+      "content_type": "blog",
+      "suggested_title": "Email Privacy for Small Businesses Without Encryption",
+      "already_covered": false
+    },
+    {
+      "keyword": "how to use temporary email safely",
+      "type": "question",
+      "intent": "informational",
+      "competition": "low",
+      "relevance": 9,
+      "content_type": "blog",
+      "suggested_title": "How to Use Temporary Email Safely: A Complete Guide",
+      "already_covered": true
+    },
+    {
+      "keyword": "is disposable email secure for online banking",
+      "type": "question",
+      "intent": "informational",
+      "competition": "low",
+      "relevance": 9,
+      "content_type": "FAQ",
+      "suggested_title": "Is Disposable Email Secure for Online Banking?",
+      "already_covered": true
+    },
+    {
+      "keyword": "can I use temporary email for newsletter sign-ups",
+      "type": "question",
+      "intent": "informational",
+      "competition": "low",
+      "relevance": 9,
+      "content_type": "FAQ",
+      "suggested_title": "Can I Use Temporary Email for Newsletter Sign-Ups?",
+      "already_covered": true
+    },
+    {
+      "keyword": "how does email privacy work with disposable email addresses",
+      "type": "question",
+      "intent": "informational",
+      "competition": "low",
+      "relevance": 9,
+      "content_type": "blog",
+      "suggested_title": "How Email Privacy Works with Disposable Addresses",
+      "already_covered": true
+    },
+    {
+      "keyword": "what is the best disposable email service for privacy",
+      "type": "question",
+      "intent": "informational",
+      "competition": "medium",
+      "relevance": 10,
+      "content_type": "landing page",
+      "suggested_title": "Best Disposable Email Service for Privacy in 2024",
+      "already_covered": true
+    },
+    {
+      "keyword": "temporary email vs disposable email",
+      "type": "comparison",
+      "intent": "informational",
+      "competition": "medium",
+      "relevance": 9,
+      "content_type": "blog",
+      "suggested_title": "Temporary Email vs Disposable Email: Key Differences",
+      "already_covered": true
+    },
+    {
+      "keyword": "email privacy tools vs temporary email",
+      "type": "comparison",
+      "intent": "informational",
+      "competition": "medium",
+      "relevance": 8,
+      "content_type": "blog",
+      "suggested_title": "Email Privacy Tools vs Temporary Email: Which Wins?",
+      "already_covered": true
+    },
+    {
+      "keyword": "temporary email alternative to Gmail",
+      "type": "comparison",
+      "intent": "informational",
+      "competition": "medium",
+      "relevance": 8,
+      "content_type": "blog",
+      "suggested_title": "Temporary Email Alternative to Gmail: Pros & Cons",
+      "already_covered": true
+    },
+    {
+      "keyword": "best email privacy service compared to temporary email",
+      "type": "comparison",
+      "intent": "informational",
+      "competition": "medium",
+      "relevance": 8,
+      "content_type": "blog",
+      "suggested_title": "Best Email Privacy Service vs Temporary Email Compared",
+      "already_covered": true
+    },
+    {
+      "keyword": "disposable email vs VPN for online anonymity",
+      "type": "comparison",
+      "intent": "informational",
+      "competition": "medium",
+      "relevance": 8,
+      "content_type": "blog",
+      "suggested_title": "Disposable Email vs VPN for Online Anonymity",
+      "already_covered": true
+    }
+  ]
+}

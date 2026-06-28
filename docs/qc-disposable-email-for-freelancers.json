@@ -1,0 +1,40 @@
+{
+  "keyword": "disposable email for freelancers",
+  "timestamp": "2026-06-24T13:32:12.138684",
+  "overall": "PASS",
+  "fail_count": 1,
+  "checks": {
+    "word_count": {
+      "value": 1888,
+      "pass": true
+    },
+    "ai_phrases": {
+      "value": 0,
+      "found": [],
+      "pass": true
+    },
+    "human_markers": {
+      "value": 5,
+      "found": [
+        "honestly",
+        "look,",
+        "let me break",
+        "the truth is",
+        "let me break this down"
+      ],
+      "pass": true
+    },
+    "h2_count": {
+      "value": 7,
+      "pass": true
+    },
+    "internal_links": {
+      "value": 20,
+      "pass": true
+    },
+    "keyword_occurrences": {
+      "value": 1,
+      "pass": false
+    }
+  }
+}

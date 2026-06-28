@@ -1,0 +1,59 @@
+{
+  "generated_at": "2026-06-28T14:44:33.246916",
+  "seed_keywords": [
+    "temporary email"
+  ],
+  "total_discovered": 5,
+  "keywords": [
+    {
+      "keyword": "how to create temporary email",
+      "type": "long-tail",
+      "intent": "informational",
+      "competition": "low",
+      "content_type": "blog",
+      "relevance": 10,
+      "suggested_title": "如何创建临时邮箱：2024年简单步骤指南",
+      "score": 91
+    },
+    {
+      "keyword": "can I use temporary email for registration",
+      "type": "usage-question",
+      "intent": "informational",
+      "competition": "low",
+      "content_type": "FAQ",
+      "relevance": 10,
+      "suggested_title": "注册账户时可以使用临时邮箱吗？利弊与最佳实践",
+      "score": 91
+    },
+    {
+      "keyword": "temporary email vs permanent email",
+      "type": "comparison",
+      "intent": "informational",
+      "competition": "low",
+      "content_type": "blog",
+      "relevance": 10,
+      "suggested_title": "临时邮箱 vs 永久邮箱：全面对比与适用场景分析",
+      "score": 91
+    },
+    {
+      "keyword": "temporary email for signing up",
+      "type": "specific-usage",
+      "intent": "informational",
+      "competition": "low",
+      "content_type": "FAQ",
+      "relevance": 10,
+      "suggested_title": "使用临时邮箱注册网站：完整操作指南与注意事项",
+      "score": 91
+    },
+    {
+      "keyword": "temporary email for testing",
+      "type": "use-case",
+      "intent": "informational",
+      "competition": "low",
+      "content_type": "blog",
+      "relevance": 10,
+      "suggested_title": "开发者与测试人员必备：如何使用临时邮箱进行应用测试",
+      "score": 91
+    }
+  ]
+}

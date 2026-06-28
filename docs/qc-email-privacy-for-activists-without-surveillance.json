@@ -1,0 +1,33 @@
+{
+  "keyword": "email privacy for activists without surveillance",
+  "timestamp": "2026-06-24T11:22:10.830564",
+  "overall": "FAIL",
+  "checks": {
+    "word_count": {
+      "value": 10,
+      "pass": false
+    },
+    "ai_phrases": {
+      "value": 0,
+      "found": [],
+      "pass": true
+    },
+    "human_markers": {
+      "value": 0,
+      "found": [],
+      "pass": false
+    },
+    "h2_count": {
+      "value": 0,
+      "pass": false
+    },
+    "internal_links": {
+      "value": 0,
+      "pass": false
+    },
+    "keyword_occurrences": {
+      "value": 0,
+      "pass": false
+    }
+  }
+}

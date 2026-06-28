@@ -1,0 +1,40 @@
+{
+  "keyword": "disposable email for spam protection",
+  "timestamp": "2026-06-24T12:58:04.910269",
+  "overall": "PASS",
+  "fail_count": 0,
+  "checks": {
+    "word_count": {
+      "value": 1985,
+      "pass": true
+    },
+    "ai_phrases": {
+      "value": 0,
+      "found": [],
+      "pass": true
+    },
+    "human_markers": {
+      "value": 5,
+      "found": [
+        "honestly",
+        "look,",
+        "the bottom line",
+        "i have seen",
+        "i have found"
+      ],
+      "pass": true
+    },
+    "h2_count": {
+      "value": 6,
+      "pass": true
+    },
+    "internal_links": {
+      "value": 30,
+      "pass": true
+    },
+    "keyword_occurrences": {
+      "value": 3,
+      "pass": true
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "keyword": "is temporary email safe",
+  "timestamp": "2026-06-23T22:56:00.729151",
+  "overall": "PASS",
+  "checks": {
+    "word_count": {
+      "value": 2052,
+      "pass": true
+    },
+    "ai_phrases": {
+      "value": 0,
+      "found": [],
+      "pass": true
+    },
+    "human_markers": {
+      "value": 5,
+      "found": [
+        "here's the thing",
+        "look,",
+        "the bottom line",
+        "the truth is",
+        "i have tested"
+      ],
+      "pass": true
+    },
+    "h2_count": {
+      "value": 6,
+      "pass": true
+    },
+    "internal_links": {
+      "value": 14,
+      "pass": true
+    },
+    "keyword_occurrences": {
+      "value": 3,
+      "pass": true
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "keyword": "email privacy for small businesses",
+  "timestamp": "2026-06-24T13:01:31.037149",
+  "overall": "PASS",
+  "fail_count": 1,
+  "checks": {
+    "word_count": {
+      "value": 1913,
+      "pass": true
+    },
+    "ai_phrases": {
+      "value": 0,
+      "found": [],
+      "pass": true
+    },
+    "human_markers": {
+      "value": 6,
+      "found": [
+        "honestly",
+        "look,",
+        "let me break",
+        "the bottom line",
+        "let me break this down",
+        "here is the thing"
+      ],
+      "pass": true
+    },
+    "h2_count": {
+      "value": 6,
+      "pass": true
+    },
+    "internal_links": {
+      "value": 10,
+      "pass": true
+    },
+    "keyword_occurrences": {
+      "value": 1,
+      "pass": false
+    }
+  }
+}

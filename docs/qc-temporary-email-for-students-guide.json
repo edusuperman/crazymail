@@ -1,0 +1,46 @@
+{
+  "keyword": "temporary email for students",
+  "timestamp": "2026-06-24T13:29:18.448153",
+  "overall": "PASS",
+  "fail_count": 0,
+  "checks": {
+    "word_count": {
+      "value": 1711,
+      "pass": true
+    },
+    "ai_phrases": {
+      "value": 0,
+      "found": [],
+      "pass": true
+    },
+    "human_markers": {
+      "value": 11,
+      "found": [
+        "here's the thing",
+        "honestly",
+        "i've tested",
+        "in my testing",
+        "look,",
+        "that's it",
+        "let me break",
+        "the bottom line",
+        "the truth is",
+        "in my testing",
+        "let me break this down"
+      ],
+      "pass": true
+    },
+    "h2_count": {
+      "value": 6,
+      "pass": true
+    },
+    "internal_links": {
+      "value": 17,
+      "pass": true
+    },
+    "keyword_occurrences": {
+      "value": 4,
+      "pass": true
+    }
+  }
+}

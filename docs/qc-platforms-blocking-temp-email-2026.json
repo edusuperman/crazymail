@@ -1,0 +1,37 @@
+{
+  "keyword": "major platforms cracking",
+  "timestamp": "2026-06-24T13:24:23.318160",
+  "overall": "PASS",
+  "fail_count": 2,
+  "checks": {
+    "word_count": {
+      "value": 669,
+      "pass": false
+    },
+    "ai_phrases": {
+      "value": 0,
+      "found": [],
+      "pass": true
+    },
+    "human_markers": {
+      "value": 2,
+      "found": [
+        "in my testing",
+        "in my testing"
+      ],
+      "pass": true
+    },
+    "h2_count": {
+      "value": 6,
+      "pass": true
+    },
+    "internal_links": {
+      "value": 3,
+      "pass": true
+    },
+    "keyword_occurrences": {
+      "value": 0,
+      "pass": false
+    }
+  }
+}

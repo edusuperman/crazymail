@@ -1,0 +1,38 @@
+{
+  "keyword": "massive data leak",
+  "timestamp": "2026-06-24T13:24:23.313168",
+  "overall": "PASS",
+  "fail_count": 2,
+  "checks": {
+    "word_count": {
+      "value": 635,
+      "pass": false
+    },
+    "ai_phrases": {
+      "value": 0,
+      "found": [],
+      "pass": true
+    },
+    "human_markers": {
+      "value": 3,
+      "found": [
+        "who cares",
+        "let me break",
+        "who cares"
+      ],
+      "pass": true
+    },
+    "h2_count": {
+      "value": 5,
+      "pass": true
+    },
+    "internal_links": {
+      "value": 3,
+      "pass": true
+    },
+    "keyword_occurrences": {
+      "value": 1,
+      "pass": false
+    }
+  }
+}

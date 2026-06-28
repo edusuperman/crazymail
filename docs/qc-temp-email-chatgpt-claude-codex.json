@@ -1,0 +1,38 @@
+{
+  "keyword": "tested temporary email",
+  "timestamp": "2026-06-24T13:24:23.320151",
+  "overall": "PASS",
+  "fail_count": 2,
+  "checks": {
+    "word_count": {
+      "value": 327,
+      "pass": false
+    },
+    "ai_phrases": {
+      "value": 0,
+      "found": [],
+      "pass": true
+    },
+    "human_markers": {
+      "value": 3,
+      "found": [
+        "here's the thing",
+        "in my testing",
+        "in my testing"
+      ],
+      "pass": true
+    },
+    "h2_count": {
+      "value": 5,
+      "pass": true
+    },
+    "internal_links": {
+      "value": 5,
+      "pass": true
+    },
+    "keyword_occurrences": {
+      "value": 0,
+      "pass": false
+    }
+  }
+}

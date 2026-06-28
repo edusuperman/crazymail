@@ -1,0 +1,37 @@
+{
+  "keyword": "practical guide choosing",
+  "timestamp": "2026-06-24T13:24:23.315162",
+  "overall": "PASS",
+  "fail_count": 2,
+  "checks": {
+    "word_count": {
+      "value": 982,
+      "pass": false
+    },
+    "ai_phrases": {
+      "value": 0,
+      "found": [],
+      "pass": true
+    },
+    "human_markers": {
+      "value": 2,
+      "found": [
+        "here's the thing",
+        "that said"
+      ],
+      "pass": true
+    },
+    "h2_count": {
+      "value": 6,
+      "pass": true
+    },
+    "internal_links": {
+      "value": 10,
+      "pass": true
+    },
+    "keyword_occurrences": {
+      "value": 0,
+      "pass": false
+    }
+  }
+}
