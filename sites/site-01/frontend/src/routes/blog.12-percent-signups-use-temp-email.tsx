@@ -6,7 +6,7 @@ export const Route = createFileRoute("/blog/12-percent-signups-use-temp-email")(
       { title: "12% of All Signups Use Temp Email — And Why That's Actually Smart" },
       { name: "description", content: "Verified.email's 2026 report reveals 12% of all online signups use disposable email. Here's why millions are choosing privacy." },
       { name: "keywords", content: "disposable email statistics, temp email usage, online privacy 2026" },
-      { name: "author", content: "Alex Chen" },
+      { name: "author", content: "TempMails Team" },
       { name: "robots", content: "index, follow" },
       { property: "og:type", content: "article" },
       { property: "og:title", content: "12% of All Signups Use Temp Email — And Why That's Actually Smart" },
@@ -24,7 +24,7 @@ export const Route = createFileRoute("/blog/12-percent-signups-use-temp-email")(
           "@type": "Article",
           "headline": "12% of All Signups Use Temp Email — And Why That's Actually Smart",
           "description": "Verified.email's 2026 report reveals 12% of all online signups use disposable email.",
-          "author": { "@type": "Person", "name": "Alex Chen" },
+          "author": { "@type": "Person", "name": "TempMails Team" },
           "datePublished": "2026-06-22",
           "dateModified": "2026-06-22",
           "publisher": { "@type": "Organization", "name": "TempMails.top" },
@@ -53,7 +53,7 @@ function BlogPostPage() {
           </span>
         </h1>
         <div className="mt-4 flex items-center gap-4 text-sm text-muted-foreground">
-          <span>By Alex Chen</span>
+          <span>By TempMails Team</span>
           <span>·</span>
           <time>June 22, 2026</time>
           <span>·</span>
@@ -241,14 +241,13 @@ function BlogPostPage() {
 
         <div className="mt-12 flex items-start gap-4 rounded-lg border border-border p-6">
           <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xl font-bold text-primary">
-            AC
+            TM
           </div>
           <div>
-            <p className="font-semibold">Alex Chen</p>
+            <p className="font-semibold">TempMails Team</p>
             <p className="text-sm text-muted-foreground">
-              Privacy &amp; security writer with 5 years of experience. I've written about data privacy
-              for TechCrunch, The Verge, and Wired. I use temporary email for everything that doesn't
-              require my real identity.
+              We build TempMails.top — a free, ad-free, privacy-first temporary email service.
+              We write about email privacy and online security.
             </p>
           </div>
         </div>

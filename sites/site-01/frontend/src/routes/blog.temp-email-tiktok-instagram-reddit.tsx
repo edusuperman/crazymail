@@ -6,7 +6,7 @@ export const Route = createFileRoute("/blog/temp-email-tiktok-instagram-reddit")
       { title: "Temp Email for TikTok, Instagram & Reddit: Does It Actually Work in 2026?" },
       { name: "description", content: "I tested temporary email on TikTok, Instagram, and Reddit. Here's which platforms accept disposable email and which ones block it." },
       { name: "keywords", content: "temp email TikTok, disposable email Instagram, temporary email Reddit, social media signup 2026" },
-      { name: "author", content: "Alex Chen" },
+      { name: "author", content: "TempMails Team" },
       { name: "robots", content: "index, follow" },
       { property: "og:type", content: "article" },
       { property: "og:title", content: "Temp Email for TikTok, Instagram & Reddit: Does It Actually Work?" },
@@ -24,7 +24,7 @@ export const Route = createFileRoute("/blog/temp-email-tiktok-instagram-reddit")
           "@type": "Article",
           "headline": "Temp Email for TikTok, Instagram & Reddit: Does It Actually Work in 2026?",
           "description": "I tested temporary email on TikTok, Instagram, and Reddit.",
-          "author": { "@type": "Person", "name": "Alex Chen" },
+          "author": { "@type": "Person", "name": "TempMails Team" },
           "datePublished": "2026-06-22",
           "dateModified": "2026-06-22",
           "publisher": { "@type": "Organization", "name": "TempMails.top" },
@@ -53,7 +53,7 @@ function BlogPostPage() {
           </span>
         </h1>
         <div className="mt-4 flex items-center gap-4 text-sm text-muted-foreground">
-          <span>By Alex Chen</span>
+          <span>By TempMails Team</span>
           <span>·</span>
           <time>June 22, 2026</time>
           <span>·</span>
@@ -261,13 +261,13 @@ function BlogPostPage() {
 
         <div className="mt-12 flex items-start gap-4 rounded-lg border border-border p-6">
           <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xl font-bold text-primary">
-            AC
+            TM
           </div>
           <div>
-            <p className="font-semibold">Alex Chen</p>
+            <p className="font-semibold">TempMails Team</p>
             <p className="text-sm text-muted-foreground">
-              Privacy &amp; security writer with 5 years of experience. I test temporary email services
-              on real platforms every week. Follow my work for honest, unbiased reviews.
+              We build TempMails.top — a free, ad-free, privacy-first temporary email service.
+              We write about email privacy and online security.
             </p>
           </div>
         </div>

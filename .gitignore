@@ -17,6 +17,8 @@ eggs/
 .eggs/
 lib/
 lib64/
+# Exclude frontend lib directory
+!sites/site-01/frontend/src/lib/
 parts/
 sdist/
 var/
@@ -69,5 +71,6 @@ docker-compose.override.yml
 # Secrets
 *.pem
 *.key
+tools/gsc_credentials.json
 
 .vercel

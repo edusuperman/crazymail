@@ -12,6 +12,7 @@ import { getDomains, createMailbox, getMessages, getMessage, deleteMessage, mark
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { I18nProvider, useI18n, LANGS, type Lang } from "@/lib/i18n";
+import { CookieConsent } from "@/components/tempmail/CookieConsent";
 
 function timeAgo(iso: string) {
   const d = (Date.now() - new Date(iso).getTime()) / 1000;
@@ -46,27 +47,51 @@ function AppInner() {
   useEffect(() => {
     if (initRef.current) return;
     initRef.current = true;
-    (async () => {
-      const d = await getDomains();
-      if (!d || d.length === 0) {
+
+    const DOMAINS_CACHE_KEY = "crazymail_cached_domains";
+    const DOMAINS_CACHE_TTL_KEY = "crazymail_cached_domains_ttl";
+    const CACHE_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
+
+    // Load cached domains from localStorage
+    let cachedDomains: string[] | null = null;
+    try {
+      const raw = localStorage.getItem(DOMAINS_CACHE_KEY);
+      const ttl = localStorage.getItem(DOMAINS_CACHE_TTL_KEY);
+      if (raw && ttl && Date.now() < Number(ttl)) {
+        cachedDomains = JSON.parse(raw);
+      }
+    } catch {}
+
+    if (cachedDomains && cachedDomains.length > 0) {
+      setDomains(cachedDomains);
+    }
+
+    // Background refresh: update domains cache without blocking
+    getDomains().then((d) => {
+      if (d && d.length > 0) {
+        setDomains(d);
+        try {
+          localStorage.setItem(DOMAINS_CACHE_KEY, JSON.stringify(d));
+          localStorage.setItem(DOMAINS_CACHE_TTL_KEY, String(Date.now() + CACHE_TTL_MS));
+        } catch {}
+      } else if (!cachedDomains) {
         toast.error("Failed to load domains. Please check your connection.");
       }
-      setDomains(d);
-      
-      // 优先从 localStorage 加载保存的邮箱
-      const saved = loadSavedMailbox();
-      if (saved) {
-        console.log("Using saved mailbox:", saved.address);
-        setMailbox(saved);
-      } else {
-        // 没有保存的邮箱，创建新的
-        const m = await createMailbox();
+    });
+
+    // Load saved mailbox or create new one — runs in parallel with domains
+    const saved = loadSavedMailbox();
+    if (saved) {
+      console.log("Using saved mailbox:", saved.address);
+      setMailbox(saved);
+    } else {
+      createMailbox().then((m) => {
         if (!m) {
           toast.error("Failed to create mailbox. Please refresh the page.");
         }
         setMailbox(m);
-      }
-    })();
+      });
+    }
   }, []);
 
   const refresh = useCallback(async (silent = false) => {
@@ -306,6 +331,7 @@ function AppInner() {
       <FaqSection />
       <PremiumCta />
       <SiteFooter />
+      <CookieConsent />
 
       <ChangeDialog open={changeOpen} onOpenChange={setChangeOpen} domains={domains} current={mailbox} onConfirm={onChange} />
 
@@ -632,7 +658,7 @@ function FaqSection() {
             {t.faq.title1}<br /><span className="italic">{t.faq.title2}</span>
           </h2>
           <p className="mt-4 text-sm text-muted-foreground">
-            {t.faq.contact} <a href="mailto:hello@tempmail.pro" className="underline">hello@tempmail.pro</a>.
+            {t.faq.contact} <a href="mailto:hello@tempmails.top" className="underline">hello@tempmails.top</a>.
           </p>
         </div>
         <Accordion type="single" collapsible className="w-full">
@@ -695,9 +721,19 @@ function SiteFooter() {
             <div className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground">{c.t}</div>
             <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
               {c.l.map((it) => {
-                const isExtension = /extension|erweiterung|拡張|扩展|확장/i.test(it);
-                const isBlog = /blog|博客/i.test(it);
-                const href = isBlog ? "/blog" : isExtension ? "/coming-soon" : "#";
+                const lower = it.toLowerCase();
+                let href = "#";
+                if (/blog|博客/i.test(it)) href = "/blog";
+                else if (/extension|erweiterung|拡張|扩展|확장/i.test(it)) href = "/coming-soon";
+                else if (/privacy|隐私|datenschutz/i.test(it)) href = "/privacy";
+                else if (/terms|条款|服务条款|nutzungsbedingungen/i.test(it)) href = "/terms";
+                else if (/cookie/i.test(it)) href = "/privacy#cookies";
+                else if (/faq|常见问题/i.test(it)) href = "/#faq";
+                else if (/contact|联系/i.test(it)) href = "mailto:hello@tempmails.top";
+                else if (/status|状态/i.test(it)) href = "/coming-soon";
+                else if (/feature|功能/i.test(it)) href = "/#features";
+                else if (/how.*work|工作原理/i.test(it)) href = "/#how-it-works";
+                else if (/pric|定价/i.test(it)) href = "/#premium";
                 return <li key={it}><a href={href} className="hover:text-foreground">{it}</a></li>;
               })}
             </ul>

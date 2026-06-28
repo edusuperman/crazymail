@@ -6,7 +6,7 @@ export const Route = createFileRoute("/blog/6-billion-emails-leaked-2026")({
       { title: "6.8 Billion Emails Leaked: Why Your Real Inbox Is Now a Liability" },
       { name: "description", content: "A massive data leak exposed 6.8 billion email records in February 2026. Here's why using your real email for every signup is now a serious risk." },
       { name: "keywords", content: "data breach 2026, email leak, privacy protection, temporary email" },
-      { name: "author", content: "Alex Chen" },
+      { name: "author", content: "TempMails Team" },
       { name: "robots", content: "index, follow" },
       { property: "og:type", content: "article" },
       { property: "og:title", content: "6.8 Billion Emails Leaked: Why Your Real Inbox Is Now a Liability" },
@@ -24,7 +24,7 @@ export const Route = createFileRoute("/blog/6-billion-emails-leaked-2026")({
           "@type": "Article",
           "headline": "6.8 Billion Emails Leaked: Why Your Real Inbox Is Now a Liability",
           "description": "A massive data leak exposed 6.8 billion email records.",
-          "author": { "@type": "Person", "name": "Alex Chen" },
+          "author": { "@type": "Person", "name": "TempMails Team" },
           "datePublished": "2026-06-22",
           "dateModified": "2026-06-22",
           "publisher": { "@type": "Organization", "name": "TempMails.top" },
@@ -53,7 +53,7 @@ function BlogPostPage() {
           </span>
         </h1>
         <div className="mt-4 flex items-center gap-4 text-sm text-muted-foreground">
-          <span>By Alex Chen</span>
+          <span>By TempMails Team</span>
           <span>·</span>
           <time>June 22, 2026</time>
           <span>·</span>
@@ -203,13 +203,13 @@ function BlogPostPage() {
 
         <div className="mt-12 flex items-start gap-4 rounded-lg border border-border p-6">
           <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xl font-bold text-primary">
-            AC
+            TM
           </div>
           <div>
-            <p className="font-semibold">Alex Chen</p>
+            <p className="font-semibold">TempMails Team</p>
             <p className="text-sm text-muted-foreground">
-              Privacy & security writer with 5 years of experience covering data breaches for major tech publications.
-              I've helped thousands of readers protect their digital privacy.
+              We build TempMails.top — a free, ad-free, privacy-first temporary email service.
+              We write about email privacy and online security.
             </p>
           </div>
         </div>

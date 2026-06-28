@@ -3,6 +3,22 @@
 @plugin "@tailwindcss/typography";
 @import "tw-animate-css";
 
+/* Accordion animations — ensure they work even if tw-animate-css tree-shakes them out */
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height, auto); }
+}
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height, auto); }
+  to { height: 0; }
+}
+@utility animate-accordion-down {
+  animation: accordion-down 0.2s ease-out;
+}
+@utility animate-accordion-up {
+  animation: accordion-up 0.2s ease-out;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

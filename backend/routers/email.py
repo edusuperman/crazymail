@@ -223,11 +223,12 @@ async def get_messages(email: str | None = None) -> MessagesResponse:
 
 
 @router.get("/messages/{message_id}", response_model=MessageDetail)
-async def get_message_detail(message_id: str) -> MessageDetail:
+async def get_message_detail(message_id: str, email: str | None = None) -> MessageDetail:
     """获取单封邮件详情"""
     adapter = _get_adapter()
+    target = email or _current_email or _load_saved_email()
     try:
-        m = await adapter.get_message(message_id)
+        m = await adapter.get_message(message_id, email_address=target)
         return MessageDetail(
             id=m.id,
             from_address=m.from_address,
@@ -275,15 +276,48 @@ async def mark_as_read(message_id: str) -> ActionResponse:
 
 
 @router.get("/health")
-async def email_health() -> dict[str, Any]:
-    """邮件服务健康检查"""
+async def email_health(email: str | None = None) -> dict[str, Any]:
+    """邮件服务健康检查 + 调试"""
     adapter = _get_adapter()
+    target = email or _current_email or _load_saved_email()
+    
+    result: dict[str, Any] = {
+        "status": "ok",
+        "provider": "tempmailio",
+        "target_email": target,
+        "adapter_email": adapter._email,
+        "has_token": bool(adapter._token),
+    }
+    
+    if target:
+        try:
+            messages = await adapter.get_messages(target)
+            result["message_count"] = len(messages)
+            result["message_ids"] = [m.id for m in messages]
+        except Exception as err:
+            result["messages_error"] = str(err)
+    
+    return result
+
+
+@router.get("/debug/messages/{message_id}")
+async def debug_message(message_id: str, email: str | None = None) -> dict[str, Any]:
+    """调试邮件详情查询"""
+    adapter = _get_adapter()
+    target = email or _current_email or _load_saved_email()
+    
+    # 直接调用 get_messages 看返回
     try:
-        healthy = await adapter.check_health()
+        messages = await adapter.get_messages(target)
+        msg_ids = [m.id for m in messages]
+        found = message_id in msg_ids
         return {
-            "status": "ok" if healthy else "degraded",
-            "provider": "tempmailio",
+            "target": target,
+            "adapter_email": adapter._email,
+            "message_count": len(messages),
+            "message_ids": msg_ids,
+            "requested_id": message_id,
+            "found": found,
         }
     except Exception as err:
-        logger.warning("邮件健康检查失败: {}", err)
-        return {"status": "error", "provider": "tempmailio", "detail": str(err)}
+        return {"error": str(err), "target": target}

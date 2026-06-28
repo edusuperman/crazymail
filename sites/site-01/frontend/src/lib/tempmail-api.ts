@@ -116,7 +116,9 @@ export async function getMessages(): Promise<{ email: string; messages: TempMess
 }
 
 export async function getMessage(id: string): Promise<TempMessage | null> {
-  return await tryFetch<TempMessage>(`/api/v1/email/messages/${id}`);
+  const savedAddress = typeof window !== "undefined" ? localStorage.getItem("tempmail_address") : null;
+  const emailParam = savedAddress ? `?email=${encodeURIComponent(savedAddress)}` : "";
+  return await tryFetch<TempMessage>(`/api/v1/email/messages/${id}${emailParam}`);
 }
 
 export async function deleteMessage(id: string): Promise<boolean> {

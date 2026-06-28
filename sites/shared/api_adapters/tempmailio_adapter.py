@@ -21,6 +21,7 @@ import logging
 import random
 import string
 from datetime import datetime
+from email.header import decode_header
 from typing import Any
 
 import httpx
@@ -45,6 +46,26 @@ _DATE_FORMATS: list[str] = [
     "%Y-%m-%dT%H:%M:%S%z",
     "%Y-%m-%d %H:%M:%S",
 ]
+
+
+def _decode_rfc2047(raw: str) -> str:
+    """解码 RFC 2047 编码的邮件头（如 =?utf-8?B?...?= 或 =?gb2312?B?...?=）
+
+    如果输入不是编码格式，原样返回。
+    """
+    if not raw or "=?" not in raw:
+        return raw
+    try:
+        parts = decode_header(raw)
+        decoded_parts = []
+        for part, charset in parts:
+            if isinstance(part, bytes):
+                decoded_parts.append(part.decode(charset or "utf-8", errors="replace"))
+            else:
+                decoded_parts.append(part)
+        return "".join(decoded_parts)
+    except Exception:
+        return raw
 
 
 class TempMailIOAdapter(EmailAdapter):
@@ -220,8 +241,8 @@ class TempMailIOAdapter(EmailAdapter):
         return EmailMessage(
             id=raw.get("_id", "") or raw.get("id", ""),
             from_address=from_address,
-            from_name=from_name,
-            subject=raw.get("subject", ""),
+            from_name=_decode_rfc2047(from_name),
+            subject=_decode_rfc2047(raw.get("subject", "")),
             body_text=body_text,
             body_html=body_html,
             received_at=received_at,
@@ -299,13 +320,14 @@ class TempMailIOAdapter(EmailAdapter):
         logger.info("收件箱 %s 有 %d 封邮件", email_address, len(messages))
         return messages
 
-    async def get_message(self, message_id: str) -> EmailMessage:
+    async def get_message(self, message_id: str, email_address: str | None = None) -> EmailMessage:
         logger.info("获取邮件详情: %s", message_id)
 
-        if not self._email:
+        target = email_address or self._email
+        if not target:
             raise EmailAdapterError("未创建邮箱，请先调用 create_email", provider="tempmailio")
 
-        messages = await self.get_messages(self._email)
+        messages = await self.get_messages(target)
         for msg in messages:
             if msg.id == message_id:
                 return msg
