@@ -1,0 +1,155 @@
+@import "tailwindcss";
+
+:root {
+  /* 国风配色方案 */
+  --ink-black: #1a1a1a;
+  --vermillion: #c0392b;
+  --imperial-gold: #d4a017;
+  --jade-green: #2e7d5e;
+  --parchment: #f5f0e8;
+  --ink-blue: #2c4a6e;
+  --warning-amber: #e67e22;
+  --ash-gray: #bdc3c7;
+  
+  /* 背景色 */
+  --background: #0f1219;
+  --foreground: #f5f0e8;
+  
+  /* 卡片色 */
+  --card-bg: rgba(26, 26, 26, 0.8);
+  --card-border: rgba(212, 160, 23, 0.2);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-ink-black: var(--ink-black);
+  --color-vermillion: var(--vermillion);
+  --color-imperial-gold: var(--imperial-gold);
+  --color-jade-green: var(--jade-green);
+  --color-parchment: var(--parchment);
+  --color-ink-blue: var(--ink-blue);
+  --color-warning-amber: var(--warning-amber);
+  --color-ash-gray: var(--ash-gray);
+  --color-card-bg: var(--card-bg);
+  --color-card-border: var(--card-border);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+
+/* 国风卡片样式 */
+.guofeng-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+}
+
+/* 墨条进度条 */
+.ink-progress {
+  background: linear-gradient(90deg, var(--ink-black) 0%, var(--ink-blue) 100%);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.ink-progress::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%);
+  animation: ink-flow 2s infinite;
+}
+
+@keyframes ink-flow {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* 呼吸灯效果 */
+.breathing-light {
+  animation: breathe 2s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* 红绿灯状态灯 */
+.status-light {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-light.green {
+  background: var(--jade-green);
+  box-shadow: 0 0 8px var(--jade-green);
+}
+
+.status-light.red {
+  background: var(--vermillion);
+  box-shadow: 0 0 8px var(--vermillion);
+  animation: blink 1s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* 心跳线动画 */
+.heartbeat-line {
+  stroke: var(--jade-green);
+  stroke-width: 2;
+  fill: none;
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { stroke-dashoffset: 0; }
+  50% { stroke-dashoffset: 20; }
+}
+
+/* 日夜切换背景 */
+.day-night-bg {
+  transition: background 2s ease;
+}
+
+.day-night-bg.day {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+.day-night-bg.night {
+  background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(26, 26, 26, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--imperial-gold);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--vermillion);
+}
