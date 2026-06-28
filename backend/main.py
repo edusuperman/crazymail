@@ -13,7 +13,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from loguru import logger
 
 from .config import settings
-from .routers import email
+from .routers import email, content_factory
 
 
 @asynccontextmanager
@@ -42,6 +42,7 @@ app.add_middleware(
 
 # 注册路由
 app.include_router(email.router, prefix="/api/v1/email", tags=["email"])
+app.include_router(content_factory.router, prefix="/api/v1/content-factory", tags=["content-factory"])
 
 
 @app.get("/health", tags=["system"])
