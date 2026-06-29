@@ -122,6 +122,46 @@ const blogPosts = [
     readTime: "9 min read",
     category: "Guide",
   },
+  {
+    slug: "how-to-create-temporary-email-guide",
+    title: "How to Create Temporary Email: A Complete Step-by-Step Guide",
+    excerpt: "Discover how to create temporary email easily with our step-by-step guide. Protect your privacy and avoid spam using tem...",
+    date: "2026-06-29",
+    readTime: "9 min read",
+    category: "Guide",
+  },
+  {
+    slug: "temporary-email-for-signing-up",
+    title: "How to Use Temporary Email for Signing Up Safely",
+    excerpt: "Learn how to use temporary email for signing up to avoid spam and protect your privacy. Discover benefits and best pract...",
+    date: "2026-06-29",
+    readTime: "9 min read",
+    category: "Privacy",
+  },
+  {
+    slug: "how-to-use-temporary-email-for-testing-software",
+    title: "How to Use Temporary Email for Testing Software Efficiently",
+    excerpt: "Discover the advantages of using temporary email for software testing. This guide covers setup, benefits, and how tempma...",
+    date: "2026-06-29",
+    readTime: "9 min read",
+    category: "Guide",
+  },
+  {
+    slug: "temporary-email-vs-permanent-email-differences",
+    title: "Temporary Email vs Permanent Email: Key Differences",
+    excerpt: "Explore the differences between temporary and permanent emails. Learn which to use for privacy, security, and efficiency...",
+    date: "2026-06-29",
+    readTime: "9 min read",
+    category: "Guide",
+  },
+  {
+    slug: "is-temporary-email-legal",
+    title: "Is Temporary Email Legal? The Complete Guide for 2024",
+    excerpt: "Discover if using temporary email is legal. Learn about the laws, risks, and best practices for disposable email service...",
+    date: "2026-06-29",
+    readTime: "9 min read",
+    category: "Guide",
+  },
 ];
 
 function BlogPage() {

@@ -1,0 +1,42 @@
+{
+  "keyword": "temporary email for testing software",
+  "timestamp": "2026-06-29T12:39:33.899159",
+  "overall": "PASS",
+  "fail_count": 1,
+  "checks": {
+    "word_count": {
+      "value": 1587,
+      "pass": true
+    },
+    "ai_phrases": {
+      "value": 0,
+      "found": [],
+      "pass": true
+    },
+    "human_markers": {
+      "value": 7,
+      "found": [
+        "here's the thing",
+        "honestly",
+        "in my testing",
+        "let me break",
+        "the truth is",
+        "in my testing",
+        "let me break this down"
+      ],
+      "pass": true
+    },
+    "h2_count": {
+      "value": 6,
+      "pass": true
+    },
+    "internal_links": {
+      "value": 28,
+      "pass": true
+    },
+    "keyword_occurrences": {
+      "value": 1,
+      "pass": false
+    }
+  }
+}

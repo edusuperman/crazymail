@@ -1,0 +1,46 @@
+{
+  "keyword": "temporary email for signing up",
+  "timestamp": "2026-06-29T12:33:57.651508",
+  "overall": "PASS",
+  "fail_count": 0,
+  "checks": {
+    "word_count": {
+      "value": 1958,
+      "pass": true
+    },
+    "ai_phrases": {
+      "value": 0,
+      "found": [],
+      "pass": true
+    },
+    "human_markers": {
+      "value": 11,
+      "found": [
+        "here's the thing",
+        "honestly",
+        "in my testing",
+        "look,",
+        "let me break",
+        "the bottom line",
+        "i have seen",
+        "that said",
+        "in my testing",
+        "let me break this down",
+        "i have tested"
+      ],
+      "pass": true
+    },
+    "h2_count": {
+      "value": 7,
+      "pass": true
+    },
+    "internal_links": {
+      "value": 28,
+      "pass": true
+    },
+    "keyword_occurrences": {
+      "value": 4,
+      "pass": true
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "keyword": "temporary email vs permanent email differences",
+  "timestamp": "2026-06-29T12:42:00.057131",
+  "overall": "PASS",
+  "fail_count": 2,
+  "checks": {
+    "word_count": {
+      "value": 1951,
+      "pass": true
+    },
+    "ai_phrases": {
+      "value": 0,
+      "found": [],
+      "pass": true
+    },
+    "human_markers": {
+      "value": 7,
+      "found": [
+        "here's the thing",
+        "look,",
+        "let me break",
+        "the bottom line",
+        "i have found",
+        "let me break this down",
+        "i have tested"
+      ],
+      "pass": true
+    },
+    "h2_count": {
+      "value": 1,
+      "pass": false
+    },
+    "internal_links": {
+      "value": 9,
+      "pass": true
+    },
+    "keyword_occurrences": {
+      "value": 0,
+      "pass": false
+    }
+  }
+}
