@@ -1,0 +1,28 @@
+{
+  "sites": [
+    {
+      "id": "site-01",
+      "name": "TempMails.top",
+      "domain": "tempmails.top",
+      "status": "running",
+      "frontend": "TanStack Start",
+      "backend": "Python FastAPI",
+      "deploy": "Vercel",
+      "articles": 18,
+      "created_at": "2026-06-08",
+      "last_updated": "2026-06-29"
+    }
+  ],
+  "shared_backend": {
+    "url": "https://api.tempmails.top",
+    "local_url": "http://localhost:8000",
+    "features": ["email_api", "content_factory", "keyword_discovery", "traffic_monitor"]
+  },
+  "global_config": {
+    "default_language": "en",
+    "default_theme": "light",
+    "adsense_enabled": false,
+    "affiliate_enabled": false,
+    "premium_enabled": false
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "affiliate_links": {
+    "vpn": [
+      {
+        "id": "nordvpn",
+        "name": "NordVPN",
+        "url": "https://go.nordvpn.net/aff_c?offer_id=XXX&aff_id=XXX",
+        "cpc": 3.50,
+        "category": "VPN",
+        "status": "active",
+        "description": "Best overall VPN for privacy"
+      },
+      {
+        "id": "expressvpn",
+        "name": "ExpressVPN",
+        "url": "https://www.expressrefer.com/refer-a-friend/XXX",
+        "cpc": 4.00,
+        "category": "VPN",
+        "status": "active",
+        "description": "Fastest VPN for streaming"
+      },
+      {
+        "id": "surfshark",
+        "name": "Surfshark",
+        "url": "https://surfshark.com/deal/XXX",
+        "cpc": 2.50,
+        "category": "VPN",
+        "status": "active",
+        "description": "Budget-friendly VPN"
+      }
+    ],
+    "password_manager": [
+      {
+        "id": "1password",
+        "name": "1Password",
+        "url": "https://1password.com/team/XXX",
+        "cpc": 2.00,
+        "category": "Security",
+        "status": "active",
+        "description": "Best password manager for teams"
+      },
+      {
+        "id": "bitwarden",
+        "name": "Bitwarden",
+        "url": "https://bitwarden.com/?ref=XXX",
+        "cpc": 1.50,
+        "category": "Security",
+        "status": "active",
+        "description": "Open-source password manager"
+      }
+    ],
+    "email_service": [
+      {
+        "id": "protonmail",
+        "name": "ProtonMail",
+        "url": "https://proton.me/r/XXX",
+        "cpc": 1.80,
+        "category": "Email",
+        "status": "active",
+        "description": "Encrypted email service"
+      },
+      {
+        "id": "tutanota",
+        "name": "Tutanota",
+        "url": "https://tutanota.com/?ref=XXX",
+        "cpc": 1.20,
+        "category": "Email",
+        "status": "active",
+        "description": "Secure email for everyone"
+      }
+    ],
+    "privacy_tools": [
+      {
+        "id": "duckduckgo",
+        "name": "DuckDuckGo",
+        "url": "https://duckduckgo.com/?ref=XXX",
+        "cpc": 0.50,
+        "category": "Search",
+        "status": "active",
+        "description": "Private search engine"
+      },
+      {
+        "id": "brave",
+        "name": "Brave Browser",
+        "url": "https://brave.com/ref/XXX",
+        "cpc": 0.80,
+        "category": "Browser",
+        "status": "active",
+        "description": "Privacy-focused browser"
+      }
+    ]
+  },
+  "disclaimers": {
+    "en": "Some links on this page are affiliate links. We may earn a commission if you make a purchase, at no additional cost to you.",
+    "zh": "本页面部分链接为推广链接。如果您通过这些链接购买产品，我们可能会获得佣金，但这不会增加您的任何费用。"
+  },
+  "auto_insert": {
+    "blog_posts": true,
+    "faq_pages": true,
+    "comparison_pages": true,
+    "guide_pages": true
+  }
+}
