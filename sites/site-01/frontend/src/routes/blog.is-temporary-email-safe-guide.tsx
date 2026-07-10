@@ -3,7 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 export const Route = createFileRoute("/blog/is-temporary-email-safe-guide")({
   head: () => ({
     meta: [
-      { title: "Is Temporary Email Safe? A Comprehensive Guide for Users - TempMails.top" },
+      { title: "Is Temporary Email Safe? A Comprehensive Guide for Users" },
       { name: "description", content: "Learn if temporary email is safe to use. This guide covers security, privacy benefits, and best practices for using temp mail services like tempmails.top." },
       { name: "keywords", content: "is temporary email safe, temporary email security, disposable email privacy, temp mail safety" },
       { name: "author", content: "TempMails Team" },

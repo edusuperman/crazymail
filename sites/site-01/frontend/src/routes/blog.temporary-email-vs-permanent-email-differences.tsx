@@ -3,7 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 export const Route = createFileRoute("/blog/temporary-email-vs-permanent-email-differences")({
   head: () => ({
     meta: [
-      { title: "Temporary Email vs Permanent Email: Key Differences - TempMails.top" },
+      { title: "Temporary Email vs Permanent Email: Key Differences" },
       { name: "description", content: "Explore the differences between temporary and permanent emails. Learn which to use for privacy, security, and efficiency. Visit tempmails.top for more." },
       { name: "keywords", content: "temporary email vs permanent email, disposable email, email privacy, permanent email benefits" },
       { name: "author", content: "TempMails Team" },

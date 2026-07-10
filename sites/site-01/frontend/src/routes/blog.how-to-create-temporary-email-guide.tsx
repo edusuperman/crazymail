@@ -3,7 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 export const Route = createFileRoute("/blog/how-to-create-temporary-email-guide")({
   head: () => ({
     meta: [
-      { title: "How to Create Temporary Email: A Complete Step-by-Step Guide - TempMails.top" },
+      { title: "How to Create Temporary Email: A Complete Step-by-Step Guide" },
       { name: "description", content: "Discover how to create temporary email easily with our step-by-step guide. Protect your privacy and avoid spam using tempmails.top. Quick and free setup!" },
       { name: "keywords", content: "how to create temporary email, temporary email address, disposable email, temp email setup" },
       { name: "author", content: "TempMails Team" },

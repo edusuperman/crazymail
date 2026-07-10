@@ -3,8 +3,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 export const Route = createFileRoute("/blog/how-to-use-temporary-email-for-testing-software")({
   head: () => ({
     meta: [
-      { title: "How to Use Temporary Email for Testing Software Efficiently - TempMails.top" },
-      { name: "description", content: "Discover the advantages of using temporary email for software testing. This guide covers setup, benefits, and how tempmails.top can enhance your testing workflow." },
+      { title: "How to Use Temporary Email for Testing Software Efficiently" },
+      { name: "description", content: "Discover the advantages of using temporary email for software testing. This guide covers setup, benefits, and how tempmails." },
       { name: "keywords", content: "temporary email for testing software, disposable email, software testing, QA automation" },
       { name: "author", content: "TempMails Team" },
       { name: "robots", content: "index, follow" },
@@ -110,27 +110,13 @@ function BlogPostPage() {
           <li>  <strong>For Selenium/Jest/Pytest:</strong> Write a helper function that calls the temp mail API to generate a new address before a test suite runs. Use that address in your signup test.</li>
           <li>  <strong>Example (Pseudocode):</strong></li>
         </ul>
-        <p><code>`</code>javascript</p>
-        <p>async function getTestEmail() {</p>
-        <p>// Call tempmails.top API to create a new address</p>
-        <p>const tempEmail = await tempMailAPI.createAddress();</p>
-        <p>return tempEmail;</p>
-        <p>}</p>
-
-        <p>describe('User Registration Test', () => {</p>
-        <p>let testEmail;</p>
-
-        <p>beforeAll(async () => {</p>
-        <p>testEmail = await getTestEmail();</p>
-        <p>});</p>
-
-        <p>it('should send verification email', async () => {</p>
-        <p>await registerUser(testEmail);</p>
-        <p>const verificationLink = await tempMailAPI.getLatestEmail(testEmail);</p>
-        <p>expect(verificationLink).not.toBeNull();</p>
-        <p>});</p>
-        <p>});</p>
-        <p><code>`</code></p>
+        <p><em>Example pseudocode for API integration:</em></p>
+        <p className="my-2 rounded bg-muted p-3 text-sm font-mono">
+          1. Call tempMailAPI.createAddress() to get a new email<br/>
+          2. Use that email in your signup test<br/>
+          3. Call tempMailAPI.getLatestEmail() to verify receipt<br/>
+          4. Assert the verification link is not null
+        </p>
         <p>The key here is the API. It lets your test code <strong>generate</strong> an email and then <strong>fetch</strong> the incoming messages for that address programmatically. No manual checking.</p>
 
         <p><strong>Step 3: Automate in Your CI/CD Pipeline</strong></p>

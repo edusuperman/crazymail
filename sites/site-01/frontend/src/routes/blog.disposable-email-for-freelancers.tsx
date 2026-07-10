@@ -3,8 +3,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 export const Route = createFileRoute("/blog/disposable-email-for-freelancers")({
   head: () => ({
     meta: [
-      { title: "Disposable Email for Freelancers: Ultimate Privacy Guide - TempMails.top" },
-      { name: "description", content: "Discover how disposable email helps freelancers maintain privacy and avoid spam. Learn best practices and explore tools at tempmails.top. Secure your workflow now!" },
+      { title: "Disposable Email for Freelancers: Ultimate Privacy Guide" },
+      { name: "description", content: "Discover how disposable email helps freelancers maintain privacy and avoid spam. Learn best practices and explore tools at tempmails.top." },
       { name: "keywords", content: "disposable email for freelancers, temporary email service, freelance privacy tips, temp mail for work" },
       { name: "author", content: "TempMails Team" },
       { name: "robots", content: "index, follow" },

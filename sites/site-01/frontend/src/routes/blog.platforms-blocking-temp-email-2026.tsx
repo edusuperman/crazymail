@@ -3,7 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 export const Route = createFileRoute("/blog/platforms-blocking-temp-email-2026")({
   head: () => ({
     meta: [
-      { title: "Platforms Fighting Back: Why TikTok & Instagram Block Temp Emails in 2026" },
+      { title: "Platforms Fighting Back: Temp Email Under Attack" },
       { name: "description", content: "Major platforms are cracking down on disposable email. Learn which ones block temp emails and how to navigate around it." },
       { name: "keywords", content: "platforms blocking temp email, TikTok temp email, Instagram disposable email 2026" },
       { name: "author", content: "TempMails Team" },

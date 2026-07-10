@@ -3,8 +3,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 export const Route = createFileRoute("/blog/disposable-email-for-spam-protection-guide")({
   head: () => ({
     meta: [
-      { title: "Disposable Email for Spam Protection: A Complete Guide - TempMails.top" },
-      { name: "description", content: "Protect your primary email from spam with disposable emails. Learn how tempmails.top offers a secure temporary email service to keep your inbox clean and private." },
+      { title: "Disposable Email for Spam Protection: A Complete Guide" },
+      { name: "description", content: "Protect your primary email from spam with disposable emails. Learn how tempmails.top offers a secure temporary email service to keep your inbox clean and pri..." },
       { name: "keywords", content: "disposable email for spam protection, temporary email service, spam protection, disposable email address" },
       { name: "author", content: "TempMails Team" },
       { name: "robots", content: "index, follow" },

@@ -3,8 +3,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 export const Route = createFileRoute("/blog/temporary-email-for-students-guide")({
   head: () => ({
     meta: [
-      { title: "Temporary Email for Students: Protect Your Privacy Now - TempMails.top" },
-      { name: "description", content: "Learn how temporary email protects students from spam and data breaches. Use tempmails.top for secure academic communications. Discover benefits and best practices today." },
+      { title: "Temporary Email for Students: Protect Your Privacy Now" },
+      { name: "description", content: "Learn how temporary email protects students from spam and data breaches. Use tempmails.top for secure academic communications." },
       { name: "keywords", content: "temporary email for students, student email privacy, disposable email for education, online privacy for students" },
       { name: "author", content: "TempMails Team" },
       { name: "robots", content: "index, follow" },

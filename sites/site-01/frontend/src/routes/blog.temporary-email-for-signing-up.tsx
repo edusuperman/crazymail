@@ -3,8 +3,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 export const Route = createFileRoute("/blog/temporary-email-for-signing-up")({
   head: () => ({
     meta: [
-      { title: "How to Use Temporary Email for Signing Up Safely - TempMails.top" },
-      { name: "description", content: "Learn how to use temporary email for signing up to avoid spam and protect your privacy. Discover benefits and best practices with tempmails.top for secure disposable emails." },
+      { title: "How to Use Temporary Email for Signing Up Safely" },
+      { name: "description", content: "Learn how to use temporary email for signing up to avoid spam and protect your privacy. Discover benefits and best practices with tempmails." },
       { name: "keywords", content: "temporary email for signing up, disposable email, throwaway email, online privacy" },
       { name: "author", content: "TempMails Team" },
       { name: "robots", content: "index, follow" },

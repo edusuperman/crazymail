@@ -3,8 +3,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 export const Route = createFileRoute("/blog/best-temporary-email-services-2026")({
   head: () => ({
     meta: [
-      { title: "How to Choose a Temporary Email Service in 2026 - TempMails.top" },
-      { name: "description", content: "A practical guide to choosing a temporary email service in 2026. We break down what matters — speed, privacy, ads, and real-time updates — so you can pick the right one." },
+      { title: "How to Choose a Temporary Email Service in 2026" },
+      { name: "description", content: "A practical guide to choosing a temporary email service in 2026. We break down what matters — speed, privacy, ads, and real-time updates — so you can pick th..." },
       { name: "keywords", content: "temporary email service, disposable email guide, temp mail comparison, privacy email 2026" },
       { name: "author", content: "TempMails Team" },
       { name: "robots", content: "index, follow" },

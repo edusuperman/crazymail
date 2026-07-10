@@ -3,7 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 export const Route = createFileRoute("/blog/temporary-email-for-verification-guide")({
   head: () => ({
     meta: [
-      { title: "Temporary Email for Verification: Protect Your Privacy Online - TempMails.top" },
+      { title: "Temporary Email for Verification" },
       { name: "description", content: "Discover how to use temporary email for verification to protect your privacy. Avoid spam and secure your accounts with tempmails.top. Sign up for free today!" },
       { name: "keywords", content: "temporary email for verification, disposable email for sign-ups, email privacy tools, spam prevention methods" },
       { name: "author", content: "TempMails Team" },

@@ -3,7 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 export const Route = createFileRoute("/blog/temp-email-tiktok-instagram-reddit")({
   head: () => ({
     meta: [
-      { title: "Temp Email for TikTok, Instagram & Reddit: Does It Actually Work in 2026?" },
+      { title: "Temp Email for TikTok, Instagram & Reddit" },
       { name: "description", content: "I tested temporary email on TikTok, Instagram, and Reddit. Here's which platforms accept disposable email and which ones block it." },
       { name: "keywords", content: "temp email TikTok, disposable email Instagram, temporary email Reddit, social media signup 2026" },
       { name: "author", content: "TempMails Team" },

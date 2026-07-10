@@ -3,7 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 export const Route = createFileRoute("/blog/12-percent-signups-use-temp-email")({
   head: () => ({
     meta: [
-      { title: "12% of All Signups Use Temp Email — And Why That's Actually Smart" },
+      { title: "12% of All Signups Use Temp Email" },
       { name: "description", content: "Verified.email's 2026 report reveals 12% of all online signups use disposable email. Here's why millions are choosing privacy." },
       { name: "keywords", content: "disposable email statistics, temp email usage, online privacy 2026" },
       { name: "author", content: "TempMails Team" },

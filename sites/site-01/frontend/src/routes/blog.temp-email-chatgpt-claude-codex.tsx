@@ -3,8 +3,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 export const Route = createFileRoute("/blog/temp-email-chatgpt-claude-codex")({
   head: () => ({
     meta: [
-      { title: "Can You Use Temp Email for ChatGPT, Claude & Codex? We Tested All 3" },
-      { name: "description", content: "I tested temporary email on ChatGPT, Claude, and OpenAI Codex. Here's which ones work and what you need to know." },
+      { title: "Can You Use Temp Email for ChatGPT, Claude & Codex? We Te..." },
+      { name: "description", content: "I tested temporary email on ChatGPT, Claude, and OpenAI Codex. Here's which ones work and what you need to know. Learn more at tempmails.top." },
       { name: "keywords", content: "temp email ChatGPT, temporary email Claude, disposable email Codex, AI signup 2026" },
       { name: "author", content: "TempMails Team" },
       { name: "robots", content: "index, follow" },

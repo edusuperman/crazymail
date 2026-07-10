@@ -3,7 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 export const Route = createFileRoute("/blog/is-temporary-email-legal")({
   head: () => ({
     meta: [
-      { title: "Is Temporary Email Legal? The Complete Guide for 2024 - TempMails.top" },
+      { title: "Is Temporary Email Legal? The Complete Guide for 2024" },
       { name: "description", content: "Discover if using temporary email is legal. Learn about the laws, risks, and best practices for disposable email services. Get safe options at tempmails.top." },
       { name: "keywords", content: "is temporary email legal, temporary email laws, disposable email legality, temp mail legal issues" },
       { name: "author", content: "TempMails Team" },

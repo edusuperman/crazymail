@@ -3,8 +3,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 export const Route = createFileRoute("/blog/email-privacy-for-small-businesses-guide")({
   head: () => ({
     meta: [
-      { title: "Email Privacy for Small Businesses: Essential Strategies - TempMails.top" },
-      { name: "description", content: "Discover why email privacy is crucial for small businesses and how temporary emails from tempmails.top can provide robust protection against data breaches and spam." },
+      { title: "Email Privacy for Small Businesses: Essential Strategies" },
+      { name: "description", content: "Discover why email privacy is crucial for small businesses and how temporary emails from tempmails.top can provide robust protection against data breaches an..." },
       { name: "keywords", content: "email privacy for small businesses, temporary email for businesses, protect business emails, email security tips" },
       { name: "author", content: "TempMails Team" },
       { name: "robots", content: "index, follow" },

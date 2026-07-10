@@ -15,13 +15,18 @@ import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as ApiDocsRouteImport } from './routes/api-docs'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BlogTemporaryEmailVsPermanentEmailDifferencesRouteImport } from './routes/blog.temporary-email-vs-permanent-email-differences'
 import { Route as BlogTemporaryEmailForVerificationGuideRouteImport } from './routes/blog.temporary-email-for-verification-guide'
 import { Route as BlogTemporaryEmailForStudentsGuideRouteImport } from './routes/blog.temporary-email-for-students-guide'
+import { Route as BlogTemporaryEmailForSigningUpRouteImport } from './routes/blog.temporary-email-for-signing-up'
 import { Route as BlogTemporaryEmailForDevelopersGuideRouteImport } from './routes/blog.temporary-email-for-developers-guide'
 import { Route as BlogTempEmailTiktokInstagramRedditRouteImport } from './routes/blog.temp-email-tiktok-instagram-reddit'
 import { Route as BlogTempEmailChatgptClaudeCodexRouteImport } from './routes/blog.temp-email-chatgpt-claude-codex'
 import { Route as BlogPlatformsBlockingTempEmail2026RouteImport } from './routes/blog.platforms-blocking-temp-email-2026'
 import { Route as BlogIsTemporaryEmailSafeGuideRouteImport } from './routes/blog.is-temporary-email-safe-guide'
+import { Route as BlogIsTemporaryEmailLegalRouteImport } from './routes/blog.is-temporary-email-legal'
+import { Route as BlogHowToUseTemporaryEmailForTestingSoftwareRouteImport } from './routes/blog.how-to-use-temporary-email-for-testing-software'
+import { Route as BlogHowToCreateTemporaryEmailGuideRouteImport } from './routes/blog.how-to-create-temporary-email-guide'
 import { Route as BlogEmailPrivacyForSmallBusinessesGuideRouteImport } from './routes/blog.email-privacy-for-small-businesses-guide'
 import { Route as BlogDisposableEmailForSpamProtectionGuideRouteImport } from './routes/blog.disposable-email-for-spam-protection-guide'
 import { Route as BlogDisposableEmailForFreelancersRouteImport } from './routes/blog.disposable-email-for-freelancers'
@@ -59,6 +64,12 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogTemporaryEmailVsPermanentEmailDifferencesRoute =
+  BlogTemporaryEmailVsPermanentEmailDifferencesRouteImport.update({
+    id: '/temporary-email-vs-permanent-email-differences',
+    path: '/temporary-email-vs-permanent-email-differences',
+    getParentRoute: () => BlogRoute,
+  } as any)
 const BlogTemporaryEmailForVerificationGuideRoute =
   BlogTemporaryEmailForVerificationGuideRouteImport.update({
     id: '/temporary-email-for-verification-guide',
@@ -69,6 +80,12 @@ const BlogTemporaryEmailForStudentsGuideRoute =
   BlogTemporaryEmailForStudentsGuideRouteImport.update({
     id: '/temporary-email-for-students-guide',
     path: '/temporary-email-for-students-guide',
+    getParentRoute: () => BlogRoute,
+  } as any)
+const BlogTemporaryEmailForSigningUpRoute =
+  BlogTemporaryEmailForSigningUpRouteImport.update({
+    id: '/temporary-email-for-signing-up',
+    path: '/temporary-email-for-signing-up',
     getParentRoute: () => BlogRoute,
   } as any)
 const BlogTemporaryEmailForDevelopersGuideRoute =
@@ -99,6 +116,24 @@ const BlogIsTemporaryEmailSafeGuideRoute =
   BlogIsTemporaryEmailSafeGuideRouteImport.update({
     id: '/is-temporary-email-safe-guide',
     path: '/is-temporary-email-safe-guide',
+    getParentRoute: () => BlogRoute,
+  } as any)
+const BlogIsTemporaryEmailLegalRoute =
+  BlogIsTemporaryEmailLegalRouteImport.update({
+    id: '/is-temporary-email-legal',
+    path: '/is-temporary-email-legal',
+    getParentRoute: () => BlogRoute,
+  } as any)
+const BlogHowToUseTemporaryEmailForTestingSoftwareRoute =
+  BlogHowToUseTemporaryEmailForTestingSoftwareRouteImport.update({
+    id: '/how-to-use-temporary-email-for-testing-software',
+    path: '/how-to-use-temporary-email-for-testing-software',
+    getParentRoute: () => BlogRoute,
+  } as any)
+const BlogHowToCreateTemporaryEmailGuideRoute =
+  BlogHowToCreateTemporaryEmailGuideRouteImport.update({
+    id: '/how-to-create-temporary-email-guide',
+    path: '/how-to-create-temporary-email-guide',
     getParentRoute: () => BlogRoute,
   } as any)
 const BlogEmailPrivacyForSmallBusinessesGuideRoute =
@@ -151,13 +186,18 @@ export interface FileRoutesByFullPath {
   '/blog/disposable-email-for-freelancers': typeof BlogDisposableEmailForFreelancersRoute
   '/blog/disposable-email-for-spam-protection-guide': typeof BlogDisposableEmailForSpamProtectionGuideRoute
   '/blog/email-privacy-for-small-businesses-guide': typeof BlogEmailPrivacyForSmallBusinessesGuideRoute
+  '/blog/how-to-create-temporary-email-guide': typeof BlogHowToCreateTemporaryEmailGuideRoute
+  '/blog/how-to-use-temporary-email-for-testing-software': typeof BlogHowToUseTemporaryEmailForTestingSoftwareRoute
+  '/blog/is-temporary-email-legal': typeof BlogIsTemporaryEmailLegalRoute
   '/blog/is-temporary-email-safe-guide': typeof BlogIsTemporaryEmailSafeGuideRoute
   '/blog/platforms-blocking-temp-email-2026': typeof BlogPlatformsBlockingTempEmail2026Route
   '/blog/temp-email-chatgpt-claude-codex': typeof BlogTempEmailChatgptClaudeCodexRoute
   '/blog/temp-email-tiktok-instagram-reddit': typeof BlogTempEmailTiktokInstagramRedditRoute
   '/blog/temporary-email-for-developers-guide': typeof BlogTemporaryEmailForDevelopersGuideRoute
+  '/blog/temporary-email-for-signing-up': typeof BlogTemporaryEmailForSigningUpRoute
   '/blog/temporary-email-for-students-guide': typeof BlogTemporaryEmailForStudentsGuideRoute
   '/blog/temporary-email-for-verification-guide': typeof BlogTemporaryEmailForVerificationGuideRoute
+  '/blog/temporary-email-vs-permanent-email-differences': typeof BlogTemporaryEmailVsPermanentEmailDifferencesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -172,13 +212,18 @@ export interface FileRoutesByTo {
   '/blog/disposable-email-for-freelancers': typeof BlogDisposableEmailForFreelancersRoute
   '/blog/disposable-email-for-spam-protection-guide': typeof BlogDisposableEmailForSpamProtectionGuideRoute
   '/blog/email-privacy-for-small-businesses-guide': typeof BlogEmailPrivacyForSmallBusinessesGuideRoute
+  '/blog/how-to-create-temporary-email-guide': typeof BlogHowToCreateTemporaryEmailGuideRoute
+  '/blog/how-to-use-temporary-email-for-testing-software': typeof BlogHowToUseTemporaryEmailForTestingSoftwareRoute
+  '/blog/is-temporary-email-legal': typeof BlogIsTemporaryEmailLegalRoute
   '/blog/is-temporary-email-safe-guide': typeof BlogIsTemporaryEmailSafeGuideRoute
   '/blog/platforms-blocking-temp-email-2026': typeof BlogPlatformsBlockingTempEmail2026Route
   '/blog/temp-email-chatgpt-claude-codex': typeof BlogTempEmailChatgptClaudeCodexRoute
   '/blog/temp-email-tiktok-instagram-reddit': typeof BlogTempEmailTiktokInstagramRedditRoute
   '/blog/temporary-email-for-developers-guide': typeof BlogTemporaryEmailForDevelopersGuideRoute
+  '/blog/temporary-email-for-signing-up': typeof BlogTemporaryEmailForSigningUpRoute
   '/blog/temporary-email-for-students-guide': typeof BlogTemporaryEmailForStudentsGuideRoute
   '/blog/temporary-email-for-verification-guide': typeof BlogTemporaryEmailForVerificationGuideRoute
+  '/blog/temporary-email-vs-permanent-email-differences': typeof BlogTemporaryEmailVsPermanentEmailDifferencesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -194,13 +239,18 @@ export interface FileRoutesById {
   '/blog/disposable-email-for-freelancers': typeof BlogDisposableEmailForFreelancersRoute
   '/blog/disposable-email-for-spam-protection-guide': typeof BlogDisposableEmailForSpamProtectionGuideRoute
   '/blog/email-privacy-for-small-businesses-guide': typeof BlogEmailPrivacyForSmallBusinessesGuideRoute
+  '/blog/how-to-create-temporary-email-guide': typeof BlogHowToCreateTemporaryEmailGuideRoute
+  '/blog/how-to-use-temporary-email-for-testing-software': typeof BlogHowToUseTemporaryEmailForTestingSoftwareRoute
+  '/blog/is-temporary-email-legal': typeof BlogIsTemporaryEmailLegalRoute
   '/blog/is-temporary-email-safe-guide': typeof BlogIsTemporaryEmailSafeGuideRoute
   '/blog/platforms-blocking-temp-email-2026': typeof BlogPlatformsBlockingTempEmail2026Route
   '/blog/temp-email-chatgpt-claude-codex': typeof BlogTempEmailChatgptClaudeCodexRoute
   '/blog/temp-email-tiktok-instagram-reddit': typeof BlogTempEmailTiktokInstagramRedditRoute
   '/blog/temporary-email-for-developers-guide': typeof BlogTemporaryEmailForDevelopersGuideRoute
+  '/blog/temporary-email-for-signing-up': typeof BlogTemporaryEmailForSigningUpRoute
   '/blog/temporary-email-for-students-guide': typeof BlogTemporaryEmailForStudentsGuideRoute
   '/blog/temporary-email-for-verification-guide': typeof BlogTemporaryEmailForVerificationGuideRoute
+  '/blog/temporary-email-vs-permanent-email-differences': typeof BlogTemporaryEmailVsPermanentEmailDifferencesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -217,13 +267,18 @@ export interface FileRouteTypes {
     | '/blog/disposable-email-for-freelancers'
     | '/blog/disposable-email-for-spam-protection-guide'
     | '/blog/email-privacy-for-small-businesses-guide'
+    | '/blog/how-to-create-temporary-email-guide'
+    | '/blog/how-to-use-temporary-email-for-testing-software'
+    | '/blog/is-temporary-email-legal'
     | '/blog/is-temporary-email-safe-guide'
     | '/blog/platforms-blocking-temp-email-2026'
     | '/blog/temp-email-chatgpt-claude-codex'
     | '/blog/temp-email-tiktok-instagram-reddit'
     | '/blog/temporary-email-for-developers-guide'
+    | '/blog/temporary-email-for-signing-up'
     | '/blog/temporary-email-for-students-guide'
     | '/blog/temporary-email-for-verification-guide'
+    | '/blog/temporary-email-vs-permanent-email-differences'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -238,13 +293,18 @@ export interface FileRouteTypes {
     | '/blog/disposable-email-for-freelancers'
     | '/blog/disposable-email-for-spam-protection-guide'
     | '/blog/email-privacy-for-small-businesses-guide'
+    | '/blog/how-to-create-temporary-email-guide'
+    | '/blog/how-to-use-temporary-email-for-testing-software'
+    | '/blog/is-temporary-email-legal'
     | '/blog/is-temporary-email-safe-guide'
     | '/blog/platforms-blocking-temp-email-2026'
     | '/blog/temp-email-chatgpt-claude-codex'
     | '/blog/temp-email-tiktok-instagram-reddit'
     | '/blog/temporary-email-for-developers-guide'
+    | '/blog/temporary-email-for-signing-up'
     | '/blog/temporary-email-for-students-guide'
     | '/blog/temporary-email-for-verification-guide'
+    | '/blog/temporary-email-vs-permanent-email-differences'
   id:
     | '__root__'
     | '/'
@@ -259,13 +319,18 @@ export interface FileRouteTypes {
     | '/blog/disposable-email-for-freelancers'
     | '/blog/disposable-email-for-spam-protection-guide'
     | '/blog/email-privacy-for-small-businesses-guide'
+    | '/blog/how-to-create-temporary-email-guide'
+    | '/blog/how-to-use-temporary-email-for-testing-software'
+    | '/blog/is-temporary-email-legal'
     | '/blog/is-temporary-email-safe-guide'
     | '/blog/platforms-blocking-temp-email-2026'
     | '/blog/temp-email-chatgpt-claude-codex'
     | '/blog/temp-email-tiktok-instagram-reddit'
     | '/blog/temporary-email-for-developers-guide'
+    | '/blog/temporary-email-for-signing-up'
     | '/blog/temporary-email-for-students-guide'
     | '/blog/temporary-email-for-verification-guide'
+    | '/blog/temporary-email-vs-permanent-email-differences'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -321,6 +386,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/temporary-email-vs-permanent-email-differences': {
+      id: '/blog/temporary-email-vs-permanent-email-differences'
+      path: '/temporary-email-vs-permanent-email-differences'
+      fullPath: '/blog/temporary-email-vs-permanent-email-differences'
+      preLoaderRoute: typeof BlogTemporaryEmailVsPermanentEmailDifferencesRouteImport
+      parentRoute: typeof BlogRoute
+    }
     '/blog/temporary-email-for-verification-guide': {
       id: '/blog/temporary-email-for-verification-guide'
       path: '/temporary-email-for-verification-guide'
@@ -333,6 +405,13 @@ declare module '@tanstack/react-router' {
       path: '/temporary-email-for-students-guide'
       fullPath: '/blog/temporary-email-for-students-guide'
       preLoaderRoute: typeof BlogTemporaryEmailForStudentsGuideRouteImport
+      parentRoute: typeof BlogRoute
+    }
+    '/blog/temporary-email-for-signing-up': {
+      id: '/blog/temporary-email-for-signing-up'
+      path: '/temporary-email-for-signing-up'
+      fullPath: '/blog/temporary-email-for-signing-up'
+      preLoaderRoute: typeof BlogTemporaryEmailForSigningUpRouteImport
       parentRoute: typeof BlogRoute
     }
     '/blog/temporary-email-for-developers-guide': {
@@ -368,6 +447,27 @@ declare module '@tanstack/react-router' {
       path: '/is-temporary-email-safe-guide'
       fullPath: '/blog/is-temporary-email-safe-guide'
       preLoaderRoute: typeof BlogIsTemporaryEmailSafeGuideRouteImport
+      parentRoute: typeof BlogRoute
+    }
+    '/blog/is-temporary-email-legal': {
+      id: '/blog/is-temporary-email-legal'
+      path: '/is-temporary-email-legal'
+      fullPath: '/blog/is-temporary-email-legal'
+      preLoaderRoute: typeof BlogIsTemporaryEmailLegalRouteImport
+      parentRoute: typeof BlogRoute
+    }
+    '/blog/how-to-use-temporary-email-for-testing-software': {
+      id: '/blog/how-to-use-temporary-email-for-testing-software'
+      path: '/how-to-use-temporary-email-for-testing-software'
+      fullPath: '/blog/how-to-use-temporary-email-for-testing-software'
+      preLoaderRoute: typeof BlogHowToUseTemporaryEmailForTestingSoftwareRouteImport
+      parentRoute: typeof BlogRoute
+    }
+    '/blog/how-to-create-temporary-email-guide': {
+      id: '/blog/how-to-create-temporary-email-guide'
+      path: '/how-to-create-temporary-email-guide'
+      fullPath: '/blog/how-to-create-temporary-email-guide'
+      preLoaderRoute: typeof BlogHowToCreateTemporaryEmailGuideRouteImport
       parentRoute: typeof BlogRoute
     }
     '/blog/email-privacy-for-small-businesses-guide': {
@@ -422,13 +522,18 @@ interface BlogRouteChildren {
   BlogDisposableEmailForFreelancersRoute: typeof BlogDisposableEmailForFreelancersRoute
   BlogDisposableEmailForSpamProtectionGuideRoute: typeof BlogDisposableEmailForSpamProtectionGuideRoute
   BlogEmailPrivacyForSmallBusinessesGuideRoute: typeof BlogEmailPrivacyForSmallBusinessesGuideRoute
+  BlogHowToCreateTemporaryEmailGuideRoute: typeof BlogHowToCreateTemporaryEmailGuideRoute
+  BlogHowToUseTemporaryEmailForTestingSoftwareRoute: typeof BlogHowToUseTemporaryEmailForTestingSoftwareRoute
+  BlogIsTemporaryEmailLegalRoute: typeof BlogIsTemporaryEmailLegalRoute
   BlogIsTemporaryEmailSafeGuideRoute: typeof BlogIsTemporaryEmailSafeGuideRoute
   BlogPlatformsBlockingTempEmail2026Route: typeof BlogPlatformsBlockingTempEmail2026Route
   BlogTempEmailChatgptClaudeCodexRoute: typeof BlogTempEmailChatgptClaudeCodexRoute
   BlogTempEmailTiktokInstagramRedditRoute: typeof BlogTempEmailTiktokInstagramRedditRoute
   BlogTemporaryEmailForDevelopersGuideRoute: typeof BlogTemporaryEmailForDevelopersGuideRoute
+  BlogTemporaryEmailForSigningUpRoute: typeof BlogTemporaryEmailForSigningUpRoute
   BlogTemporaryEmailForStudentsGuideRoute: typeof BlogTemporaryEmailForStudentsGuideRoute
   BlogTemporaryEmailForVerificationGuideRoute: typeof BlogTemporaryEmailForVerificationGuideRoute
+  BlogTemporaryEmailVsPermanentEmailDifferencesRoute: typeof BlogTemporaryEmailVsPermanentEmailDifferencesRoute
 }
 
 const BlogRouteChildren: BlogRouteChildren = {
@@ -442,6 +547,11 @@ const BlogRouteChildren: BlogRouteChildren = {
     BlogDisposableEmailForSpamProtectionGuideRoute,
   BlogEmailPrivacyForSmallBusinessesGuideRoute:
     BlogEmailPrivacyForSmallBusinessesGuideRoute,
+  BlogHowToCreateTemporaryEmailGuideRoute:
+    BlogHowToCreateTemporaryEmailGuideRoute,
+  BlogHowToUseTemporaryEmailForTestingSoftwareRoute:
+    BlogHowToUseTemporaryEmailForTestingSoftwareRoute,
+  BlogIsTemporaryEmailLegalRoute: BlogIsTemporaryEmailLegalRoute,
   BlogIsTemporaryEmailSafeGuideRoute: BlogIsTemporaryEmailSafeGuideRoute,
   BlogPlatformsBlockingTempEmail2026Route:
     BlogPlatformsBlockingTempEmail2026Route,
@@ -450,10 +560,13 @@ const BlogRouteChildren: BlogRouteChildren = {
     BlogTempEmailTiktokInstagramRedditRoute,
   BlogTemporaryEmailForDevelopersGuideRoute:
     BlogTemporaryEmailForDevelopersGuideRoute,
+  BlogTemporaryEmailForSigningUpRoute: BlogTemporaryEmailForSigningUpRoute,
   BlogTemporaryEmailForStudentsGuideRoute:
     BlogTemporaryEmailForStudentsGuideRoute,
   BlogTemporaryEmailForVerificationGuideRoute:
     BlogTemporaryEmailForVerificationGuideRoute,
+  BlogTemporaryEmailVsPermanentEmailDifferencesRoute:
+    BlogTemporaryEmailVsPermanentEmailDifferencesRoute,
 }
 
 const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)

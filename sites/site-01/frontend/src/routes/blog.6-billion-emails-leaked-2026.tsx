@@ -3,7 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 export const Route = createFileRoute("/blog/6-billion-emails-leaked-2026")({
   head: () => ({
     meta: [
-      { title: "6.8 Billion Emails Leaked: Why Your Real Inbox Is Now a Liability" },
+      { title: "6.8 Billion Emails Leaked: Why Temp Email Matters" },
       { name: "description", content: "A massive data leak exposed 6.8 billion email records in February 2026. Here's why using your real email for every signup is now a serious risk." },
       { name: "keywords", content: "data breach 2026, email leak, privacy protection, temporary email" },
       { name: "author", content: "TempMails Team" },

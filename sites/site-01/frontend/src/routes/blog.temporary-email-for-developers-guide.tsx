@@ -3,7 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 export const Route = createFileRoute("/blog/temporary-email-for-developers-guide")({
   head: () => ({
     meta: [
-      { title: "How to Use Temporary Email for Developers: A Comprehensive Guide - TempMails.top" },
+      { title: "How to Use Temporary Email for Developers" },
       { name: "description", content: "Discover how temporary email for developers can enhance your workflow, protect privacy, and streamline testing. Get started with tempmails.top today." },
       { name: "keywords", content: "temporary email for developers, disposable email for testing, developer email aliases, temporary email service" },
       { name: "author", content: "TempMails Team" },
