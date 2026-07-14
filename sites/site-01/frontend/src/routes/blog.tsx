@@ -1,4 +1,4 @@
-import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet, useRouterState } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/blog")({
   head: () => ({
@@ -419,43 +419,51 @@ const blogPosts = [
 ];
 
 function BlogPage() {
+  const routerState = useRouterState();
+  const isExactBlogPage = routerState.location.pathname === '/blog';
+
   return (
     <div className="mx-auto max-w-6xl px-4 py-16">
-      <div className="mb-12 text-center">
-        <h1 className="text-4xl font-bold tracking-tight">Blog</h1>
-        <p className="mt-4 text-lg text-muted-foreground">
-          Tips, guides, and insights about temporary email and online privacy
-        </p>
-      </div>
+      {isExactBlogPage && (
+        <>
+          <div className="mb-12 text-center">
+            <h1 className="text-4xl font-bold tracking-tight">Blog</h1>
+            <p className="mt-4 text-lg text-muted-foreground">
+              Tips, guides, and insights about temporary email and online privacy
+            </p>
+          </div>
 
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {blogPosts.map((post) => (
-          <article
-            key={post.slug}
-            className="group rounded-lg border border-border bg-card p-6 transition-colors hover:border-primary/50"
-          >
-            <div className="mb-4 flex items-center gap-2">
-              <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
-                {post.category}
-              </span>
-              <span className="text-xs text-muted-foreground">{post.readTime}</span>
-            </div>
-            <h2 className="mb-2 text-xl font-semibold tracking-tight group-hover:text-primary">
-              <Link to={`/blog/${post.slug}`}>{post.title}</Link>
-            </h2>
-            <p className="mb-4 text-sm text-muted-foreground">{post.excerpt}</p>
-            <div className="flex items-center justify-between">
-              <time className="text-xs text-muted-foreground">{post.date}</time>
-              <Link
-                to={`/blog/${post.slug}`}
-                className="text-sm font-medium text-primary hover:underline"
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {blogPosts.map((post) => (
+              <article
+                key={post.slug}
+                className="group rounded-lg border border-border bg-card p-6 transition-colors hover:border-primary/50"
               >
-                Read more →
-              </Link>
-            </div>
-          </article>
-        ))}
-      </div>
+                <div className="mb-4 flex items-center gap-2">
+                  <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+                    {post.category}
+                  </span>
+                  <span className="text-xs text-muted-foreground">{post.readTime}</span>
+                </div>
+                <h2 className="mb-2 text-xl font-semibold tracking-tight group-hover:text-primary">
+                  <Link to={`/blog/${post.slug}`}>{post.title}</Link>
+                </h2>
+                <p className="mb-4 text-sm text-muted-foreground">{post.excerpt}</p>
+                <div className="flex items-center justify-between">
+                  <time className="text-xs text-muted-foreground">{post.date}</time>
+                  <Link
+                    to={`/blog/${post.slug}`}
+                    className="text-sm font-medium text-primary hover:underline"
+                  >
+                    Read more →
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+        </>
+      )}
+      <Outlet />
     </div>
   );
 }
