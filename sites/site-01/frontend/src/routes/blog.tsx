@@ -458,7 +458,6 @@ function BlogPage() {
           </article>
         ))}
       </div>
-      <Outlet />
     </div>
   );
 }
