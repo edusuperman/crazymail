@@ -10,9 +10,7 @@ export const Route = createFileRoute("/blog")({
       { property: "og:title", content: "Blog - TempMails.top" },
       { property: "og:description", content: "Learn about temporary email, privacy protection, and online security." },
     ],
-    links: [
-      { rel: "canonical", href: "https://tempmails.top/blog" },
-    ],
+    links: [],
   }),
   component: BlogPage,
 });
