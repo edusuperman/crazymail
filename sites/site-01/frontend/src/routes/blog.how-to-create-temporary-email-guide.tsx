@@ -62,7 +62,7 @@ function BlogPostPage() {
       </header>
 
       <div className="prose prose-gray prose-lg max-w-none">
-        <p># How to Create Temporary Email: A Step-by-Step Guide</p>
+        <h2 className="mt-12 text-2xl font-bold">How to Create Temporary Email: A Step-by-Step Guide</h2>
 
         <p>Hey there. So, you're probably here because you're sick of spam. Or maybe you need to sign up for something sketchy and don't want to use your real email. I get it. We've all been there—using our main email for a quick download only to have our inbox flooded for years. Honestly, it's one of my biggest digital pet peeves.</p>
 
@@ -238,6 +238,13 @@ function BlogPostPage() {
         <p>Yes, it's ideal for social media to avoid spam, but some platforms may block disposable addresses.</p>
         <h3 className="mt-8 text-xl font-semibold">Are there costs for using tempmails.top?</h3>
         <p>Tempmails.top offers free basic temporary email, with potential premium features for extended use.</p>
+        <h2 className="mt-12 text-2xl font-bold">Related Guides</h2>
+        <ul className="my-4 space-y-1">
+          <li><Link to="/blog/best-temporary-email-services-2026" className="text-primary underline">How to Choose a Temporary Email Service in 2026</Link></li>
+          <li><Link to="/blog/temporary-email-for-developers-guide" className="text-primary underline">How to Use Temporary Email for Developers: A Comprehensive Guide</Link></li>
+          <li><Link to="/blog/disposable-email-for-spam-protection-guide" className="text-primary underline">Disposable Email for Spam Protection: A Complete Guide</Link></li>
+        </ul>
+
 
         <div className="mt-12 rounded-lg bg-primary/5 p-8 text-center">
           <h3 className="text-xl font-semibold">Protect Your Real Email Today</h3>

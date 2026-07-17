@@ -187,6 +187,13 @@ function BlogPostPage() {
           If you think you'll need long-term access, use your secondary email instead. Temporary
           email is for things you don't need to revisit — one-time signups, free trials, gated content.
         </p>
+        <h2 className="mt-12 text-2xl font-bold">Related Guides</h2>
+        <ul className="my-4 space-y-1">
+          <li><Link to="/blog/best-temporary-email-services-2026" className="text-primary underline">How to Choose a Temporary Email Service in 2026</Link></li>
+          <li><Link to="/blog/12-percent-signups-use-temp-email" className="text-primary underline">12% of All Signups Use Temp Email</Link></li>
+          <li><Link to="/blog/platforms-blocking-temp-email-2026" className="text-primary underline">Platforms Fighting Back: Blocking Temp Emails in 2026</Link></li>
+        </ul>
+
 
         <div className="mt-12 rounded-lg bg-primary/5 p-8 text-center">
           <h3 className="text-xl font-semibold">Protect Your Real Email Today</h3>

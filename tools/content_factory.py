@@ -2,11 +2,19 @@
 """
 Content Factory MVP — 5-stage content pipeline for CrazyMail blogs.
 
+流水线阶段:
+    Stage 1: 关键词 → 大纲（MiMo）
+    Stage 2: 大纲 → 初稿（MiMo）
+    Stage 3: 初稿 → 润色/人味化（MiMo）
+    Stage 4: Grok Build 审计修复 + QC 门禁（规则引擎 / 可选 Grok CLI）
+    Stage 5: 生成 TSX 路由文件（本地转换）
+
 Usage:
     python tools/content_factory.py "temporary email for verification"
     python tools/content_factory.py -k "temp mail privacy" --lang zh
     python tools/content_factory.py --batch "keyword1" "keyword2" "keyword3"
     python tools/content_factory.py --batch-file keywords.txt
+    python tools/content_factory.py "keyword" --use-grok   # Stage 4 启用 Grok CLI 深度修复
 """
 
 import argparse
@@ -21,9 +29,18 @@ from openai import OpenAI
 
 # ── Paths ──────────────────────────────────────────────────────────────────
 ROOT = Path(__file__).resolve().parent.parent
+TOOLS = Path(__file__).resolve().parent
 DOCS = ROOT / "docs"
 SITE_ROUTES = ROOT / "sites" / "site-01" / "frontend" / "src" / "routes"
 BLOG_INDEX = SITE_ROUTES / "blog.tsx"
+
+# 导入同目录 grok_audit（Stage 4）
+if str(TOOLS) not in sys.path:
+    sys.path.insert(0, str(TOOLS))
+from grok_audit import (  # noqa: E402
+    audit_and_fix_markdown,
+    run_grok_cli_fix,
+)
 
 
 # ── API Client ─────────────────────────────────────────────────────────────
@@ -59,10 +76,11 @@ def call_mimo(client: OpenAI, system: str, user: str, max_tokens: int = 4096) ->
             {"role": "system", "content": system},
             {"role": "user", "content": user},
         ],
-        max_completion_tokens=max_tokens,
+        max_tokens=max_tokens,
         temperature=0.7,
         top_p=0.95,
         stream=False,
+        extra_body={"enable_thinking": False},
     )
     content = resp.choices[0].message.content
     if not content:
@@ -76,8 +94,8 @@ def call_mimo(client: OpenAI, system: str, user: str, max_tokens: int = 4096) ->
 
 # ── Stage 1: Keyword → Outline ─────────────────────────────────────────────
 def stage1_outline(client: OpenAI, keyword: str) -> dict:
-    """Generate article outline as JSON."""
-    print("[Stage 1/5] Generating outline...")
+    """生成文章大纲（JSON）。"""
+    print("[Stage 1/5] Generating outline (MiMo)...")
 
     system = """You are an SEO content strategist. Return ONLY a valid JSON object. No explanations, no markdown fences, no thinking out loud. Just the JSON.
 
@@ -99,7 +117,7 @@ IMPORTANT: Output ONLY the JSON object. Start with { and end with }."""
 
 The blog is for tempmails.top, a temporary email service. Include internal links to tempmails.top in the outline."""
 
-    content = call_mimo(client, system, user, max_tokens=4096)
+    content = call_mimo(client, system, user, max_tokens=8192)
 
     if not content:
         print("Error: Empty response from API")
@@ -128,8 +146,8 @@ The blog is for tempmails.top, a temporary email service. Include internal links
 
 # ── Stage 2: Outline → Draft ───────────────────────────────────────────────
 def stage2_draft(client: OpenAI, keyword: str, outline: dict) -> str:
-    """Generate first draft from outline."""
-    print("[Stage 2/5] Writing first draft...")
+    """根据大纲生成初稿（Markdown）。"""
+    print("[Stage 2/5] Writing first draft (MiMo)...")
 
     system = """You are a privacy protection blogger with 5 years of experience. Write like you're talking to a friend.
 
@@ -167,8 +185,8 @@ Requirements:
 
 # ── Stage 3: Humanize ──────────────────────────────────────────────────────
 def stage3_humanize(client: OpenAI, draft: str) -> str:
-    """Polish draft to remove AI-sounding language."""
-    print("[Stage 3/5] Humanizing...")
+    """润色初稿，去除 AI 腔。"""
+    print("[Stage 3/5] Humanizing (MiMo)...")
 
     system = """You are an editor who makes AI-written content sound human.
 
@@ -197,14 +215,70 @@ Rules:
     return result
 
 
-# ── Stage 4: Quality Check ─────────────────────────────────────────────────
+# ── Stage 4: Grok Build 审计修复 + QC 门禁 ────────────────────────────────
+def stage4_grok_audit(
+    article: str,
+    keyword: str,
+    slug: str = "",
+    *,
+    use_grok: bool = False,
+) -> tuple[str, dict]:
+    """
+    Stage 4：Grok Build 六维度审计修复（规则引擎，可选 Grok CLI）。
+
+    维度：MD残留 / 事实一致性 / 内链 / 重复内容 / E-E-A-T / CTA
+
+    Returns:
+        (fixed_article, audit_result)
+    """
+    print("[Stage 4/5] Grok Build 审计修复...")
+
+    result = audit_and_fix_markdown(
+        article,
+        keyword=keyword,
+        slug=slug,
+        check_duplicates=True,
+    )
+
+    if use_grok:
+        print("  → 调用 Grok CLI 深度修复...")
+        grok = run_grok_cli_fix(result["fixed"], f"humanized-{slug or 'article'}.md")
+        if grok.get("success") and grok.get("has_changes"):
+            result = audit_and_fix_markdown(
+                grok["fixed"],
+                keyword=keyword,
+                slug=slug,
+                check_duplicates=True,
+            )
+            result["grok_used"] = True
+            print("  → Grok CLI 修复已应用并复检")
+        else:
+            print(f"  → Grok CLI 跳过/失败: {grok.get('error', '无额外修改')}")
+            result["grok_used"] = False
+
+    fixed = result["fixed"]
+    print(f"  审计结果: {result['overall']}")
+    print(f"  修复前问题: {len(result.get('issues_before') or [])}")
+    print(f"  修复后问题: {len(result.get('issues_after') or [])}")
+    for ch in result.get("changes") or []:
+        print(f"    · {ch}")
+    if result.get("issues_after"):
+        for iss in result["issues_after"][:5]:
+            print(f"    ! [{iss.get('severity')}] {iss.get('dimension')}: {iss.get('message', '')[:70]}")
+
+    return fixed, result
+
+
 def stage4_qc(article: str, keyword: str) -> dict:
-    """Run quality checks on the article. Returns QC report dict."""
-    print("[Stage 4/5] Running quality check...")
+    """
+    QC 质量门禁（Stage 4 末尾执行）。
+    ≤2 项 FAIL 算 PASS，>2 项 FAIL 算 FAIL（与 STRATEGY 一致）。
+    """
+    print("  [QC] Running quality check...")
 
     word_count = len(article.split())
 
-    # AI-sounding phrases
+    # AI 腔套话
     ai_phrases = [
         "Furthermore", "Moreover", "In conclusion",
         "It's important to note", "It is worth noting",
@@ -212,7 +286,7 @@ def stage4_qc(article: str, keyword: str) -> dict:
     ]
     ai_found = [p for p in ai_phrases if p.lower() in article.lower()]
 
-    # Human markers
+    # 人味标记
     human_markers = [
         "here's the thing", "honestly", "i've tested",
         "i've found", "in my testing", "look,", "that's it",
@@ -223,15 +297,15 @@ def stage4_qc(article: str, keyword: str) -> dict:
     ]
     human_found = [m for m in human_markers if m.lower() in article.lower()]
 
-    # H2 count
+    # H2 数量
     h2_count = len(re.findall(r"^##\s", article, re.MULTILINE))
 
-    # Internal links
+    # 内链
     internal_links = re.findall(
         r"tempmails\.top|href=['\"]/", article, re.IGNORECASE
     )
 
-    # Keyword occurrences
+    # 关键词出现次数
     kw_count = article.lower().count(keyword.lower())
 
     checks = {
@@ -394,7 +468,7 @@ def _render_table(rows: list[list[str]]) -> list[str]:
 
 
 def stage5_tsx(outline: dict, article_md: str) -> str:
-    """Generate TanStack route file from outline and polished article."""
+    """根据大纲与审计后正文生成 TanStack 路由 TSX。"""
     print("[Stage 5/5] Generating TSX route file...")
 
     slug = outline["slug"]
@@ -569,11 +643,13 @@ def update_blog_index(outline: dict):
 
 
 # ── Main Pipeline ──────────────────────────────────────────────────────────
-def run_pipeline(keyword: str):
-    """Run the full 5-stage content pipeline."""
+def run_pipeline(keyword: str, *, use_grok: bool = False):
+    """运行完整 5 阶段内容流水线。"""
     print(f"\n{'='*60}")
     print(f"Content Factory MVP")
     print(f"Keyword: {keyword}")
+    if use_grok:
+        print("Stage 4: Grok CLI 深度修复 = ON")
     print(f"{'='*60}\n")
 
     # Ensure output dirs exist
@@ -581,27 +657,54 @@ def run_pipeline(keyword: str):
 
     client = get_client()
 
-    # Stage 1: Outline
+    # Stage 1: Outline（MiMo）
     outline = stage1_outline(client, keyword)
     slug = outline["slug"]
     outline_path = DOCS / f"outline-{slug}.json"
     outline_path.write_text(json.dumps(outline, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"  → {outline_path}")
 
-    # Stage 2: Draft
+    # Stage 2: Draft（MiMo）
     draft = stage2_draft(client, keyword, outline)
     draft_path = DOCS / f"draft-{slug}.md"
     draft_path.write_text(draft, encoding="utf-8")
     print(f"  → {draft_path}")
 
-    # Stage 3: Humanize
+    # Stage 3: Humanize（MiMo）
     humanized = stage3_humanize(client, draft)
     humanized_path = DOCS / f"humanized-{slug}.md"
     humanized_path.write_text(humanized, encoding="utf-8")
     print(f"  → {humanized_path}")
 
-    # Stage 4: QC
-    qc_report = stage4_qc(humanized, keyword)
+    # Stage 4a: Grok Build 审计修复
+    audited, audit_result = stage4_grok_audit(
+        humanized,
+        keyword,
+        slug=slug,
+        use_grok=use_grok,
+    )
+    audited_path = DOCS / f"audited-{slug}.md"
+    audited_path.write_text(audited, encoding="utf-8")
+    print(f"  → {audited_path}")
+
+    audit_report_path = DOCS / f"audit-{slug}.json"
+    audit_report_path.write_text(
+        json.dumps(audit_result.get("report", audit_result), indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+    print(f"  → {audit_report_path}")
+
+    # Stage 4b: QC 门禁（对审计后正文）
+    qc_report = stage4_qc(audited, keyword)
+    # 若审计仍有 high 级问题未修掉，强制 QC FAIL
+    if audit_result.get("overall") == "FAIL":
+        qc_report["overall"] = "FAIL"
+        qc_report["fail_count"] = qc_report.get("fail_count", 0) + 1
+        qc_report["audit_gate"] = "FAIL"
+        print("  ⚠ 审计仍有 high 级问题 → QC 门禁 FAIL")
+    else:
+        qc_report["audit_gate"] = audit_result.get("overall", "PASS")
+
     qc_path = DOCS / f"qc-{slug}.json"
     qc_path.write_text(json.dumps(qc_report, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"  → {qc_path}")
@@ -610,17 +713,18 @@ def run_pipeline(keyword: str):
         status = "PASS" if check["pass"] else "FAIL"
         print(f"    {name}: {check['value']} [{status}]")
 
-    # Stage 5: TSX (gated by QC)
+    # Stage 5: TSX（QC 通过才输出）
+    tsx_path = None
     if qc_report["overall"] == "FAIL":
-        print("\n  ✖ QC FAILED — skipping TSX generation. Fix issues and retry.")
+        print("\n  ✖ QC FAILED — 跳过 TSX 生成。请修复问题后重试。")
         print(f"    Run: python tools/content_factory.py \"{keyword}\"")
     else:
-        tsx_content = stage5_tsx(outline, humanized)
+        tsx_content = stage5_tsx(outline, audited)
         tsx_path = SITE_ROUTES / f"blog.{slug}.tsx"
         tsx_path.write_text(tsx_content, encoding="utf-8")
         print(f"  → {tsx_path}")
 
-        # Update blog index
+        # 更新博客列表
         update_blog_index(outline)
 
     print(f"\n{'='*60}")
@@ -628,6 +732,8 @@ def run_pipeline(keyword: str):
     print(f"  Outline:    {outline_path}")
     print(f"  Draft:      {draft_path}")
     print(f"  Humanized:  {humanized_path}")
+    print(f"  Audited:    {audited_path} ({audit_result.get('overall')})")
+    print(f"  Audit:      {audit_report_path}")
     print(f"  QC:         {qc_path} ({qc_report['overall']})")
     if qc_report["overall"] == "PASS":
         print(f"  TSX:        {tsx_path}")
@@ -639,8 +745,13 @@ def run_pipeline(keyword: str):
 
 
 # ── Batch Mode ──────────────────────────────────────────────────────────────
-def run_batch(keywords: list[str], lang: str = "en") -> list[dict]:
-    """Run the full pipeline for each keyword sequentially.
+def run_batch(
+    keywords: list[str],
+    lang: str = "en",
+    *,
+    use_grok: bool = False,
+) -> list[dict]:
+    """按关键词顺序跑完整流水线。
 
     Returns a list of result dicts with keys: keyword, status, error.
     """
@@ -651,13 +762,15 @@ def run_batch(keywords: list[str], lang: str = "en") -> list[dict]:
     print(f"Content Factory — Batch Mode")
     print(f"Keywords to process: {total}")
     print(f"Language: {lang}")
+    if use_grok:
+        print("Stage 4: Grok CLI = ON")
     print(f"{'='*60}\n")
 
     for i, kw in enumerate(keywords, 1):
         print(f"\n[{i}/{total}] Processing: {kw}")
         print(f"{'─'*60}")
         try:
-            status = run_pipeline(kw)
+            status = run_pipeline(kw, use_grok=use_grok)
             results.append({"keyword": kw, "status": status, "error": None})
         except Exception as e:
             print(f"  ✖ ERROR: {e}")
@@ -689,13 +802,15 @@ def run_batch(keywords: list[str], lang: str = "en") -> list[dict]:
 # ── CLI ─────────────────────────────────────────────────────────────────────
 def main():
     parser = argparse.ArgumentParser(
-        description="Content Factory MVP — 5-stage blog content pipeline",
+        description="Content Factory MVP — 5-stage blog content pipeline "
+                    "(含 Stage 4 Grok Build 审计修复)",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""Examples:
   python tools/content_factory.py "temporary email for verification"
   python tools/content_factory.py -k "temp mail privacy" --lang zh
   python tools/content_factory.py --batch "keyword1" "keyword2" "keyword3"
   python tools/content_factory.py --batch-file keywords.txt
+  python tools/content_factory.py "keyword" --use-grok
         """,
     )
     parser.add_argument(
@@ -723,6 +838,11 @@ def main():
         metavar="FILE",
         help="Read keywords from a text file (one per line)",
     )
+    parser.add_argument(
+        "--use-grok",
+        action="store_true",
+        help="Stage 4 在规则修复后调用 Grok CLI 深度修复（较慢）",
+    )
 
     args = parser.parse_args()
 
@@ -738,12 +858,12 @@ def main():
         ]
         if not keywords:
             parser.error(f"No keywords found in {args.batch_file}")
-        results = run_batch(keywords, lang=args.lang)
+        results = run_batch(keywords, lang=args.lang, use_grok=args.use_grok)
         sys.exit(0 if all(r["status"] == "PASS" for r in results) else 1)
 
     # Batch inline mode
     if args.batch:
-        results = run_batch(args.batch, lang=args.lang)
+        results = run_batch(args.batch, lang=args.lang, use_grok=args.use_grok)
         sys.exit(0 if all(r["status"] == "PASS" for r in results) else 1)
 
     # Single keyword mode
@@ -751,7 +871,7 @@ def main():
     if not keyword:
         parser.error("Please provide a keyword, e.g.: python tools/content_factory.py \"temporary email\"")
 
-    result = run_pipeline(keyword)
+    result = run_pipeline(keyword, use_grok=args.use_grok)
     sys.exit(0 if result == "PASS" else 1)
 
 

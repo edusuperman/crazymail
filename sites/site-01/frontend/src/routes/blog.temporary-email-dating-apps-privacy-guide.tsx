@@ -62,7 +62,7 @@ function BlogPostPage() {
       </header>
 
       <div className="prose prose-gray prose-lg max-w-none">
-        <p># Temporary Email for Dating Apps: Secure Your Privacy</p>
+        <h2 className="mt-12 text-2xl font-bold">Temporary Email for Dating Apps: Secure Your Privacy</h2>
 
         <p>Let's be real for a second. We've all been there. You're swiping through profiles, you find someone who seems interesting, and the app prompts you to sign up or verify your account. The next thing you know, you're handing over your personal, primary email address. It feels a little… risky, doesn't it? Like giving a stranger the keys to your digital front door before you've even met for coffee.</p>
 
@@ -217,6 +217,13 @@ function BlogPostPage() {
         <p>You can use the temporary email for initial sign-up, but for long-term access, consider linking to a more permanent email or using TempMails.top's extended features.</p>
         <h3 className="mt-8 text-xl font-semibold">Are there any limitations to using temporary email for dating apps?</h3>
         <p>Some dating apps may block disposable email services, but TempMails.top provides reliable addresses that work with most platforms.</p>
+        <h2 className="mt-12 text-2xl font-bold">Related Guides</h2>
+        <ul className="my-4 space-y-1">
+          <li><Link to="/blog/is-temporary-email-safe-guide" className="text-primary underline">Is Temporary Email Safe? A Comprehensive Guide for Users</Link></li>
+          <li><Link to="/blog/email-privacy-for-small-businesses-guide" className="text-primary underline">Email Privacy for Small Businesses: Essential Strategies</Link></li>
+          <li><Link to="/blog/temporary-email-for-signing-up" className="text-primary underline">How to Use Temporary Email for Signing Up Safely</Link></li>
+        </ul>
+
 
         <div className="mt-12 rounded-lg bg-primary/5 p-8 text-center">
           <h3 className="text-xl font-semibold">Protect Your Real Email Today</h3>

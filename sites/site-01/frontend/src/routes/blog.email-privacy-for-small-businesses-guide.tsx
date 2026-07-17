@@ -62,7 +62,7 @@ function BlogPostPage() {
       </header>
 
       <div className="prose prose-gray prose-lg max-w-none">
-        <p># Email Privacy for Small Businesses: Your Secret Weapon Against Chaos</p>
+        <h2 className="mt-12 text-2xl font-bold">Email Privacy for Small Businesses: Your Secret Weapon Against Chaos</h2>
 
         <p>Hey there. If you're running a small business, you're juggling a million things—sales, marketing, operations, maybe even making the coffee. The last thing you need is to wake up to a data breach or an inbox so full of spam you can't find a real customer email. I've been blogging about privacy for five years, and I've seen it all. Here’s the thing: email is the lifeblood of your business communication, but it's also your biggest vulnerability. Let's talk about locking it down.</p>
 
@@ -233,6 +233,13 @@ function BlogPostPage() {
         <p>Yes, when used appropriately, temporary emails add a privacy layer by keeping your main email off public platforms, but for critical communications, use it alongside other security measures.</p>
         <h3 className="mt-8 text-xl font-semibold">How can I integrate tempmails.top into my business workflow?</h3>
         <p>Sign up for tempmails.top, generate temporary addresses as needed for sign-ups or testing, and use tools to manage them, ensuring they're rotated regularly for optimal privacy.</p>
+        <h2 className="mt-12 text-2xl font-bold">Related Guides</h2>
+        <ul className="my-4 space-y-1">
+          <li><Link to="/blog/is-temporary-email-safe-guide" className="text-primary underline">Is Temporary Email Safe? A Comprehensive Guide for Users</Link></li>
+          <li><Link to="/blog/temporary-email-for-signing-up" className="text-primary underline">How to Use Temporary Email for Signing Up Safely</Link></li>
+          <li><Link to="/blog/temporary-email-for-online-privacy" className="text-primary underline">Protect Your Privacy with Temporary Email Services</Link></li>
+        </ul>
+
 
         <div className="mt-12 rounded-lg bg-primary/5 p-8 text-center">
           <h3 className="text-xl font-semibold">Protect Your Real Email Today</h3>

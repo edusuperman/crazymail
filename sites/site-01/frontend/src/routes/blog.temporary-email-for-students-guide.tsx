@@ -62,7 +62,7 @@ function BlogPostPage() {
       </header>
 
       <div className="prose prose-gray prose-lg max-w-none">
-        <p># Temporary Email for Students: Protect Your Privacy Now</p>
+        <h2 className="mt-12 text-2xl font-bold">Temporary Email for Students: Protect Your Privacy Now</h2>
 
         <p>Look, let's be real for a second. If you're a student, your email inbox is probably a warzone. Between the university-wide announcements, the constant notifications from five different class management platforms, and those newsletter sign-ups you don't even remember making—it's a mess. But here's the thing I've learned after years of writing about privacy: that clutter is the least of your worries.</p>
 
@@ -178,6 +178,13 @@ function BlogPostPage() {
         <p>It varies by institution; use temporary email for general registrations or privacy-sensitive activities, not for official school communications.</p>
         <h3 className="mt-8 text-xl font-semibold">How do I create a temporary email quickly?</h3>
         <p>Simply visit tempmails.top, and a disposable email address is generated automatically for immediate use without sign-up.</p>
+        <h2 className="mt-12 text-2xl font-bold">Related Guides</h2>
+        <ul className="my-4 space-y-1">
+          <li><Link to="/blog/best-temporary-email-services-2026" className="text-primary underline">How to Choose a Temporary Email Service in 2026</Link></li>
+          <li><Link to="/blog/temporary-email-for-developers-guide" className="text-primary underline">How to Use Temporary Email for Developers: A Comprehensive Guide</Link></li>
+          <li><Link to="/blog/disposable-email-for-spam-protection-guide" className="text-primary underline">Disposable Email for Spam Protection: A Complete Guide</Link></li>
+        </ul>
+
 
         <div className="mt-12 rounded-lg bg-primary/5 p-8 text-center">
           <h3 className="text-xl font-semibold">Protect Your Real Email Today</h3>

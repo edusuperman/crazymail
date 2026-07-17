@@ -62,7 +62,7 @@ function BlogPostPage() {
       </header>
 
       <div className="prose prose-gray prose-lg max-w-none">
-        <p># Temporary Email for Online Privacy: A Complete Guide</p>
+        <h2 className="mt-12 text-2xl font-bold">Temporary Email for Online Privacy: A Complete Guide</h2>
 
         <p><strong>Let's be real for a second.</strong> Your primary email address is a digital skeleton key. It's connected to your bank, your social media, your shopping accounts, and probably a decade's worth of personal conversations. Handing it out to every new website, app, or newsletter is like giving everyone a copy of that key. It's not a matter of <em>if</em> it ends up on a spam list or in a data breach, but <em>when</em>. That’s exactly why I’ve become such a big advocate for <strong>temporary email for online privacy</strong>. It’s one of the simplest, most effective tools you can add to your digital life, and I’m going to break down exactly how and why you should use it.</p>
 
@@ -169,6 +169,13 @@ function BlogPostPage() {
         <p>It's not recommended for critical accounts, but ideal for newsletters, one-time sign-ups, and low-risk activities.</p>
         <h3 className="mt-8 text-xl font-semibold">How does temporary email help prevent spam?</h3>
         <p>By using disposable addresses for sign-ups, you block spam from reaching your main inbox, keeping it clean.</p>
+        <h2 className="mt-12 text-2xl font-bold">Related Guides</h2>
+        <ul className="my-4 space-y-1">
+          <li><Link to="/blog/best-temporary-email-services-2026" className="text-primary underline">How to Choose a Temporary Email Service in 2026</Link></li>
+          <li><Link to="/blog/temporary-email-for-developers-guide" className="text-primary underline">How to Use Temporary Email for Developers: A Comprehensive Guide</Link></li>
+          <li><Link to="/blog/disposable-email-for-spam-protection-guide" className="text-primary underline">Disposable Email for Spam Protection: A Complete Guide</Link></li>
+        </ul>
+
 
         <div className="mt-12 rounded-lg bg-primary/5 p-8 text-center">
           <h3 className="text-xl font-semibold">Protect Your Real Email Today</h3>

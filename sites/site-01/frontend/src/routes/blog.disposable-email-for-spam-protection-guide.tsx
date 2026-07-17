@@ -62,7 +62,7 @@ function BlogPostPage() {
       </header>
 
       <div className="prose prose-gray prose-lg max-w-none">
-        <p># Disposable Email for Spam Protection: A Complete Guide</p>
+        <h2 className="mt-12 text-2xl font-bold">Disposable Email for Spam Protection: A Complete Guide</h2>
 
         <p>Hey there, friend. If you’ve ever opened your email to a flood of spam—pharmacy ads, fake lottery wins, dubious discount offers—you know the sinking feeling. Your primary inbox, something so personal, gets buried under digital junk. Honestly, it feels like a violation. Over my five years as a privacy blogger, the one question I get asked more than any other is: "How do I stop the spam madness?"</p>
 
@@ -194,6 +194,13 @@ function BlogPostPage() {
         <p>Disposable emails significantly reduce spam by isolating your primary address, but combining them with other security measures like spam filters enhances protection.</p>
         <h3 className="mt-8 text-xl font-semibold">How do I get a disposable email from tempmails.top?</h3>
         <p>Simply visit tempmails.top, generate a temporary email address instantly, and use it for sign-ups. No registration is required for basic use.</p>
+        <h2 className="mt-12 text-2xl font-bold">Related Guides</h2>
+        <ul className="my-4 space-y-1">
+          <li><Link to="/blog/best-temporary-email-services-2026" className="text-primary underline">How to Choose a Temporary Email Service in 2026</Link></li>
+          <li><Link to="/blog/temporary-email-for-developers-guide" className="text-primary underline">How to Use Temporary Email for Developers: A Comprehensive Guide</Link></li>
+          <li><Link to="/blog/temporary-email-for-verification-guide" className="text-primary underline">Temporary Email for Verification: Protect Your Privacy Online</Link></li>
+        </ul>
+
 
         <div className="mt-12 rounded-lg bg-primary/5 p-8 text-center">
           <h3 className="text-xl font-semibold">Protect Your Real Email Today</h3>

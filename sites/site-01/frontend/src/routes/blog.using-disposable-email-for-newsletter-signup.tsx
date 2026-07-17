@@ -62,7 +62,7 @@ function BlogPostPage() {
       </header>
 
       <div className="prose prose-gray prose-lg max-w-none">
-        <p># Using a Disposable Email for Newsletter Signups: A Practical Guide</p>
+        <h2 className="mt-12 text-2xl font-bold">Using a Disposable Email for Newsletter Signups: A Practical Guide</h2>
 
         <p>We’ve all been there. You find a great article or a tempting discount, and the site wants your email for their newsletter. You <em>want</em> the content, but you also know what usually comes next: an inbox slowly buried under promotional emails you’ll never read. It’s a constant battle between curiosity and clutter.</p>
 
@@ -224,6 +224,13 @@ function BlogPostPage() {
         <p>No, once the disposable email expires, you won't receive further emails. Use it for one-time or non-critical signups to avoid missing important updates.</p>
         <h3 className="mt-8 text-xl font-semibold">Are there any risks of using disposable email for newsletter signups?</h3>
         <p>Risks include potential blocking by some services and the inability to recover accounts. Always use disposable email for low-risk subscriptions and consider tempmails.top for reliable service.</p>
+        <h2 className="mt-12 text-2xl font-bold">Related Guides</h2>
+        <ul className="my-4 space-y-1">
+          <li><Link to="/blog/best-temporary-email-services-2026" className="text-primary underline">How to Choose a Temporary Email Service in 2026</Link></li>
+          <li><Link to="/blog/temporary-email-for-developers-guide" className="text-primary underline">How to Use Temporary Email for Developers: A Comprehensive Guide</Link></li>
+          <li><Link to="/blog/disposable-email-for-spam-protection-guide" className="text-primary underline">Disposable Email for Spam Protection: A Complete Guide</Link></li>
+        </ul>
+
 
         <div className="mt-12 rounded-lg bg-primary/5 p-8 text-center">
           <h3 className="text-xl font-semibold">Protect Your Real Email Today</h3>

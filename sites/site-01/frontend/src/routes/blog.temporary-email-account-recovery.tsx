@@ -62,7 +62,7 @@ function BlogPostPage() {
       </header>
 
       <div className="prose prose-gray prose-lg max-w-none">
-        <p># How to Use Temporary Email for Secure Account Recovery</p>
+        <h2 className="mt-12 text-2xl font-bold">How to Use Temporary Email for Secure Account Recovery</h2>
 
         <p><strong>Protect your privacy during account recovery with disposable emails.</strong></p>
 
@@ -199,6 +199,13 @@ function BlogPostPage() {
         <p>Yes, it enhances privacy by keeping your main email hidden from spam and phishing, but always use it for appropriate accounts.</p>
         <h3 className="mt-8 text-xl font-semibold">What happens if my temporary email expires before I complete recovery?</h3>
         <p>You may need to generate a new temporary email and restart the recovery process, so act promptly to avoid delays.</p>
+        <h2 className="mt-12 text-2xl font-bold">Related Guides</h2>
+        <ul className="my-4 space-y-1">
+          <li><Link to="/blog/best-temporary-email-services-2026" className="text-primary underline">How to Choose a Temporary Email Service in 2026</Link></li>
+          <li><Link to="/blog/temporary-email-for-developers-guide" className="text-primary underline">How to Use Temporary Email for Developers: A Comprehensive Guide</Link></li>
+          <li><Link to="/blog/disposable-email-for-spam-protection-guide" className="text-primary underline">Disposable Email for Spam Protection: A Complete Guide</Link></li>
+        </ul>
+
 
         <div className="mt-12 rounded-lg bg-primary/5 p-8 text-center">
           <h3 className="text-xl font-semibold">Protect Your Real Email Today</h3>

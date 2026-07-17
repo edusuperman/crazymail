@@ -62,7 +62,7 @@ function BlogPostPage() {
       </header>
 
       <div className="prose prose-gray prose-lg max-w-none">
-        <p># Use Temporary Email for Event Registration: Stay Spam-Free</p>
+        <h2 className="mt-12 text-2xl font-bold">Use Temporary Email for Event Registration: Stay Spam-Free</h2>
 
         <p><strong>Protect Your Privacy and Avoid Spam with Disposable Emails</strong></p>
 
@@ -217,6 +217,13 @@ function BlogPostPage() {
         <p>Yes, it's safe when using a reliable service like TempMails.top, as it prevents exposure of your real email to potential spam or data leaks.</p>
         <h3 className="mt-8 text-xl font-semibold">What if the event requires email verification?</h3>
         <p>You can use the temporary email to receive verification codes and complete registration, then discard it afterward.</p>
+        <h2 className="mt-12 text-2xl font-bold">Related Guides</h2>
+        <ul className="my-4 space-y-1">
+          <li><Link to="/blog/best-temporary-email-services-2026" className="text-primary underline">How to Choose a Temporary Email Service in 2026</Link></li>
+          <li><Link to="/blog/temporary-email-for-developers-guide" className="text-primary underline">How to Use Temporary Email for Developers: A Comprehensive Guide</Link></li>
+          <li><Link to="/blog/disposable-email-for-spam-protection-guide" className="text-primary underline">Disposable Email for Spam Protection: A Complete Guide</Link></li>
+        </ul>
+
 
         <div className="mt-12 rounded-lg bg-primary/5 p-8 text-center">
           <h3 className="text-xl font-semibold">Protect Your Real Email Today</h3>

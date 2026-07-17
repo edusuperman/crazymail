@@ -62,7 +62,7 @@ function BlogPostPage() {
       </header>
 
       <div className="prose prose-gray prose-lg max-w-none">
-        <p># Temporary Email for Forum Registration: Safeguard Your Inbox</p>
+        <h2 className="mt-12 text-2xl font-bold">Temporary Email for Forum Registration: Safeguard Your Inbox</h2>
 
         <p><strong>Learn how to use disposable email addresses to sign up for forums without exposing your real email.</strong></p>
 
@@ -367,6 +367,13 @@ function BlogPostPage() {
         <p>It depends on the forum's terms of service, but many forums permit temporary emails as long as you adhere to their rules; check forum policies before use.</p>
         <h3 className="mt-8 text-xl font-semibold">How do I get started with tempmails.top?</h3>
         <p>Simply visit tempmails.top, click to generate a temporary email address, and use it to register on forums anonymously and securely.</p>
+        <h2 className="mt-12 text-2xl font-bold">Related Guides</h2>
+        <ul className="my-4 space-y-1">
+          <li><Link to="/blog/is-temporary-email-safe-guide" className="text-primary underline">Is Temporary Email Safe? A Comprehensive Guide for Users</Link></li>
+          <li><Link to="/blog/email-privacy-for-small-businesses-guide" className="text-primary underline">Email Privacy for Small Businesses: Essential Strategies</Link></li>
+          <li><Link to="/blog/temporary-email-for-signing-up" className="text-primary underline">How to Use Temporary Email for Signing Up Safely</Link></li>
+        </ul>
+
 
         <div className="mt-12 rounded-lg bg-primary/5 p-8 text-center">
           <h3 className="text-xl font-semibold">Protect Your Real Email Today</h3>

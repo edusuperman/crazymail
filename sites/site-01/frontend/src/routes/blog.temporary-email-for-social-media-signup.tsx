@@ -62,7 +62,7 @@ function BlogPostPage() {
       </header>
 
       <div className="prose prose-gray prose-lg max-w-none">
-        <p># Temporary Email for Social Media Signup: A Complete Guide</p>
+        <h2 className="mt-12 text-2xl font-bold">Temporary Email for Social Media Signup: A Complete Guide</h2>
 
         <h2 className="mt-12 text-2xl font-bold">Safeguard Your Personal Information and Reduce Spam</h2>
 
@@ -235,6 +235,13 @@ function BlogPostPage() {
         <p>Typically no, as temporary emails are not meant for long-term use. Always use a primary email for critical accounts, but tempmails.top offers management tips.</p>
         <h3 className="mt-8 text-xl font-semibold">Why should I use tempmails.top for temporary emails?</h3>
         <p>Tempmails.top offers free, reliable disposable emails with easy setup and no registration required, perfect for social media signups and privacy protection.</p>
+        <h2 className="mt-12 text-2xl font-bold">Related Guides</h2>
+        <ul className="my-4 space-y-1">
+          <li><Link to="/blog/temp-email-tiktok-instagram-reddit" className="text-primary underline">Temp Email for TikTok, Instagram & Reddit</Link></li>
+          <li><Link to="/blog/best-temporary-email-services-2026" className="text-primary underline">How to Choose a Temporary Email Service in 2026</Link></li>
+          <li><Link to="/blog/6-billion-emails-leaked-2026" className="text-primary underline">6.8 Billion Emails Leaked: Why Your Real Inbox Is Now a Liability</Link></li>
+        </ul>
+
 
         <div className="mt-12 rounded-lg bg-primary/5 p-8 text-center">
           <h3 className="text-xl font-semibold">Protect Your Real Email Today</h3>

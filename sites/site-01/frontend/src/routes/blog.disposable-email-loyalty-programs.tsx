@@ -62,7 +62,7 @@ function BlogPostPage() {
       </header>
 
       <div className="prose prose-gray prose-lg max-w-none">
-        <p># Disposable Email for Loyalty Programs: Stay Spam-Free</p>
+        <h2 className="mt-12 text-2xl font-bold">Disposable Email for Loyalty Programs: Stay Spam-Free</h2>
 
         <p>Look, we've all been there. You sign up for a loyalty program at your favorite coffee shop, clothing store, or airline, hoping to earn points and get a sweet discount. You hand over your primary email address without a second thought. A week later, your inbox is a warzone. It's not just the one email a month about your points balance; it's daily "flash sales," "exclusive member offers," and "seasonal promotions" that bury the important stuff. Honestly, it feels less like a loyalty program and more like a subscription to spam you never asked for.</p>
 
@@ -210,6 +210,13 @@ function BlogPostPage() {
         <p>It varies by service; at tempmails.top, emails can last from minutes to days, ideal for short-term loyalty program interactions.</p>
         <h3 className="mt-8 text-xl font-semibold">Will loyalty programs ban me for using a temporary email?</h3>
         <p>Most programs don't ban it, but check terms; using tempmails.top helps avoid issues by providing reliable temporary addresses.</p>
+        <h2 className="mt-12 text-2xl font-bold">Related Guides</h2>
+        <ul className="my-4 space-y-1">
+          <li><Link to="/blog/is-temporary-email-safe-guide" className="text-primary underline">Is Temporary Email Safe? A Comprehensive Guide for Users</Link></li>
+          <li><Link to="/blog/email-privacy-for-small-businesses-guide" className="text-primary underline">Email Privacy for Small Businesses: Essential Strategies</Link></li>
+          <li><Link to="/blog/temporary-email-for-signing-up" className="text-primary underline">How to Use Temporary Email for Signing Up Safely</Link></li>
+        </ul>
+
 
         <div className="mt-12 rounded-lg bg-primary/5 p-8 text-center">
           <h3 className="text-xl font-semibold">Protect Your Real Email Today</h3>

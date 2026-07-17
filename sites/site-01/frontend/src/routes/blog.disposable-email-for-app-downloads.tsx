@@ -62,7 +62,7 @@ function BlogPostPage() {
       </header>
 
       <div className="prose prose-gray prose-lg max-w-none">
-        <p># Use Disposable Email for App Downloads to Protect Privacy</p>
+        <h2 className="mt-12 text-2xl font-bold">Use Disposable Email for App Downloads to Protect Privacy</h2>
 
         <p><strong>Subtitle:</strong> Learn how temporary emails from tempmails.top can safeguard your data when downloading apps.</p>
 
@@ -211,6 +211,13 @@ function BlogPostPage() {
         <p>The email address typically lasts until the session ends or for a limited time, as specified on the tempmails.top site, ensuring automatic deletion.</p>
         <h3 className="mt-8 text-xl font-semibold">Can I use disposable emails for all types of apps?</h3>
         <p>Most apps accept disposable emails for sign-ups, but some may require a permanent email for verification; check app policies and use tempmails.top for flexibility.</p>
+        <h2 className="mt-12 text-2xl font-bold">Related Guides</h2>
+        <ul className="my-4 space-y-1">
+          <li><Link to="/blog/is-temporary-email-safe-guide" className="text-primary underline">Is Temporary Email Safe? A Comprehensive Guide for Users</Link></li>
+          <li><Link to="/blog/email-privacy-for-small-businesses-guide" className="text-primary underline">Email Privacy for Small Businesses: Essential Strategies</Link></li>
+          <li><Link to="/blog/temporary-email-for-signing-up" className="text-primary underline">How to Use Temporary Email for Signing Up Safely</Link></li>
+        </ul>
+
 
         <div className="mt-12 rounded-lg bg-primary/5 p-8 text-center">
           <h3 className="text-xl font-semibold">Protect Your Real Email Today</h3>

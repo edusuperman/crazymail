@@ -62,7 +62,7 @@ function BlogPostPage() {
       </header>
 
       <div className="prose prose-gray prose-lg max-w-none">
-        <p># Disposable Email for Security Testing: Your Secret Weapon for Safer, Smarter Tests</p>
+        <h2 className="mt-12 text-2xl font-bold">Disposable Email for Security Testing: Your Secret Weapon for Safer, Smarter Tests</h2>
 
         <p>Hey there, fellow security enthusiast. Let's talk about something that's been a game-changer in my testing toolkit for years: disposable email. If you're involved in security testing—whether you're a pentester, a developer doing QA, or just someone who likes to probe systems for weaknesses—you know the drill. You need to sign up for services, trigger password resets, test input fields, and generally interact with systems that demand an email address.</p>
 
@@ -184,6 +184,13 @@ function BlogPostPage() {
         <p>Typically, no, as they are designed to be anonymous and temporary, but always choose a trusted service like tempmails.top.</p>
         <h3 className="mt-8 text-xl font-semibold">What are the limitations of using disposable email?</h3>
         <p>Emails expire quickly, may not be suitable for long-term use, and some services might have deliverability limits.</p>
+        <h2 className="mt-12 text-2xl font-bold">Related Guides</h2>
+        <ul className="my-4 space-y-1">
+          <li><Link to="/blog/best-temporary-email-services-2026" className="text-primary underline">How to Choose a Temporary Email Service in 2026</Link></li>
+          <li><Link to="/blog/temporary-email-for-developers-guide" className="text-primary underline">How to Use Temporary Email for Developers: A Comprehensive Guide</Link></li>
+          <li><Link to="/blog/disposable-email-for-spam-protection-guide" className="text-primary underline">Disposable Email for Spam Protection: A Complete Guide</Link></li>
+        </ul>
+
 
         <div className="mt-12 rounded-lg bg-primary/5 p-8 text-center">
           <h3 className="text-xl font-semibold">Protect Your Real Email Today</h3>

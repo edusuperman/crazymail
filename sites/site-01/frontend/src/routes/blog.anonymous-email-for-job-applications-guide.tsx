@@ -62,7 +62,7 @@ function BlogPostPage() {
       </header>
 
       <div className="prose prose-gray prose-lg max-w-none">
-        <p># The Ultimate Guide to Anonymous Email for Job Applications</p>
+        <h2 className="mt-12 text-2xl font-bold">The Ultimate Guide to Anonymous Email for Job Applications</h2>
 
         <h2 className="mt-12 text-2xl font-bold">Protect your privacy and streamline your job search with temporary emails.</h2>
 
@@ -178,6 +178,13 @@ function BlogPostPage() {
         <p>Ensure your temporary email service supports attachments; tempmails.top offers this feature for seamless job application processes.</p>
         <h3 className="mt-8 text-xl font-semibold">Can I use anonymous email for all types of job applications?</h3>
         <p>It is best for initial applications and registrations. For formal communications, consider transitioning to a more permanent professional email.</p>
+        <h2 className="mt-12 text-2xl font-bold">Related Guides</h2>
+        <ul className="my-4 space-y-1">
+          <li><Link to="/blog/best-temporary-email-services-2026" className="text-primary underline">How to Choose a Temporary Email Service in 2026</Link></li>
+          <li><Link to="/blog/temporary-email-for-developers-guide" className="text-primary underline">How to Use Temporary Email for Developers: A Comprehensive Guide</Link></li>
+          <li><Link to="/blog/disposable-email-for-spam-protection-guide" className="text-primary underline">Disposable Email for Spam Protection: A Complete Guide</Link></li>
+        </ul>
+
 
         <div className="mt-12 rounded-lg bg-primary/5 p-8 text-center">
           <h3 className="text-xl font-semibold">Protect Your Real Email Today</h3>

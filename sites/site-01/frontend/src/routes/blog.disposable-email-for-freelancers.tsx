@@ -62,7 +62,7 @@ function BlogPostPage() {
       </header>
 
       <div className="prose prose-gray prose-lg max-w-none">
-        <p># Disposable Email for Freelancers: Ultimate Privacy Guide</p>
+        <h2 className="mt-12 text-2xl font-bold">Disposable Email for Freelancers: Ultimate Privacy Guide</h2>
 
         <p>Hey there, fellow freelancers and independent pros. Let’s talk about something that’s probably bugging you: spam. Not the canned meat—though that’s annoying too—but the endless waves of promotional emails, phishing attempts, and newsletters you never signed for, all clogging up your primary inbox.</p>
 
@@ -211,6 +211,13 @@ function BlogPostPage() {
         <p>Duration varies by service and plan. With tempmails.top, emails can last from hours to days. Check their website for specifics on expiration times.</p>
         <h3 className="mt-8 text-xl font-semibold">Are there costs for using disposable email?</h3>
         <p>Many services, including tempmails.top, offer free options. Premium plans provide advanced features for freelancers. Visit tempmails.top for pricing information.</p>
+        <h2 className="mt-12 text-2xl font-bold">Related Guides</h2>
+        <ul className="my-4 space-y-1">
+          <li><Link to="/blog/best-temporary-email-services-2026" className="text-primary underline">How to Choose a Temporary Email Service in 2026</Link></li>
+          <li><Link to="/blog/temporary-email-for-developers-guide" className="text-primary underline">How to Use Temporary Email for Developers: A Comprehensive Guide</Link></li>
+          <li><Link to="/blog/disposable-email-for-spam-protection-guide" className="text-primary underline">Disposable Email for Spam Protection: A Complete Guide</Link></li>
+        </ul>
+
 
         <div className="mt-12 rounded-lg bg-primary/5 p-8 text-center">
           <h3 className="text-xl font-semibold">Protect Your Real Email Today</h3>

@@ -62,7 +62,7 @@ function BlogPostPage() {
       </header>
 
       <div className="prose prose-gray prose-lg max-w-none">
-        <p># The Ultimate Guide to Anonymous Email for Whistleblowers</p>
+        <h2 className="mt-12 text-2xl font-bold">The Ultimate Guide to Anonymous Email for Whistleblowers</h2>
 
         <p><strong>Secure Your Identity While Exposing Wrongdoing with Temporary Email Services</strong></p>
 
@@ -224,6 +224,13 @@ function BlogPostPage() {
         <p>Absolutely! tempmails.top is accessible on any device with an internet browser, making it easy to use anonymous email on mobile for whistleblowing.</p>
         <h3 className="mt-8 text-xl font-semibold">What should I avoid when using anonymous email for whistleblowing?</h3>
         <p>Avoid using personal devices without VPN, don't reuse email addresses, and steer clear of services that track your activity. Use tempmails.top for secure, disposable emails.</p>
+        <h2 className="mt-12 text-2xl font-bold">Related Guides</h2>
+        <ul className="my-4 space-y-1">
+          <li><Link to="/blog/is-temporary-email-safe-guide" className="text-primary underline">Is Temporary Email Safe? A Comprehensive Guide for Users</Link></li>
+          <li><Link to="/blog/email-privacy-for-small-businesses-guide" className="text-primary underline">Email Privacy for Small Businesses: Essential Strategies</Link></li>
+          <li><Link to="/blog/temporary-email-for-signing-up" className="text-primary underline">How to Use Temporary Email for Signing Up Safely</Link></li>
+        </ul>
+
 
         <div className="mt-12 rounded-lg bg-primary/5 p-8 text-center">
           <h3 className="text-xl font-semibold">Protect Your Real Email Today</h3>

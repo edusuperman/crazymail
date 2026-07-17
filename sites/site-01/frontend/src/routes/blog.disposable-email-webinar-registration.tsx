@@ -62,7 +62,7 @@ function BlogPostPage() {
       </header>
 
       <div className="prose prose-gray prose-lg max-w-none">
-        <p># How to Use a Disposable Email for Webinar Registration (And Actually Protect Your Inbox)</p>
+        <h2 className="mt-12 text-2xl font-bold">How to Use a Disposable Email for Webinar Registration (And Actually Protect Your Inbox)</h2>
 
         <p><strong>Stop Paying for "Free" Webinars With Your Privacy</strong></p>
 
@@ -220,6 +220,13 @@ function BlogPostPage() {
         <p>It varies by service; tempmails.top offers emails that last from minutes to days, depending on your needs.</p>
         <h3 className="mt-8 text-xl font-semibold">Will webinars block disposable emails?</h3>
         <p>Most webinars accept disposable emails, but it's wise to check their terms to avoid registration issues.</p>
+        <h2 className="mt-12 text-2xl font-bold">Related Guides</h2>
+        <ul className="my-4 space-y-1">
+          <li><Link to="/blog/best-temporary-email-services-2026" className="text-primary underline">How to Choose a Temporary Email Service in 2026</Link></li>
+          <li><Link to="/blog/temporary-email-for-developers-guide" className="text-primary underline">How to Use Temporary Email for Developers: A Comprehensive Guide</Link></li>
+          <li><Link to="/blog/disposable-email-for-spam-protection-guide" className="text-primary underline">Disposable Email for Spam Protection: A Complete Guide</Link></li>
+        </ul>
+
 
         <div className="mt-12 rounded-lg bg-primary/5 p-8 text-center">
           <h3 className="text-xl font-semibold">Protect Your Real Email Today</h3>

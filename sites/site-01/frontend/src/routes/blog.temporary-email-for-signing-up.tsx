@@ -62,7 +62,7 @@ function BlogPostPage() {
       </header>
 
       <div className="prose prose-gray prose-lg max-w-none">
-        <p># How to Use Temporary Email to Sign Up Safely (and Keep Your Inbox Clean)</p>
+        <h2 className="mt-12 text-2xl font-bold">How to Use Temporary Email to Sign Up Safely (and Keep Your Inbox Clean)</h2>
 
         <p>Hey there. Let me guess. You just found another cool online tool or a must-have e-book, and it's asking for your email address. Again. You know what happens next. Your inbox gets flooded with newsletters you never read, "special offers" you don't want, and a bunch of spam. Honestly, it's a privacy headache. But here's a smarter way to do it: using <strong>temporary email for signing up</strong>.</p>
 
@@ -199,6 +199,13 @@ function BlogPostPage() {
         <p>Absolutely, temporary email is ideal for social media and app sign-ups to prevent spam and maintain privacy—try it with tempmails.top.</p>
         <h3 className="mt-8 text-xl font-semibold">What happens if I forget my temporary email address?</h3>
         <p>With tempmails.top, you can often retrieve your temporary email using session cookies or bookmarks, but it's best to save it securely.</p>
+        <h2 className="mt-12 text-2xl font-bold">Related Guides</h2>
+        <ul className="my-4 space-y-1">
+          <li><Link to="/blog/is-temporary-email-safe-guide" className="text-primary underline">Is Temporary Email Safe? A Comprehensive Guide for Users</Link></li>
+          <li><Link to="/blog/email-privacy-for-small-businesses-guide" className="text-primary underline">Email Privacy for Small Businesses: Essential Strategies</Link></li>
+          <li><Link to="/blog/temporary-email-for-online-privacy" className="text-primary underline">Protect Your Privacy with Temporary Email Services</Link></li>
+        </ul>
+
 
         <div className="mt-12 rounded-lg bg-primary/5 p-8 text-center">
           <h3 className="text-xl font-semibold">Protect Your Real Email Today</h3>

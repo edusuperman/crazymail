@@ -62,7 +62,7 @@ function BlogPostPage() {
       </header>
 
       <div className="prose prose-gray prose-lg max-w-none">
-        <p># Anonymous Email for Feedback Forms: A Privacy Guide</p>
+        <h2 className="mt-12 text-2xl font-bold">Anonymous Email for Feedback Forms: A Privacy Guide</h2>
 
         <p><strong>Subtitle:</strong> How to protect user privacy with disposable email addresses.</p>
 
@@ -285,6 +285,13 @@ function BlogPostPage() {
         <p>Disposable emails have a limited lifespan and may attract spam, but services like tempmails.top mitigate these with robust security and management features.</p>
         <h3 className="mt-8 text-xl font-semibold">How do I integrate anonymous email with my feedback form?</h3>
         <p>Simply use the temporary email address from tempmails.top in your form's email field. No technical expertise is required for basic integration.</p>
+        <h2 className="mt-12 text-2xl font-bold">Related Guides</h2>
+        <ul className="my-4 space-y-1">
+          <li><Link to="/blog/is-temporary-email-safe-guide" className="text-primary underline">Is Temporary Email Safe? A Comprehensive Guide for Users</Link></li>
+          <li><Link to="/blog/email-privacy-for-small-businesses-guide" className="text-primary underline">Email Privacy for Small Businesses: Essential Strategies</Link></li>
+          <li><Link to="/blog/temporary-email-for-signing-up" className="text-primary underline">How to Use Temporary Email for Signing Up Safely</Link></li>
+        </ul>
+
 
         <div className="mt-12 rounded-lg bg-primary/5 p-8 text-center">
           <h3 className="text-xl font-semibold">Protect Your Real Email Today</h3>

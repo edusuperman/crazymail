@@ -62,7 +62,7 @@ function BlogPostPage() {
       </header>
 
       <div className="prose prose-gray prose-lg max-w-none">
-        <p># How to Use Temporary Email for Developers: A Comprehensive Guide</p>
+        <h2 className="mt-12 text-2xl font-bold">How to Use Temporary Email for Developers: A Comprehensive Guide</h2>
 
         <h2 className="mt-12 text-2xl font-bold">Streamline Your Development Workflow with Disposable Emails</h2>
 
@@ -121,9 +121,9 @@ function BlogPostPage() {
         </ul>
 
         <p><code>`</code>bash</p>
-        <p># Generate a temporary email via API</p>
+        <h2 className="mt-12 text-2xl font-bold">Generate a temporary email via API</h2>
         <p>TEMP_EMAIL=$(curl -s "https://api.tempmails.top/generate" | jq -r '.email')</p>
-        <p># Run your test script, passing the email as an environment variable</p>
+        <h2 className="mt-12 text-2xl font-bold">Run your test script, passing the email as an environment variable</h2>
         <p>TEST_USER_EMAIL=$TEMP_EMAIL ./run-integration-tests.sh</p>
         <p><code>`</code></p>
 
@@ -216,6 +216,13 @@ function BlogPostPage() {
         <p>Absolutely, it's ideal for testing email-based APIs, notifications, and workflows without cluttering your inbox.</p>
         <h3 className="mt-8 text-xl font-semibold">How long does a temporary email from tempmails.top last?</h3>
         <p>Tempmails.top offers emails with configurable lifespans, typically lasting for hours or days, suitable for various development needs.</p>
+        <h2 className="mt-12 text-2xl font-bold">Related Guides</h2>
+        <ul className="my-4 space-y-1">
+          <li><Link to="/blog/best-temporary-email-services-2026" className="text-primary underline">How to Choose a Temporary Email Service in 2026</Link></li>
+          <li><Link to="/blog/disposable-email-for-spam-protection-guide" className="text-primary underline">Disposable Email for Spam Protection: A Complete Guide</Link></li>
+          <li><Link to="/blog/temporary-email-for-verification-guide" className="text-primary underline">Temporary Email for Verification: Protect Your Privacy Online</Link></li>
+        </ul>
+
 
         <div className="mt-12 rounded-lg bg-primary/5 p-8 text-center">
           <h3 className="text-xl font-semibold">Protect Your Real Email Today</h3>

@@ -62,7 +62,7 @@ function BlogPostPage() {
       </header>
 
       <div className="prose prose-gray prose-lg max-w-none">
-        <p># Why Use Temporary Email for Classified Ads? Stay Safe & Spam-Free</p>
+        <h2 className="mt-12 text-2xl font-bold">Why Use Temporary Email for Classified Ads? Stay Safe & Spam-Free</h2>
 
         <p>We’ve all been there. You spot a great deal on a used couch, a vintage guitar, or you’re trying to sell your old bike. You hop on Craigslist, Facebook Marketplace, or your local classifieds site, and you’re met with that one big, blinking question: <strong>What email address do I use?</strong></p>
 
@@ -193,6 +193,13 @@ function BlogPostPage() {
         <p>Absolutely, you can create separate temporary emails for each ad to better manage and track responses.</p>
         <h3 className="mt-8 text-xl font-semibold">What happens to my emails after the temporary address expires?</h3>
         <p>They are typically deleted, so ensure you forward or save any important information before expiration.</p>
+        <h2 className="mt-12 text-2xl font-bold">Related Guides</h2>
+        <ul className="my-4 space-y-1">
+          <li><Link to="/blog/best-temporary-email-services-2026" className="text-primary underline">How to Choose a Temporary Email Service in 2026</Link></li>
+          <li><Link to="/blog/temporary-email-for-developers-guide" className="text-primary underline">How to Use Temporary Email for Developers: A Comprehensive Guide</Link></li>
+          <li><Link to="/blog/disposable-email-for-spam-protection-guide" className="text-primary underline">Disposable Email for Spam Protection: A Complete Guide</Link></li>
+        </ul>
+
 
         <div className="mt-12 rounded-lg bg-primary/5 p-8 text-center">
           <h3 className="text-xl font-semibold">Protect Your Real Email Today</h3>

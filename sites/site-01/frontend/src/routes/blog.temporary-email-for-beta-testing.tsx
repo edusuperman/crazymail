@@ -62,7 +62,7 @@ function BlogPostPage() {
       </header>
 
       <div className="prose prose-gray prose-lg max-w-none">
-        <p># Temporary Email for Beta Testing: A Complete Guide</p>
+        <h2 className="mt-12 text-2xl font-bold">Temporary Email for Beta Testing: A Complete Guide</h2>
 
         <p><strong>Here’s how disposable email addresses can streamline your beta testing process and protect your privacy.</strong></p>
 
@@ -215,6 +215,13 @@ function BlogPostPage() {
         <p>Yes, as long as you use a reliable service and keep the email active during the testing period, you should receive all emails.</p>
         <h3 className="mt-8 text-xl font-semibold">Is it legal to use temporary email for beta testing?</h3>
         <p>Absolutely. Using temporary email is a common and legal practice for privacy and management purposes in beta testing.</p>
+        <h2 className="mt-12 text-2xl font-bold">Related Guides</h2>
+        <ul className="my-4 space-y-1">
+          <li><Link to="/blog/best-temporary-email-services-2026" className="text-primary underline">How to Choose a Temporary Email Service in 2026</Link></li>
+          <li><Link to="/blog/temporary-email-for-developers-guide" className="text-primary underline">How to Use Temporary Email for Developers: A Comprehensive Guide</Link></li>
+          <li><Link to="/blog/disposable-email-for-spam-protection-guide" className="text-primary underline">Disposable Email for Spam Protection: A Complete Guide</Link></li>
+        </ul>
+
 
         <div className="mt-12 rounded-lg bg-primary/5 p-8 text-center">
           <h3 className="text-xl font-semibold">Protect Your Real Email Today</h3>

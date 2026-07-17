@@ -62,7 +62,7 @@ function BlogPostPage() {
       </header>
 
       <div className="prose prose-gray prose-lg max-w-none">
-        <p># How Disposable Email Protects You from Spam: A Complete Guide</p>
+        <h2 className="mt-12 text-2xl font-bold">How Disposable Email Protects You from Spam: A Complete Guide</h2>
 
         <h2 className="mt-12 text-2xl font-bold">Learn how to use temporary emails to keep your inbox spam-free.</h2>
 
@@ -247,6 +247,13 @@ function BlogPostPage() {
         <p>It's not recommended for critical accounts like banking. Use it for newsletters, trials, and one-time sign-ups to protect your primary email.</p>
         <h3 className="mt-8 text-xl font-semibold">Is disposable email safe?</h3>
         <p>Yes, when used correctly. Services like tempmails.top ensure data privacy and security with encrypted connections.</p>
+        <h2 className="mt-12 text-2xl font-bold">Related Guides</h2>
+        <ul className="my-4 space-y-1">
+          <li><Link to="/blog/best-temporary-email-services-2026" className="text-primary underline">How to Choose a Temporary Email Service in 2026</Link></li>
+          <li><Link to="/blog/temporary-email-for-developers-guide" className="text-primary underline">How to Use Temporary Email for Developers: A Comprehensive Guide</Link></li>
+          <li><Link to="/blog/disposable-email-for-spam-protection-guide" className="text-primary underline">Disposable Email for Spam Protection: A Complete Guide</Link></li>
+        </ul>
+
 
         <div className="mt-12 rounded-lg bg-primary/5 p-8 text-center">
           <h3 className="text-xl font-semibold">Protect Your Real Email Today</h3>

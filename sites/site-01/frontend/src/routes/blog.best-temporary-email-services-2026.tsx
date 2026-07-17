@@ -293,6 +293,13 @@ function BlogPostPage() {
         </p>
 
         {/* CTA */}
+        <h2 className="mt-12 text-2xl font-bold">Related Guides</h2>
+        <ul className="my-4 space-y-1">
+          <li><Link to="/blog/temporary-email-for-developers-guide" className="text-primary underline">How to Use Temporary Email for Developers: A Comprehensive Guide</Link></li>
+          <li><Link to="/blog/disposable-email-for-spam-protection-guide" className="text-primary underline">Disposable Email for Spam Protection: A Complete Guide</Link></li>
+          <li><Link to="/blog/temporary-email-for-verification-guide" className="text-primary underline">Temporary Email for Verification: Protect Your Privacy Online</Link></li>
+        </ul>
+
         <div className="mt-12 rounded-lg bg-primary/5 p-8 text-center">
           <h3 className="text-xl font-semibold">Try TempMails.top</h3>
           <p className="mt-2 text-muted-foreground">
