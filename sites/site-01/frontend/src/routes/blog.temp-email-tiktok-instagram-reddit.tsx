@@ -248,21 +248,21 @@ function BlogPostPage() {
         <h2 className="mt-12 text-2xl font-bold">Related Guides</h2>
         <ul className="my-4 space-y-1">
           <li><Link to="/blog/temporary-email-for-social-media-signup" className="text-primary underline">Temporary Email for Social Media Signup: A Complete Guide</Link></li>
-          <li><Link to="/blog/best-temporary-email-services-2026" className="text-primary underline">How to Choose a Temporary Email Service in 2026</Link></li>
-          <li><Link to="/blog/6-billion-emails-leaked-2026" className="text-primary underline">6.8 Billion Emails Leaked: Why Your Real Inbox Is Now a Liability</Link></li>
+          <li><Link to="/blog/temporary-email-dating-apps-privacy-guide" className="text-primary underline">Temporary Email for Dating Apps: Secure Your Privacy</Link></li>
+          <li><Link to="/blog/platforms-blocking-temp-email-2026" className="text-primary underline">Platforms Fighting Back: Blocking Temp Emails in 2026</Link></li>
         </ul>
 
 
         <div className="mt-12 rounded-lg bg-primary/5 p-8 text-center">
-          <h3 className="text-xl font-semibold">Try It Yourself</h3>
+          <h3 className="text-xl font-semibold">Protect Your Real Email Today</h3>
           <p className="mt-2 text-muted-foreground">
-            Get a temporary email with 8 different domains. Works on Reddit, Pinterest, and more.
+            Get a free temporary email address in seconds. No registration, no tracking.
           </p>
           <Link
             to="/"
             className="mt-4 inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90"
           >
-            Get Your Temporary Email →
+            Get a Free Temporary Email
           </Link>
         </div>
 

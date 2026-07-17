@@ -171,9 +171,9 @@ function BlogPostPage() {
         <p>Generally no, as temp emails are for privacy, not fraud. Ensure compliance with platform policies to avoid issues.</p>
         <h2 className="mt-12 text-2xl font-bold">Related Guides</h2>
         <ul className="my-4 space-y-1">
+          <li><Link to="/blog/disposable-email-for-app-downloads" className="text-primary underline">Use Disposable Email for App Downloads to Protect Privacy</Link></li>
+          <li><Link to="/blog/temporary-email-for-social-media-signup" className="text-primary underline">Temporary Email for Social Media Signup: A Complete Guide</Link></li>
           <li><Link to="/blog/is-temporary-email-safe-guide" className="text-primary underline">Is Temporary Email Safe? A Comprehensive Guide for Users</Link></li>
-          <li><Link to="/blog/email-privacy-for-small-businesses-guide" className="text-primary underline">Email Privacy for Small Businesses: Essential Strategies</Link></li>
-          <li><Link to="/blog/temporary-email-for-signing-up" className="text-primary underline">How to Use Temporary Email for Signing Up Safely</Link></li>
         </ul>
 
 
@@ -186,7 +186,7 @@ function BlogPostPage() {
             to="/"
             className="mt-4 inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90"
           >
-            Ready to protect your gaming identity? Create your free temporary email at tempmails.top and game securely today!
+            Get a Free Temporary Email
           </Link>
         </div>
 

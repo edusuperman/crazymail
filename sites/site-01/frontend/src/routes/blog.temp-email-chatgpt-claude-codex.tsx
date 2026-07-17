@@ -203,22 +203,22 @@ function BlogPostPage() {
         </p>
         <h2 className="mt-12 text-2xl font-bold">Related Guides</h2>
         <ul className="my-4 space-y-1">
-          <li><Link to="/blog/best-temporary-email-services-2026" className="text-primary underline">How to Choose a Temporary Email Service in 2026</Link></li>
-          <li><Link to="/blog/6-billion-emails-leaked-2026" className="text-primary underline">6.8 Billion Emails Leaked: Why Your Real Inbox Is Now a Liability</Link></li>
-          <li><Link to="/blog/12-percent-signups-use-temp-email" className="text-primary underline">12% of All Signups Use Temp Email</Link></li>
+          <li><Link to="/blog/temporary-email-saas-signup-guide" className="text-primary underline">Use Temporary Email for SaaS Signup: Protect Your Privacy</Link></li>
+          <li><Link to="/blog/disposable-email-for-free-trials-guide" className="text-primary underline">Disposable Email for Free Trials: A Complete Guide</Link></li>
+          <li><Link to="/blog/temporary-email-for-developers-guide" className="text-primary underline">How to Use Temporary Email for Developers: A Comprehensive Guide</Link></li>
         </ul>
 
 
         <div className="mt-12 rounded-lg bg-primary/5 p-8 text-center">
-          <h3 className="text-xl font-semibold">Works on All 3 AI Platforms</h3>
+          <h3 className="text-xl font-semibold">Protect Your Real Email Today</h3>
           <p className="mt-2 text-muted-foreground">
-            Get a temporary email that works with ChatGPT, Claude, and Codex.
+            Get a free temporary email address in seconds. No registration, no tracking.
           </p>
           <Link
             to="/"
             className="mt-4 inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90"
           >
-            Get Your Temporary Email →
+            Get a Free Temporary Email
           </Link>
         </div>
 

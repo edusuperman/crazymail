@@ -189,9 +189,9 @@ function BlogPostPage() {
         </p>
         <h2 className="mt-12 text-2xl font-bold">Related Guides</h2>
         <ul className="my-4 space-y-1">
-          <li><Link to="/blog/best-temporary-email-services-2026" className="text-primary underline">How to Choose a Temporary Email Service in 2026</Link></li>
           <li><Link to="/blog/12-percent-signups-use-temp-email" className="text-primary underline">12% of All Signups Use Temp Email</Link></li>
-          <li><Link to="/blog/platforms-blocking-temp-email-2026" className="text-primary underline">Platforms Fighting Back: Blocking Temp Emails in 2026</Link></li>
+          <li><Link to="/blog/is-temporary-email-safe-guide" className="text-primary underline">Is Temporary Email Safe? A Comprehensive Guide for Users</Link></li>
+          <li><Link to="/blog/temporary-email-privacy-protection-guide" className="text-primary underline">Temporary Email for Privacy Protection: A Complete Guide</Link></li>
         </ul>
 
 
@@ -204,7 +204,7 @@ function BlogPostPage() {
             to="/"
             className="mt-4 inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90"
           >
-            Get Your Temporary Email →
+            Get a Free Temporary Email
           </Link>
         </div>
 

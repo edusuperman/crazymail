@@ -295,21 +295,21 @@ function BlogPostPage() {
         {/* CTA */}
         <h2 className="mt-12 text-2xl font-bold">Related Guides</h2>
         <ul className="my-4 space-y-1">
-          <li><Link to="/blog/temporary-email-for-developers-guide" className="text-primary underline">How to Use Temporary Email for Developers: A Comprehensive Guide</Link></li>
-          <li><Link to="/blog/disposable-email-for-spam-protection-guide" className="text-primary underline">Disposable Email for Spam Protection: A Complete Guide</Link></li>
-          <li><Link to="/blog/temporary-email-for-verification-guide" className="text-primary underline">Temporary Email for Verification: Protect Your Privacy Online</Link></li>
+          <li><Link to="/blog/how-to-create-temporary-email-guide" className="text-primary underline">How to Create Temporary Email: A Complete Step-by-Step Guide</Link></li>
+          <li><Link to="/blog/is-temporary-email-safe-guide" className="text-primary underline">Is Temporary Email Safe? A Comprehensive Guide for Users</Link></li>
+          <li><Link to="/blog/temporary-email-vs-permanent-email-differences" className="text-primary underline">Temporary Email vs Permanent Email: Key Differences</Link></li>
         </ul>
 
         <div className="mt-12 rounded-lg bg-primary/5 p-8 text-center">
-          <h3 className="text-xl font-semibold">Try TempMails.top</h3>
+          <h3 className="text-xl font-semibold">Protect Your Real Email Today</h3>
           <p className="mt-2 text-muted-foreground">
-            Get a free temporary email address in seconds. No registration, no tracking, no ads.
+            Get a free temporary email address in seconds. No registration, no tracking.
           </p>
           <Link
             to="/"
             className="mt-4 inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90"
           >
-            Get Your Temporary Email →
+            Get a Free Temporary Email
           </Link>
         </div>
 

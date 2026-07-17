@@ -188,9 +188,9 @@ function BlogPostPage() {
         <p>Yes, you can create multiple temporary email addresses on tempmails.top for different purposes, enhancing your privacy and organization.</p>
         <h2 className="mt-12 text-2xl font-bold">Related Guides</h2>
         <ul className="my-4 space-y-1">
-          <li><Link to="/blog/is-temporary-email-safe-guide" className="text-primary underline">Is Temporary Email Safe? A Comprehensive Guide for Users</Link></li>
-          <li><Link to="/blog/email-privacy-for-small-businesses-guide" className="text-primary underline">Email Privacy for Small Businesses: Essential Strategies</Link></li>
-          <li><Link to="/blog/temporary-email-for-signing-up" className="text-primary underline">How to Use Temporary Email for Signing Up Safely</Link></li>
+          <li><Link to="/blog/temporary-email-online-privacy-guide" className="text-primary underline">Temporary Email for Online Privacy: A Complete Guide</Link></li>
+          <li><Link to="/blog/temporary-email-for-online-privacy" className="text-primary underline">Protect Your Privacy with Temporary Email Services</Link></li>
+          <li><Link to="/blog/6-billion-emails-leaked-2026" className="text-primary underline">6.8 Billion Emails Leaked: Why Your Real Inbox Is Now a Liability</Link></li>
         </ul>
 
 
@@ -203,7 +203,7 @@ function BlogPostPage() {
             to="/"
             className="mt-4 inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90"
           >
-            Ready to take control of your email privacy? Visit tempmails.top now to create your free temporary email address and start browsing anonymously!
+            Get a Free Temporary Email
           </Link>
         </div>
 
