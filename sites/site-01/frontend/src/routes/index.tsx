@@ -37,44 +37,32 @@ const appJsonLd = {
 };
 
 export const Route = createFileRoute("/")({
-  loader: ({ request }) => {
-    // Check if ?lang= parameter exists (legacy URL)
-    const url = new URL(request.url);
-    const hasLang = url.searchParams.has("lang");
-    return { hasLang };
-  },
-  head: ({ loaderData }) => {
-    // Use loaderData to determine if noindex should be applied
-    const hasLang = loaderData?.hasLang || false;
-    
-    return {
-      meta: [
-        { title: "TempMails.top — Free Disposable Email | Protect Your Inbox from Spam" },
-        { name: "description", content: "Get a free temporary email address in seconds. No registration, no tracking. Protect your real inbox from spam, data breaches, and unwanted emails." },
-        { name: "keywords", content: "temporary email, disposable email, temp mail, burner email, anonymous email, throwaway email, privacy email, spam protection" },
-        { name: "author", content: "TempMails.top" },
-        // If ?lang= exists, add noindex to prevent indexing legacy URLs
-        { name: "robots", content: hasLang ? "noindex, nofollow" : "index, follow" },
-        { property: "og:type", content: "website" },
-        { property: "og:title", content: "TempMails.top — Free Disposable Email" },
-        { property: "og:description", content: "Get a free temporary email address in seconds. No registration, no tracking. Protect your real inbox from spam." },
-        { property: "og:url", content: "https://tempmails.top/" },
-        { property: "og:site_name", content: "TempMails.top" },
-        { property: "og:image", content: "https://tempmails.top/og-image.png" },
-        { name: "twitter:card", content: "summary_large_image" },
-        { name: "twitter:title", content: "TempMails.top — Free Disposable Email" },
-        { name: "twitter:description", content: "Get a free temporary email address in seconds. No registration, no tracking." },
-      ],
-      links: [
-        { rel: "canonical", href: "https://tempmails.top/" },
-        { rel: "x-default", href: "https://tempmails.top/" },
-      ],
-      scripts: [
-        { type: "application/ld+json", children: JSON.stringify(faqJsonLd) },
-        { type: "application/ld+json", children: JSON.stringify(appJsonLd) },
-      ],
-    };
-  },
+  head: () => ({
+    meta: [
+      { title: "TempMails.top — Free Disposable Email | Protect Your Inbox from Spam" },
+      { name: "description", content: "Get a free temporary email address in seconds. No registration, no tracking. Protect your real inbox from spam, data breaches, and unwanted emails." },
+      { name: "keywords", content: "temporary email, disposable email, temp mail, burner email, anonymous email, throwaway email, privacy email, spam protection" },
+      { name: "author", content: "TempMails.top" },
+      { name: "robots", content: "index, follow" },
+      { property: "og:type", content: "website" },
+      { property: "og:title", content: "TempMails.top — Free Disposable Email" },
+      { property: "og:description", content: "Get a free temporary email address in seconds. No registration, no tracking. Protect your real inbox from spam." },
+      { property: "og:url", content: "https://tempmails.top/" },
+      { property: "og:site_name", content: "TempMails.top" },
+      { property: "og:image", content: "https://tempmails.top/og-image.png" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "TempMails.top — Free Disposable Email" },
+      { name: "twitter:description", content: "Get a free temporary email address in seconds. No registration, no tracking." },
+    ],
+    links: [
+      { rel: "canonical", href: "https://tempmails.top/" },
+      { rel: "x-default", href: "https://tempmails.top/" },
+    ],
+    scripts: [
+      { type: "application/ld+json", children: JSON.stringify(faqJsonLd) },
+      { type: "application/ld+json", children: JSON.stringify(appJsonLd) },
+    ],
+  }),
   component: Index,
 });
 
