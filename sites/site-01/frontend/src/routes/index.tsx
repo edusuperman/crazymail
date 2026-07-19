@@ -37,9 +37,13 @@ const appJsonLd = {
 };
 
 export const Route = createFileRoute("/")({
+  validateSearch: (search) => {
+    // Allow ?lang= parameter but don't validate it
+    return search;
+  },
   head: ({ search }) => {
     // Check if ?lang= parameter exists (legacy URL)
-    const hasLang = typeof window !== "undefined" && window.location.search.includes("lang=");
+    const hasLang = search && typeof search === "object" && "lang" in search;
     
     return {
       meta: [
