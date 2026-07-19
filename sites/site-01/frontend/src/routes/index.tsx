@@ -68,6 +68,26 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <>
+      {/* Navigation bar - critical for SEO internal linking */}
+      <nav className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
+          <a href="/" className="text-lg font-bold text-primary">
+            TempMails.top
+          </a>
+          <div className="flex items-center gap-4">
+            <a href="/blog" className="text-sm font-medium text-muted-foreground hover:text-primary">
+              Blog
+            </a>
+            <a href="/privacy" className="text-sm font-medium text-muted-foreground hover:text-primary">
+              Privacy
+            </a>
+            <a href="/terms" className="text-sm font-medium text-muted-foreground hover:text-primary">
+              Terms
+            </a>
+          </div>
+        </div>
+      </nav>
+
       {/* Static SEO content visible to crawlers, hidden when app loads */}
       <div className="sr-only" aria-hidden="false">
         <h1>Free Temporary Email — Protect Your Inbox from Spam</h1>
