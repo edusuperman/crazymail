@@ -37,13 +37,15 @@ const appJsonLd = {
 };
 
 export const Route = createFileRoute("/")({
-  validateSearch: (search) => {
-    // Allow ?lang= parameter but don't validate it
-    return search;
-  },
-  head: ({ search }) => {
+  loader: ({ request }) => {
     // Check if ?lang= parameter exists (legacy URL)
-    const hasLang = search && typeof search === "object" && "lang" in search;
+    const url = new URL(request.url);
+    const hasLang = url.searchParams.has("lang");
+    return { hasLang };
+  },
+  head: ({ loaderData }) => {
+    // Use loaderData to determine if noindex should be applied
+    const hasLang = loaderData?.hasLang || false;
     
     return {
       meta: [
