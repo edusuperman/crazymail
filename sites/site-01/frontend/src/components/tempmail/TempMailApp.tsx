@@ -66,7 +66,8 @@ function AppInner() {
       setDomains(cachedDomains);
     }
 
-    // Background refresh: update domains cache without blocking
+    // Background refresh: update domains cache without blocking.
+    // getDomains() always returns at least DEFAULT_DOMAINS, so no error toast needed.
     getDomains().then((d) => {
       if (d && d.length > 0) {
         setDomains(d);
@@ -74,8 +75,6 @@ function AppInner() {
           localStorage.setItem(DOMAINS_CACHE_KEY, JSON.stringify(d));
           localStorage.setItem(DOMAINS_CACHE_TTL_KEY, String(Date.now() + CACHE_TTL_MS));
         } catch {}
-      } else if (!cachedDomains) {
-        toast.error("Failed to load domains. Please check your connection.");
       }
     });
 
@@ -543,7 +542,7 @@ function SiteHeader() {
             <Mail className="h-4 w-4" />
           </div>
           <div className="leading-tight">
-            <div className="font-display text-base font-semibold tracking-tight">TempMail<span className="text-primary">.</span>Pro</div>
+            <div className="font-display text-base font-semibold tracking-tight">TempMails<span className="text-primary">.</span>top</div>
             <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">disposable inbox</div>
           </div>
         </a>
@@ -712,7 +711,7 @@ function SiteFooter() {
             <div className="grid h-8 w-8 place-items-center rounded-lg bg-primary text-primary-foreground">
               <Mail className="h-4 w-4" />
             </div>
-            <div className="font-display text-base font-semibold tracking-tight">TempMail.Pro</div>
+            <div className="font-display text-base font-semibold tracking-tight">TempMails.top</div>
           </div>
           <p className="mt-4 text-sm text-muted-foreground">{t.footer.tagline}</p>
         </div>

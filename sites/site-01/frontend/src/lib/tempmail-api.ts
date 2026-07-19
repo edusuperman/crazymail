@@ -19,7 +19,11 @@ export type Mailbox = {
   provider?: string;
 };
 
-const BASE = (typeof window !== "undefined" && (window as any).__TEMPMAIL_API__) || import.meta.env.VITE_API_BASE || "";
+// Prefer explicit override → build-time env → same-origin proxy → production API
+const BASE =
+  (typeof window !== "undefined" && (window as any).__TEMPMAIL_API__) ||
+  import.meta.env.VITE_API_BASE ||
+  (typeof window !== "undefined" ? "" : "https://api.tempmails.top");
 
 const DEFAULT_DOMAINS = [
   "bltiwd.com",
@@ -33,29 +37,39 @@ const DEFAULT_DOMAINS = [
 ];
 
 async function tryFetch<T>(path: string, init?: RequestInit): Promise<T | null> {
-  try {
-    const ctrl = new AbortController();
-    const t = setTimeout(() => ctrl.abort(), 10000);
-    const res = await fetch(`${BASE}${path}`, { ...init, signal: ctrl.signal });
-    clearTimeout(t);
-    if (!res.ok) {
-      console.error(`API error: ${res.status} ${res.statusText}`);
-      return null;
+  const bases =
+    BASE !== undefined && BASE !== null
+      ? [BASE, BASE === "" ? "https://api.tempmails.top" : ""].filter(
+          (b, i, arr) => arr.indexOf(b) === i,
+        )
+      : ["", "https://api.tempmails.top"];
+
+  for (const base of bases) {
+    try {
+      const ctrl = new AbortController();
+      const t = setTimeout(() => ctrl.abort(), 10000);
+      const res = await fetch(`${base}${path}`, { ...init, signal: ctrl.signal });
+      clearTimeout(t);
+      if (!res.ok) {
+        console.error(`API error (${base || "same-origin"}): ${res.status} ${res.statusText}`);
+        continue;
+      }
+      return (await res.json()) as T;
+    } catch (err) {
+      console.error(`API fetch failed (${base || "same-origin"}):`, err);
     }
-    return (await res.json()) as T;
-  } catch (err) {
-    console.error(`API fetch failed:`, err);
-    return null;
   }
+  return null;
 }
 
 // ---------- public API ----------
 export async function getDomains(): Promise<string[]> {
   const r = await tryFetch<{ domains: string[] }>("/api/v1/email/domains");
-  if (r?.domains) {
+  if (r?.domains?.length) {
     return r.domains;
   }
-  return [];
+  // Never leave the UI without domains — fall back to known temp-mail.io domains
+  return [...DEFAULT_DOMAINS];
 }
 
 export function loadSavedMailbox(): Mailbox | null {
