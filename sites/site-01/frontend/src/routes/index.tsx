@@ -61,6 +61,20 @@ export const Route = createFileRoute("/")({
     scripts: [
       { type: "application/ld+json", children: JSON.stringify(faqJsonLd) },
       { type: "application/ld+json", children: JSON.stringify(appJsonLd) },
+      // Script to add noindex when ?lang= parameter exists (for SEO)
+      {
+        type: "text/javascript",
+        children: `
+          (function() {
+            if (window.location.search.includes('lang=')) {
+              var meta = document.createElement('meta');
+              meta.name = 'robots';
+              meta.content = 'noindex, nofollow';
+              document.head.appendChild(meta);
+            }
+          })();
+        `,
+      },
     ],
   }),
   component: Index,
